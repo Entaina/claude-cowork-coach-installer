@@ -12,12 +12,14 @@ Un coach personal cuya memoria vive en archivos Markdown locales: el agente es r
 Instala mi coach personal en esta carpeta:
 
 1. Copia toda la estructura del repositorio
-   https://github.com/Entaina/claude-cowork-coach-installer en esta carpeta:
-   todos los archivos y carpetas, tal cual, sin reescribirlos, reordenarlos
-   ni "mejorarlos" — excepto README.md, INSTALL.md y cualquier archivo de
-   git (.git, .gitkeep, .gitignore...), que no se copian. Las carpetas
-   vacías del repo (projects/, knowledge/, episodic/logs/) créalas vacías.
-   Si la carpeta no está vacía, párate y avísame antes de tocar nada.
+   https://github.com/Entaina/claude-cowork-coach-installer en esta carpeta.
+   No clones el repositorio (nada de git clone): descarga y copia los
+   archivos, nada más. Todos los archivos y carpetas, tal cual, sin
+   reescribirlos, reordenarlos ni "mejorarlos" — excepto README.md,
+   INSTALL.md y cualquier archivo de git (.git, .gitkeep, .gitignore...),
+   que no se copian. Las carpetas vacías del repo (projects/, knowledge/,
+   episodic/logs/) créalas vacías. Si la carpeta no está vacía, párate y
+   avísame antes de tocar nada.
 2. Verifica que la copia está completa comparándola con el árbol del
    repositorio, y enséñame el resultado en una línea.
 3. Lee INSTALL.md en el repositorio (sin copiarlo) y ejecútalo: empieza
