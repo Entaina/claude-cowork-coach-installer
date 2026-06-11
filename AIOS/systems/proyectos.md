@@ -14,13 +14,12 @@ Mantiene visible, al día y fiable el frente abierto del usuario: qué proyectos
 
 ## Orquestación
 
-A demanda, sin tareas programadas propias. El sistema tiene tres vías que se complementan:
+A demanda, sin tareas programadas propias. El sistema tiene dos vías que se complementan:
 
-- **En vivo**: project-manager, cuando el usuario habla de sus proyectos.
-- **En diferido**: semantic-learner (Learning System) detecta avances en los logs nocturnos y los propone; al firmarlos, se aplican a los archivos de `projects/`.
+- **En vivo**: project-manager, cuando el usuario habla de sus proyectos. Es la única vía de escritura — el Learning System no toca `projects/`.
 - **Higiene**: project-janitor, periódicamente o antes de una revisión de cartera, para que la revisión parta de datos que cuadran.
 
-**El hand-off**: todas las vías escriben solo con firma del usuario. El janitor detecta pero nunca cambia estados — eso pasa por project-manager. El archivo del proyecto es la fuente de verdad, no el log.
+**El hand-off**: ambas vías escriben solo con firma del usuario. El janitor detecta pero nunca cambia estados — eso pasa por project-manager. El archivo del proyecto es la fuente de verdad, no el log.
 
 ## Cuándo NO usarlo
 

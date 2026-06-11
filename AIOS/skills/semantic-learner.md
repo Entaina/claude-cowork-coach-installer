@@ -10,7 +10,7 @@ triggers:
   - semantic learner
 dependencies: []
 description: |
-  Lee el log del día y redacta propuestas de cambio para la memoria semántica y de trabajo — los archivos de knowledge/, los proyectos de projects/ (avances, decisiones, cambios de estado) y las secciones Quién soy y Goals de ME.md. Cada propuesta lleva destino, cambio concreto y fuente. No aplica nada: esa memoria solo cambia con la firma del usuario. Segundo paso de la tarea nocturna del Learning System, en paralelo con procedural-learner.
+  Lee el log del día y redacta propuestas de cambio para la memoria semántica — los archivos de knowledge/ y las secciones Quién soy y Goals de ME.md. No toca projects/ (eso es del Sistema Proyectos, en vivo). Cada propuesta lleva destino, cambio concreto y fuente. No aplica nada: la memoria semántica solo cambia con la firma del usuario. Segundo paso de la tarea nocturna del Learning System, en paralelo con procedural-learner.
 ---
 # semantic-learner
 
@@ -30,11 +30,11 @@ Destila hechos duraderos del registro del día. Propone; no escribe en la memori
 
 1. Si el log de hoy no existe, ejecuta episodic-learner primero. No trabajes de memoria: el log es la única fuente.
 2. Lee el log completo, con atención especial a las señales `novedoso` y `decidido`.
-3. Contrasta cada hallazgo con lo que ya dice la memoria — `ME.md` (Quién soy, Goals), los archivos de `knowledge/` y los proyectos de `projects/`:
+3. Contrasta cada hallazgo con lo que ya dice la memoria semántica — `ME.md` (Quién soy, Goals) y los archivos de `knowledge/`:
    - ¿Contradice algo escrito? → propuesta de corrección.
    - ¿Extiende algo escrito? → propuesta de ampliación.
-   - ¿Estrena tema (un cliente, una persona)? → propuesta de archivo nuevo en `knowledge/` (o en `projects/` si es un proyecto, con la plantilla de proyecto).
-   - ¿Avanza un proyecto (decisión, paso completado, cambio de estado pending/working/done)? → propuesta de actualización de su archivo en `projects/`.
+   - ¿Estrena tema (un cliente, una persona)? → propuesta de archivo nuevo en `knowledge/`.
+   - ¿La señal va de un proyecto? → no es tuya: déjala estar. Los proyectos se gestionan en vivo con project-manager.
 4. Redacta cada propuesta en el bloque `## Propuestas` del log con la plantilla: destino, cambio concreto (el texto que se añadiría o modificaría, no una vaguedad), fuente (sesión y momento), estado `pendiente`.
 5. No modifiques ningún archivo de destino. Tu output son propuestas.
 

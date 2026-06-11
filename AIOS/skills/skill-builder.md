@@ -1,6 +1,6 @@
 ---
 name: skill-builder
-system: taller
+system: skills
 status: Active
 created: 2026-06-11
 updated: 2026-06-11

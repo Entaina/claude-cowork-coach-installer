@@ -14,7 +14,7 @@ related: []
 
 ## Estado actual
 
-{Dónde está hoy. Lo actualizan las propuestas firmadas del Learning System.}
+{Dónde está hoy. Se actualiza vía project-manager, siempre con confirmación.}
 
 ## Siguientes pasos
 

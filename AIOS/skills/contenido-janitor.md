@@ -1,6 +1,6 @@
 ---
 name: contenido-janitor
-system: taller
+system: contenido
 status: Active
 created: 2026-06-11
 updated: 2026-06-11
@@ -12,7 +12,7 @@ triggers:
   - drift de carpetas
 dependencies: []
 description: |
-  Audita mapa-contenido.md contra la realidad de la carpeta — en las dos direcciones del mapa. Navegación: carpetas y archivos reales que el mapa no documenta, y entradas del mapa que apuntan a cosas que ya no existen. Creación: archivos que no siguen las plantillas de AIOS/Templates/ (frontmatters, estados de logs, propuestas y proyectos), plantillas sin indexar en el mapa y entradas de plantilla sin archivo. Reporta primero, arregla con aprobación, nunca edita en silencio.
+  Audita mapa-contenido.md contra la realidad de la carpeta — en las dos direcciones del mapa. Navegación: carpetas y archivos reales que el mapa no documenta, y entradas del mapa que apuntan a cosas que ya no existen. Creación: archivos que no siguen las plantillas de AIOS/Templates/ (frontmatters, estados de logs y propuestas), plantillas sin indexar en el mapa y entradas de plantilla sin archivo. projects/ queda fuera: lo audita project-janitor. Reporta primero, arregla con aprobación, nunca edita en silencio.
 ---
 # contenido-janitor
 
