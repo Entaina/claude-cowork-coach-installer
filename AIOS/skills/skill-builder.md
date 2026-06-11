@@ -45,9 +45,9 @@ Si algo falta, pregunta. No adivines.
 1. **Lee primero las fuentes de verdad**: `ME.md`, `mapa-contenido.md`, `mapa-skills.md`. Comprueba que no existe ya una skill que haga lo pedido — si existe, propón extenderla en vez de crear una gemela.
 2. **Elige nombre**: kebab-case, patrón verbo-sustantivo cuando se pueda (`preparar-reunion`, `revisar-semana`). El nombre del archivo y el campo `name` deben coincidir exactamente.
 3. **Toma como molde una skill existente** del mismo sistema o de forma parecida — copia su orden de secciones y su voz, no empieces de cero.
-4. **Escribe el archivo** en `AIOS/skills/{nombre}.md` con el esquema de frontmatter de `mapa-contenido.md`: name, system, status, created, updated, triggers, dependencies, description. La `description` es el campo que más trabaja: el coach la lee para decidir si disparar la skill. Vaga = skill muda.
+4. **Escribe el archivo** en `AIOS/skills/{nombre}.md` partiendo de `AIOS/Templates/skill-template.md` (léela, no la reconstruyas de memoria). La `description` es el campo que más trabaja: el coach la lee para decidir si disparar la skill. Vaga = skill muda.
 5. **Cuerpo**: tagline tras el H1, Cuándo usarla, Cuándo NO usarla, Workflow numerado, Qué produce, Reglas. Casos límite si los hay. Voz tersa, sin tropos de IA.
-6. **Registra** la skill en `mapa-skills.md`, bajo su sistema, con descripción de una línea y triggers. Si el sistema es nuevo, crea antes su nota en `AIOS/systems/` con la plantilla y añádela al mapa.
+6. **Registra** la skill en `mapa-skills.md`, bajo su sistema, con descripción de una línea y triggers. Si el sistema es nuevo, crea antes su nota en `AIOS/systems/` partiendo de `AIOS/Templates/system-template.md` y añádela al mapa.
 7. **Enséñasela al usuario** antes de darla por hecha — la description y los triggers son sensibles a su voz. "¿Guardo?".
 
 ## Qué produce

@@ -35,7 +35,7 @@ Todas las marcas de tiempo en Europe/Madrid, siempre: el nombre del archivo y ca
 
 1. Lista todas las sesiones de Cowork de hoy (Europe/Madrid) en esta carpeta y lee sus transcripciones. Salta las vacías o triviales.
 2. Revisa también los archivos modificados hoy en la carpeta, por si hubo trabajo fuera de las sesiones.
-3. Crea `episodic/logs/{hoy}.md` con la plantilla de log de `mapa-contenido.md`. Si ya existe, complétalo — no lo dupliques.
+3. Crea `episodic/logs/{hoy}.md` con la plantilla `AIOS/Templates/log-template.md` (léela, no la reconstruyas de memoria). Si ya existe el log, complétalo — no lo dupliques.
 4. Redacta **Qué pasó**: una narrativa breve con la forma del día, no una lista de actividades.
 5. Extrae las **Señales**, una frase declarativa por bloque, fecha y hora completas, con los cuatro tipos:
    - `novedoso` — contradice o extiende algo previo de la memoria o de la sesión.
