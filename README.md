@@ -11,7 +11,8 @@ Un coach personal cuya memoria vive en archivos Markdown locales: el agente es r
 ```
 Instala mi coach personal en esta carpeta:
 
-1. Copia toda la estructura del repositorio {URL-del-repo} en esta carpeta:
+1. Copia toda la estructura del repositorio
+   https://github.com/Entaina/claude-cowork-coach-installer en esta carpeta:
    todos los archivos y carpetas, tal cual, sin reescribirlos, reordenarlos
    ni "mejorarlos" — excepto README.md e INSTALL.md, que no se copian.
    Si la carpeta no está vacía, párate y avísame antes de tocar nada.
