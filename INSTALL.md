@@ -22,13 +22,18 @@ Ofrece opciones cerradas cuando ayude; siempre puedo responder en libre o decir 
 
 Con lo que salga, completa `ME.md`: Quién soy, Goals, Preferencias (incluido tu nombre) y Pendientes (con lo aplazado de la entrevista). No dejes ninguna llave `{así}` sin rellenar. Las Reglas ya están escritas; ajústalas solo si dije algo en la entrevista que las matice. Antes de guardar, enséñame el resultado: "¿guardo?".
 
-## 3. Crea la tarea programada del Learning System
+## 3. Crea las dos tareas programadas
 
-Una tarea programada cada noche (proponme la hora; por defecto 23:30) con el prompt que indica `AIOS/systems/learning-system.md` en su sección Orquestación — fino, apuntando a las skills, sin duplicar sus workflows. Explícame en dos frases qué veré cada mañana.
+- **Learning System, cada noche** (proponme la hora; por defecto 23:30): con el prompt que indica `AIOS/systems/learning-system.md` en su sección Orquestación.
+- **Sistema Proyectos, cada noche, después de la anterior** (por defecto 23:45): con el prompt que indica `AIOS/systems/proyectos.md` en su sección Orquestación.
+
+Explícame en dos frases qué veré cada mañana con las dos.
+
+Los prompts de las tareas son finos y apuntan a las skills — sin duplicar sus workflows.
 
 ## 4. Prueba
 
-Sigue la sección "Primer arranque" de `AIOS/systems/learning-system.md`: ejecuta la tarea una vez ahora mismo, usando esta misma conversación como material. Enséñame mi primer log en `episodic/logs/`, las primeras propuestas con su estado, y deja que apruebe o descarte alguna. Terminado = he visto mi primer log y he respondido a una propuesta.
+Sigue la sección "Primer arranque" de `AIOS/systems/learning-system.md`: ejecuta la tarea nocturna una vez ahora mismo, usando esta misma conversación como material. Enséñame mi primer log en `episodic/logs/`, las primeras propuestas con su estado, y deja que apruebe o descarte alguna. Ejecuta también una vez la tarea diaria de proyectos — si la entrevista destapó algún proyecto, saldrán sus primeras propuestas; si no, solo confirmará que arranca, y en ambos casos deja los permisos pre-aprobados. Terminado = he visto mi primer log y he respondido a una propuesta.
 
 ---
 

@@ -34,7 +34,7 @@ Destila hechos duraderos del registro del día. Propone; no escribe en la memori
    - ¿Contradice algo escrito? → propuesta de corrección.
    - ¿Extiende algo escrito? → propuesta de ampliación.
    - ¿Estrena tema (un cliente, una persona)? → propuesta de archivo nuevo en `knowledge/`, indicando en el Cambio qué plantilla de `AIOS/Templates/` usar (persona-template para personas; base-template como fallback).
-   - ¿La señal va de un proyecto? → no es tuya: déjala estar. Los proyectos se gestionan en vivo con project-manager.
+   - ¿La señal va de un proyecto? → no es tuya: déjala estar. La recogerá project-learner en su pasada diaria.
 4. Redacta cada propuesta en el bloque `## Propuestas` del log con la plantilla: destino, cambio concreto (el texto que se añadiría o modificaría, no una vaguedad), fuente (sesión y momento), estado `pendiente`.
 5. No modifiques ningún archivo de destino. Tu output son propuestas.
 

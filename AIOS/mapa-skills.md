@@ -25,9 +25,10 @@ Ver `systems/contenido.md`. A demanda.
 
 ## Proyectos — tu frente abierto, visible y al día
 
-Ver `systems/proyectos.md`. A demanda. El Learning System no toca projects/: la única vía de escritura es project-manager.
+Ver `systems/proyectos.md`. A demanda, más una detección diaria programada (project-learner, tras la nocturna del learning). El Learning System no toca projects/: la única vía de escritura es project-manager.
 
 - **project-manager** — crea, actualiza, revisa y cierra proyectos de projects/, siempre con confirmación. En la revisión contrasta la cartera con los Goals y señala estancados. Triggers: `nuevo proyecto`, `cómo van mis proyectos`, `actualiza el proyecto`, `cierra el proyecto`, `en qué estoy`.
+- **project-learner** — detecta en el log del día proyectos nuevos y movimiento de los existentes; solo propone, y lo aprobado se aplica vía project-manager. Triggers: `propuestas de proyectos`, `qué proyectos has detectado`.
 - **project-janitor** — audita projects/ contra plantilla, mapa y logs: forma, registro y ciclo de vida (working estancados, pending eternos, done a medias). Reporta primero; los cambios de estado pasan por project-manager. Triggers: `audita los proyectos`, `están los proyectos en orden`, `drift de proyectos`.
 
 ## Pulidor — feedback sin sustituirte

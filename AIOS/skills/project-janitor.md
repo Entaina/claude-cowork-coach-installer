@@ -22,7 +22,7 @@ Los archivos de `projects/` son la fuente de verdad sobre qué proyectos hay; la
 
 ## Cuándo usarla
 
-- Como pasada de higiene periódica, o cuando la cartera huela a desactualizada.
+- Como pasada de higiene a demanda, cuando la cartera huela a desactualizada.
 - Después de una racha de trabajo intensa en la que los proyectos se tocaron deprisa.
 - Antes de una revisión de cartera con project-manager, para que la revisión parta de datos que cuadran.
 

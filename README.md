@@ -32,8 +32,8 @@ Instala mi coach personal en esta carpeta:
 ## El día a día
 
 - Trabaja con tu coach con normalidad: prepara reuniones, piensa decisiones, pídele que pula tu trabajo ("pule esto", "¿qué se me escapa?").
-- Cada noche, una tarea automática repasa tu día y prepara propuestas: "he aprendido esto de ti, ¿lo guardo?".
-- Cada mañana, abre esa sesión y contesta sí o no. Dos minutos. Nada entra en la memoria de tu coach sin tu permiso.
+- Cada noche, dos tareas automáticas repasan tu día: una aprende de ti ("he aprendido esto, ¿lo guardo?") y otra detecta proyectos nuevos y avances de los que ya tienes.
+- Cada mañana, abre esas sesiones y contesta sí o no. Dos minutos. Nada entra en la memoria de tu coach sin tu permiso.
 
 ## Qué hay en la carpeta
 

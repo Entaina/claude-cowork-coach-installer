@@ -25,6 +25,7 @@ El frente abierto del usuario, gestionado en vivo. El coach pregunta, el usuario
 - El usuario menciona un proyecto nuevo o pide crearlo.
 - Pide actualizar uno existente: avance, decisión, cambio de estado.
 - Pide una vista de cartera: "¿cómo van mis proyectos?", "¿en qué estoy?".
+- Al aplicar las propuestas aprobadas del project-learner en la sesión diaria del Sistema Proyectos (creaciones desde plantilla, actualizaciones, cambios de estado).
 - Quiere cerrar uno.
 
 ## Cuándo NO usarla
