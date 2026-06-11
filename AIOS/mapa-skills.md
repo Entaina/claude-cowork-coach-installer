@@ -23,13 +23,13 @@ Ver `systems/contenido.md`. A demanda.
 
 - **contenido-janitor** — audita mapa-contenido contra la carpeta real (navegación) y los archivos contra las plantillas (creación). Reporta primero, arregla con aprobación. Triggers: `audita el contenido`, `está la carpeta en orden`, `drift de carpetas`.
 
-## Proyectos — tu frente abierto, visible y al día
+## Proyectos y Áreas — tu frente de ejecución, visible y al día
 
-Ver `systems/proyectos.md`. A demanda, más una detección diaria programada (project-learner, tras la nocturna del learning). El Learning System no toca projects/: la única vía de escritura es project-manager.
+Ver `systems/proyectos-y-areas.md`. A demanda, más una detección diaria programada (project-learner, tras la nocturna del learning). Proyecto = se puede acabar (`pending|working|done`); área = responsabilidad continua con estándar (`active|archived`). El Learning System no toca projects/ ni areas/: la única vía de escritura es project-manager.
 
-- **project-manager** — crea, actualiza, revisa y cierra proyectos de projects/, siempre con confirmación. En la revisión contrasta la cartera con los Goals y señala estancados. Triggers: `nuevo proyecto`, `cómo van mis proyectos`, `actualiza el proyecto`, `cierra el proyecto`, `en qué estoy`.
-- **project-learner** — detecta en el log del día proyectos nuevos y movimiento de los existentes; solo propone, y lo aprobado se aplica vía project-manager. Triggers: `propuestas de proyectos`, `qué proyectos has detectado`.
-- **project-janitor** — audita projects/ contra plantilla, mapa y logs: forma, registro y ciclo de vida (working estancados, pending eternos, done a medias). Reporta primero; los cambios de estado pasan por project-manager. Triggers: `audita los proyectos`, `están los proyectos en orden`, `drift de proyectos`.
+- **project-manager** — crea, actualiza, revisa y cierra proyectos y áreas, siempre con confirmación. En la revisión agrupa por área, contrasta con los Goals y señala estancados y áreas descuidadas. Triggers: `nuevo proyecto`, `nueva área`, `cómo van mis proyectos`, `actualiza el proyecto`, `cierra el proyecto`, `en qué estoy`.
+- **project-learner** — detecta en el log del día proyectos nuevos, áreas que asoman y movimiento de los existentes; solo propone, y lo aprobado se aplica vía project-manager. Triggers: `propuestas de proyectos`, `qué proyectos has detectado`.
+- **project-janitor** — audita projects/ y areas/ contra plantillas, mapa y logs: forma, registro y ciclo de vida (working estancados, pending eternos, done a medias, áreas descuidadas). Reporta primero; los cambios de estado pasan por project-manager. Triggers: `audita los proyectos`, `audita las áreas`, `están los proyectos en orden`, `drift de proyectos`.
 
 ## Pulidor — feedback sin sustituirte
 

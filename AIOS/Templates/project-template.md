@@ -2,6 +2,7 @@
 created: {AAAA-MM-DD}
 updated: {AAAA-MM-DD}
 status: pending
+area: {área a la que empuja, si la hay}
 related: []
 ---
 # {Nombre del proyecto}

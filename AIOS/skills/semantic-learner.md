@@ -10,7 +10,7 @@ triggers:
   - semantic learner
 dependencies: []
 description: |
-  Lee el log del día y redacta propuestas de cambio para la memoria semántica — los archivos de knowledge/ y las secciones Quién soy y Goals de ME.md. No toca projects/ (eso es del Sistema Proyectos, en vivo). Cada propuesta lleva destino, cambio concreto y fuente. No aplica nada: la memoria semántica solo cambia con la firma del usuario. Segundo paso de la tarea nocturna del Learning System, en paralelo con procedural-learner.
+  Lee el log del día y redacta propuestas de cambio para la memoria semántica — los archivos de knowledge/ y las secciones Quién soy y Goals de ME.md. No toca projects/ ni areas/ (eso es del Sistema Proyectos y Áreas). Cada propuesta lleva destino, cambio concreto y fuente. No aplica nada: la memoria semántica solo cambia con la firma del usuario. Segundo paso de la tarea nocturna del Learning System, en paralelo con procedural-learner.
 ---
 # semantic-learner
 

@@ -15,7 +15,7 @@ Mantiene fiable el mapa del territorio: lo que `mapa-contenido.md` dice y lo que
 
 A demanda, sin tareas programadas. Se dispara cuando el usuario lo pide ("¿está la carpeta en orden?"), tras crear o reorganizar varios archivos, o cuando el coach detecta un desfase entre el mapa y la realidad.
 
-**El hand-off**: reporta primero, espera aprobación y entonces edita. La carpeta real es la fuente de verdad para la navegación; las plantillas son la norma para la creación. `projects/` queda fuera: tiene su propio auditor (project-janitor, Sistema Proyectos).
+**El hand-off**: reporta primero, espera aprobación y entonces edita. La carpeta real es la fuente de verdad para la navegación; las plantillas son la norma para la creación. `projects/` y `areas/` quedan fuera: tienen su propio auditor (project-janitor, Sistema Proyectos y Áreas).
 
 ## Cuándo NO usarlo
 

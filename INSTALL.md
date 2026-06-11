@@ -25,7 +25,7 @@ Con lo que salga, completa `ME.md`: Quién soy, Goals, Preferencias (incluido tu
 ## 3. Crea las dos tareas programadas
 
 - **Learning System, cada noche** (proponme la hora; por defecto 23:30): con el prompt que indica `AIOS/systems/learning-system.md` en su sección Orquestación.
-- **Sistema Proyectos, cada noche, después de la anterior** (por defecto 23:45): con el prompt que indica `AIOS/systems/proyectos.md` en su sección Orquestación.
+- **Sistema Proyectos y Áreas, cada noche, después de la anterior** (por defecto 23:45): con el prompt que indica `AIOS/systems/proyectos-y-areas.md` en su sección Orquestación.
 
 Explícame en dos frases qué veré cada mañana con las dos.
 

@@ -17,9 +17,9 @@ Instala mi coach personal en esta carpeta:
    archivos, nada más. Todos los archivos y carpetas, tal cual, sin
    reescribirlos, reordenarlos ni "mejorarlos" — excepto README.md,
    INSTALL.md y cualquier archivo de git (.git, .gitkeep, .gitignore...),
-   que no se copian. Las carpetas vacías del repo (projects/, knowledge/,
-   episodic/logs/) créalas vacías. Si la carpeta no está vacía, párate y
-   avísame antes de tocar nada.
+   que no se copian. Las carpetas vacías del repo (projects/, areas/,
+   knowledge/, episodic/logs/) créalas vacías. Si la carpeta no está
+   vacía, párate y avísame antes de tocar nada.
 2. Verifica que la copia está completa comparándola con el árbol del
    repositorio, y enséñame el resultado en una línea.
 3. Lee INSTALL.md en el repositorio (sin copiarlo) y ejecútalo: empieza
@@ -39,7 +39,8 @@ Instala mi coach personal en esta carpeta:
 
 - `CLAUDE.md` — arranque del coach. No tocar.
 - `ME.md` — quién eres y cómo trabajar contigo. Lo rellena la entrevista; es tuyo.
-- `projects/` — tus proyectos en marcha, con estado (pending, working, done).
+- `projects/` — tus proyectos: cosas con final, con estado (pending, working, done).
+- `areas/` — tus áreas de responsabilidad: lo que no se acaba y hay que mantener bien.
 - `knowledge/` — tu mundo: clientes, personas, equipo. Nace vacía y crece con tu firma.
 - `episodic/logs/` — un log por día, escrito por el coach.
 - `AIOS/` — mapas, plantillas, skills y sistemas del coach. Crece vía skill-builder, también con tu firma.

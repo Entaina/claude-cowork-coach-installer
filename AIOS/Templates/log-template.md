@@ -15,9 +15,9 @@ consolidado: pendiente
 
 ## Propuestas
 
-{Las escriben semantic-learner y procedural-learner (pasada nocturna del Learning System) y project-learner (pasada diaria del Sistema Proyectos). Cada propuesta es un cambio concreto a la memoria duradera (ME.md, knowledge/, projects/ o skills) que espera la firma del usuario: cada sistema presenta las suyas, aplica las aprobadas y actualiza el Estado de cada una. Un día sin señal deja esta sección vacía.}
+{Las escriben semantic-learner y procedural-learner (pasada nocturna del Learning System) y project-learner (pasada diaria del Sistema Proyectos y Áreas). Cada propuesta es un cambio concreto a la memoria duradera (ME.md, knowledge/, projects/, areas/ o skills) que espera la firma del usuario: cada sistema presenta las suyas, aplica las aprobadas y actualiza el Estado de cada una. Un día sin señal deja esta sección vacía.}
 
-### Propuesta {N} — {semántica|procedural|proyectos}
+### Propuesta {N} — {semántica|procedural|proyecto|área}
 - Destino: {archivo o sección}
 - Cambio: {el texto concreto que se añadiría o modificaría, listo para aplicar}
 - Fuente: {de qué sesión/momento sale}

@@ -1,18 +1,19 @@
 ---
 name: project-janitor
-system: proyectos
+system: proyectos-y-areas
 status: Active
 created: 2026-06-11
 updated: 2026-06-11
 triggers:
   - project janitor
   - audita los proyectos
+  - audita las áreas
   - revisa los proyectos
   - están los proyectos en orden
   - drift de proyectos
 dependencies: []
 description: |
-  Audita los archivos de projects/ contra el esquema de project-template y las reglas de ciclo de vida. Caza drift en tres direcciones — lado archivo (frontmatter incompleto, status fuera de pending/working/done, secciones de la plantilla ausentes o con llaves sin rellenar), lado registro (proyectos sin entrada en mapa-contenido, entradas que apuntan a archivos borrados) y lado ciclo de vida (working estancados, pending eternos, done con pasos abiertos, Pendientes de ME.md apuntando a proyectos cerrados). Reporta primero, arregla con aprobación, nunca edita en silencio.
+  Audita los archivos de projects/ y areas/ contra sus plantillas y las reglas de ciclo de vida. Caza drift en tres direcciones — lado archivo (frontmatter incompleto, status inválido, secciones ausentes o con llaves sin rellenar), lado registro (archivos sin entrada en mapa-contenido, entradas que apuntan a archivos borrados) y lado ciclo de vida (working estancados, pending eternos, done con pasos abiertos, áreas descuidadas, proyectos que apuntan a áreas inexistentes, Pendientes de ME.md apuntando a proyectos cerrados). Reporta primero, arregla con aprobación, nunca edita en silencio.
 ---
 # project-janitor
 
@@ -35,25 +36,28 @@ Los archivos de `projects/` son la fuente de verdad sobre qué proyectos hay; la
 
 ### 1. Escanear
 
-Lee cada `.md` de `projects/`. Extrae frontmatter y secciones. Anota archivos con YAML roto.
+Lee cada `.md` de `projects/` y `areas/`. Extrae frontmatter y secciones. Anota archivos con YAML roto.
 
 ### 2. Lado archivo
 
 - Frontmatter completo: `created`, `updated`, `status`.
-- `status` es uno de `pending | working | done`.
-- Las secciones de la plantilla están presentes (Objetivo, Estado actual, Siguientes pasos, Personas, Decisiones) y sin llaves `{así}` sin rellenar.
-- Decisiones con fecha; `updated` no anterior a la última decisión.
+- `status` válido: proyectos `pending | working | done`; áreas `active | archived`.
+- Las secciones de la plantilla están presentes (proyectos: Objetivo, Estado actual, Siguientes pasos, Personas, Decisiones; áreas: Estándar, Personas, Señales de salud, Notas) y sin llaves `{así}` sin rellenar.
+- Decisiones y Notas con fecha; `updated` no anterior a la última entrada.
 
 ### 3. Lado registro
 
-- Todo proyecto tiene su entrada en la Navegación de `mapa-contenido.md`.
+- Todo proyecto y toda área tienen su entrada en la Navegación de `mapa-contenido.md`.
 - Toda entrada del mapa apunta a un archivo que existe.
+- El campo `area:` de cada proyecto apunta a un área que existe (o está vacío).
 
 ### 4. Lado ciclo de vida
 
 - `working` sin rastro en los logs de las últimas dos semanas → ¿sigue vivo?
 - `pending` con más de un mes sin arrancar → ¿se descarta o se agenda?
 - `done` con Siguientes pasos sin marcar → ¿se cerraron de verdad?
+- Área `active` cuyas Señales de salud llevan tiempo sin buena pinta en los logs → área descuidada, avisa.
+- Área `archived` con proyectos `working` apuntándole → algo no cuadra.
 - Pendientes de `ME.md` que referencian proyectos `done` → propuesta de limpieza.
 
 ### 5. Reporte
@@ -62,7 +66,7 @@ Salida en chat, sin escribir archivos:
 
 ```
 # Informe project-janitor — AAAA-MM-DD
-Proyectos: N (pending P, working W, done D)
+Proyectos: N (pending P, working W, done D) · Áreas: M (active A, archived X)
 
 ## Lado archivo
 - {proyecto} — {problema concreto} (o "sin problemas")
