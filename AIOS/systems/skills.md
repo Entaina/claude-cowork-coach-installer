@@ -1,16 +1,17 @@
 ---
 name: skills
-skills: skill-builder, skills-janitor
+skills: skill-builder, skills-janitor, skill-installer
 created: 2026-06-11
 ---
 # Sistema Skills
 
-Gestiona las capacidades del coach: las skills se crean por una sola vía y el catálogo nunca miente. Sin este sistema, las skills nacen sin registrar (y no se disparan) o el mapa acumula entradas muertas — y la confianza en el coach se erosiona.
+Gestiona las capacidades del coach: las skills se crean por una sola vía, el catálogo nunca miente y, cuando hace falta, se proyectan nativas al agente anfitrión. Sin este sistema, las skills nacen sin registrar (y no se disparan) o el mapa acumula entradas muertas — y la confianza en el coach se erosiona.
 
 ## Skills
 
 - **skill-builder**: crea y registra skills nuevas de forma consistente. La única vía de creación.
 - **skills-janitor**: audita `AIOS/skills/` y `AIOS/systems/` contra `mapa-skills.md` y el esquema de skill-builder. Reporta primero, arregla con aprobación.
+- **skill-installer**: proyecta una skill canónica de `AIOS/skills/` al agente anfitrión (Cowork, Claude Code…) como skill nativa que el host descubre y dispara solo, con un wrapper delgado que apunta al canónico. Nunca duplica el workflow; el canónico manda y el wrapper es desechable.
 
 ## Orquestación
 
@@ -18,6 +19,7 @@ A demanda, sin tareas programadas:
 
 - **skill-builder** se dispara al aprobar una candidata del procedural-learner o cuando el usuario pide una skill.
 - **skills-janitor** se dispara cuando el usuario lo pide, tras una tanda de cambios en skills o sistemas, o cuando el coach detecta un desfase.
+- **skill-installer** se dispara cuando el usuario quiere hacer nativa una skill en el agente donde trabaja ("instala esta skill", "instala todas"), o para refrescar un wrapper tras editar su canónico.
 
 **El hand-off**: skill-builder enseña la skill antes de darla por hecha ("¿guardo?"). El janitor reporta, espera aprobación y entonces edita — sin reescrituras silenciosas. Los archivos de skills son la fuente de verdad; el mapa se reconcilia hacia ellos, nunca al revés.
 

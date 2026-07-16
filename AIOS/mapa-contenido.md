@@ -10,7 +10,7 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 - `areas/` — memoria de trabajo: un archivo por área de responsabilidad continua (no se termina; tiene un estándar que mantener), con `status: active | archived`. El test proyecto/área: "¿puede acabarse?". Ambas carpetas se gestionan vía project-manager (Sistema Proyectos y Áreas).
 - `knowledge/` — memoria semántica: el mundo del usuario (clientes, personas, equipo...). Archivos sueltos, sin subcarpetas; la estructura se gana cuando duele no tenerla, no antes. Se lee según el tema de la sesión.
 - `episodic/logs/` — memoria episódica: un log por día (`AAAA-MM-DD.md`), compuesto por el episodic-learner. Los logs de días anteriores son historia: no se reescriben (solo su frontmatter, al consolidar).
-- `AIOS/` — memoria procedural: este mapa, `mapa-skills.md`, `Templates/` (plantillas), `skills/` (una skill por archivo) y `systems/` (una nota por sistema).
+- `AIOS/` — memoria procedural: este mapa, `mapa-skills.md`, `Templates/` (plantillas), `skills/` (una skill por archivo), `systems/` (una nota por sistema) y `VERSION.md` (versión instalada del coach; la mantiene la actualización, no se edita a mano).
 
 ### Reglas de escritura
 
