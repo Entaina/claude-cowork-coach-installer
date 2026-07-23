@@ -10,7 +10,7 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 - `areas/` — memoria de trabajo: un archivo por área de responsabilidad continua (no se termina; tiene un estándar que mantener), con `status: active | archived`. El test proyecto/área: "¿puede acabarse?". Ambas carpetas se gestionan vía project-manager (Sistema Proyectos y Áreas).
 - `knowledge/` — memoria semántica: el mundo del usuario (clientes, personas, equipo...). Archivos sueltos, sin subcarpetas; la estructura se gana cuando duele no tenerla, no antes. Se lee según el tema de la sesión.
 - `episodic/logs/` — memoria episódica: un log por día (`AAAA-MM-DD.md`), compuesto por el episodic-learner. Los logs de días anteriores son historia: no se reescriben (solo su frontmatter, al consolidar).
-- `AIOS/` — memoria procedural: este mapa, `mapa-skills.md`, `Templates/` (plantillas), `skills/` (una skill por archivo), `systems/` (una nota por sistema) y `VERSION.md` (versión instalada del coach; la mantiene la actualización, no se edita a mano).
+- `AIOS/` — memoria procedural: este mapa, `mapa-skills.md`, `Templates/` (plantillas), `skills/` (un directorio por skill, con su `SKILL.md` dentro), `systems/` (una nota por sistema) y `VERSION.md` (versión instalada del coach; la mantiene la actualización, no se edita a mano).
 
 ### Reglas de escritura
 
@@ -38,7 +38,7 @@ Cada archivo nuevo en `projects/`, `areas/` o `knowledge/` se registra en este m
 | Área de responsabilidad | `AIOS/Templates/area-template.md` | `areas/` |
 | Persona (jefe, equipo, cliente) | `AIOS/Templates/persona-template.md` | `knowledge/` |
 | Log diario | `AIOS/Templates/log-template.md` | `episodic/logs/` |
-| Skill | `AIOS/Templates/skill-template.md` | `AIOS/skills/` (solo vía skill-builder) |
+| Skill | `AIOS/Templates/skill-template.md` | `AIOS/skills/{nombre}/SKILL.md` (solo vía skill-builder) |
 | Sistema | `AIOS/Templates/system-template.md` | `AIOS/systems/` (solo vía skill-builder) |
 
 Cuando ninguna especializada encaje, usa `base-template.md`.
@@ -49,4 +49,4 @@ Cuando ninguna especializada encaje, usa `base-template.md`.
 - Log: `consolidado: pendiente` → `consolidado: sí` (lo marca el Learning System al resolver sus propuestas).
 - Proyecto: `status: pending | working | done`.
 - Área: `status: active | archived`.
-- Skill: `status: Active | Draft | Retired`. La `description` es el campo que más trabaja — vaga = skill muda. Los `triggers`, con la voz real del usuario.
+- Skill: `metadata.status: active | draft | retired`. La `description` es el campo que más trabaja — vaga = skill muda — y lleva dentro las frases de disparo, con la voz real del usuario.

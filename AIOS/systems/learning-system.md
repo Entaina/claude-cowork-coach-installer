@@ -21,7 +21,7 @@ Cómo aprende el coach. Sin este sistema, el coach del día 30 sabe lo mismo que
 
 Secuencia: (1) episodic-learner escribe el log; (2) los dos learners de propuestas leen *el log* (no las transcripciones) y anotan sus propuestas al pie con estado `pendiente`; (3) la sesión termina presentándolas al usuario y queda a la espera.
 
-**El hand-off**: el usuario responde esa noche o al abrir la sesión a la mañana siguiente — sí, no, o corrige. El coach aplica las aprobadas en sus destinos, descarta el resto, actualiza el estado de cada una en el log y marca el log como `consolidado: sí`. **Al aplicar una propuesta que crea un archivo nuevo, parte de la plantilla correspondiente de `AIOS/Templates/` — lee el archivo de la plantilla antes, no la reconstruyas de memoria.** Las propuestas `pendiente` de días anteriores se re-presentan cada noche hasta que el usuario las resuelva: nada se pierde por no contestar un día.
+**El hand-off**: el usuario responde esa noche o al abrir la sesión a la mañana siguiente — sí, no, o corrige. El coach aplica las aprobadas en sus destinos, descarta el resto, actualiza el estado de cada una en el log y marca el log como `consolidado: sí`. **Al aplicar una propuesta que crea un archivo o directorio nuevo, parte de la plantilla correspondiente de `AIOS/Templates/` — lee el archivo de la plantilla antes, no la reconstruyas de memoria.** Las propuestas `pendiente` de días anteriores se re-presentan cada noche hasta que el usuario las resuelva: nada se pierde por no contestar un día.
 
 ## Cuándo NO usarlo
 

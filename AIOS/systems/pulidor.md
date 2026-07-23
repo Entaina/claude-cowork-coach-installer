@@ -13,7 +13,7 @@ Feedback rápido sobre el trabajo del usuario sin sustituirlo. El feedback rápi
 
 ## Orquestación
 
-A demanda, en mitad de cualquier conversación, sin tareas programadas. Se dispara con las frases de su frontmatter ("pule esto", "qué se me escapa", "dame feedback"...) o cuando el coach detecte que el usuario está pidiendo opinión sobre algo suyo.
+A demanda, en mitad de cualquier conversación, sin tareas programadas. Se dispara con las frases de disparo de su description ("pule esto", "qué se me escapa", "dame feedback"...) o cuando el coach detecte que el usuario está pidiendo opinión sobre algo suyo.
 
 **El hand-off**: el coach pregunta qué tipo de pulido se necesita → da fricción concreta y honesta → el usuario discierne e integra con su propia voz. Si pide el producto final, lo recibe etiquetado como referencia para reaccionar, no como resultado.
 

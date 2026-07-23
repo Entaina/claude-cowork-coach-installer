@@ -15,7 +15,7 @@ Ver `systems/learning-system.md`. Una tarea programada nocturna; el usuario firm
 Ver `systems/skills.md`. A demanda.
 
 - **skill-builder** — crea y registra skills nuevas de forma consistente; única vía de creación. Triggers: `crea una skill`, `nueva skill`, `skill para`, `quiero capturar esto como skill`.
-- **skills-janitor** — audita skills y sistemas contra mapa-skills y el esquema de skill-builder. Reporta primero, arregla con aprobación. Triggers: `audita las skills`, `están las skills en orden`, `skill drift`.
+- **skills-janitor** — audita skills y sistemas contra mapa-skills y El formato (`systems/skills.md`). Reporta primero, arregla con aprobación. Triggers: `audita las skills`, `están las skills en orden`, `skill drift`.
 - **skill-installer** — proyecta una skill canónica de `AIOS/skills/` al agente anfitrión (Cowork, Claude Code…) como skill nativa, con un wrapper delgado que apunta al canónico; sin duplicar el workflow ni usar symlinks. El canónico manda, el wrapper es desechable. Triggers: `instala esta skill`, `hazla nativa aquí`, `instala todas las skills`.
 
 ## Contenido — el mapa del territorio, fiable

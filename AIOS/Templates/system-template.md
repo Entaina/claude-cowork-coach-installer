@@ -13,7 +13,7 @@ created: {AAAA-MM-DD}
 
 ## Orquestación
 
-{Cómo y cuándo se ejecutan: orden, paralelo, tarea programada, triggers. Si hay tarea programada, su prompt es fino y apunta a las skills — nunca duplica sus workflows.}
+{Cómo y cuándo se ejecutan: orden, paralelo, tarea programada, frases de disparo. Si hay tarea programada, su prompt es fino y apunta a las skills — nunca duplica sus workflows.}
 
 ## Cuándo NO usarlo
 
