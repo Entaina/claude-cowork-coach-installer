@@ -14,14 +14,12 @@ Entrevista breve y soporte para ChatGPT Work / Codex en la app local, conservand
 
 ### Añadido
 
-- `AGENTS.md` — arranque canónico común. `CLAUDE.md` se conserva como puntero de compatibilidad.
+- `AGENTS.md` — las mismas instrucciones completas que `CLAUDE.md`, para que cada app use el archivo que reconoce. Ambos se mantienen sincronizados.
 - `AIOS/entornos-locales.md` — acceso nativo a conversaciones de Cowork y GPT local, filtrado por proyecto/fecha, cobertura y programación. En GPT, una revisión conjunta; en Cowork, se conservan las dos tareas.
 
-### Migrado
-
-- Las reglas de un `CLAUDE.md` personalizado se conservan en `AGENTS.md` antes de sustituir el origen por el puntero. Si ambos existen y difieren, se resuelve el conflicto antes de tocar nada.
-
 ### Cambiado
+
+- `CLAUDE.md` — conserva el arranque completo y coincide con `AGENTS.md`; se actualizan ambos en conjunto. La actualización preserva las reglas personalizadas y resuelve las diferencias antes de escribir.
 
 - `AIOS/mapa-contenido.md` y `AIOS/mapa-skills.md` — registran el arranque común y el acceso a conversaciones de GPT. El mapa de contenido aclara cómo completar un día histórico a petición explícita sin perder su contenido ni propuestas.
 - `AIOS/skills/episodic-learner/SKILL.md` — usa el adaptador local disponible, indica cobertura, no interpreta falta de acceso como falta de actividad y conserva señales/propuestas al reejecutarse. Los compromisos requieren evidencia del usuario.

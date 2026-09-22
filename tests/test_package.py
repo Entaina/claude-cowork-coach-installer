@@ -19,6 +19,11 @@ def frontmatter(path):
 
 
 class PackageIntegrity(unittest.TestCase):
+    def test_startup_files_are_identical(self):
+        agents = (ROOT / "AGENTS.md").read_bytes()
+        self.assertTrue(agents.strip())
+        self.assertEqual(agents, (ROOT / "CLAUDE.md").read_bytes())
+
     def test_skill_metadata(self):
         paths = list(SKILLS.glob("*/SKILL.md"))
         self.assertTrue(paths)
@@ -49,7 +54,7 @@ class PackageIntegrity(unittest.TestCase):
 
     def test_explicit_aios_file_references_resolve(self):
         paths = list((ROOT / "AIOS").rglob("*.md"))
-        paths += [ROOT / name for name in ("AGENTS.md", "ME.md", "INSTALL.md")]
+        paths += [ROOT / name for name in ("AGENTS.md", "CLAUDE.md", "ME.md", "INSTALL.md")]
         count = 0
         for path in paths:
             for reference in re.findall(r"`(AIOS/[^`\n]+\.md)`", path.read_text()):

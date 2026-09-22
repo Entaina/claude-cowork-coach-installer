@@ -65,8 +65,7 @@ Actualiza mi coach con los últimos cambios del repositorio, sin tocar nada mío
 
 ## Qué hay en la carpeta
 
-- `AGENTS.md` — instrucciones de arranque comunes.
-- `CLAUDE.md` — puntero de compatibilidad con Claude.
+- `AGENTS.md` y `CLAUDE.md` — las mismas instrucciones completas de arranque, con ambos nombres para que cada app lea su archivo habitual. Se mantienen sincronizados.
 - `AIOS/entornos-locales.md` — adaptación del historial y las tareas a cada app local.
 - `ME.md` — quién eres y cómo trabajar contigo. Lo rellena la entrevista; es tuyo.
 - `projects/` — tus proyectos: cosas con final, con estado (pending, working, done).

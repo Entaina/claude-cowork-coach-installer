@@ -10,7 +10,7 @@ Solo para desarrollo, con Python 3 y PyYAML disponibles:
 python3 -m unittest discover -s tests -v
 ```
 
-Comprueban el formato de las skills, las referencias a skills y archivos de AIOS, la coherencia de la versión y la integridad de las migraciones. `baseline-2.0.0.json` registra los hashes de los originales de la revisión indicada. No se regenera desde archivos editados para hacer pasar una prueba.
+Comprueban el formato de las skills, las referencias a skills y archivos de AIOS, la coherencia de la versión, la integridad de las migraciones y la igualdad exacta de CLAUDE.md y AGENTS.md. `baseline-2.0.0.json` registra los hashes de los originales de la revisión indicada. No se regenera desde archivos editados para hacer pasar una prueba.
 
 Esta carpeta se excluye de la copia al usuario. El coach no requiere Python ni estas pruebas para funcionar.
 
@@ -22,9 +22,10 @@ Ejecutar en carpetas de prueba, con datos sintéticos y sin programaciones reale
 | --- | --- |
 | Instalación nueva; saltar datos y objetivos | ME.md sin marcadores pendientes; Goals opcionales; ningún pendiente inventado. |
 | Retomar entrevista | Conserva respuestas y archivos; no vuelve a copiar la plantilla. |
-| Migrar 2.0.0 sin personalización | Nuevos archivos y puntero válidos; versión final 2.1.0. |
-| Migrar CLAUDE.md personalizado | Conserva cada regla acordada en AGENTS.md antes de reemplazar el origen. |
+| Migrar 2.0.0 sin personalización | Dos archivos de arranque completos e idénticos; versión final 2.1.0. |
+| Migrar CLAUDE.md personalizado | Conserva cada regla acordada en ambos archivos de arranque. |
 | AGENTS y CLAUDE diferentes, sin decisión | No altera archivos ni avanza versión. |
+| Puntero de una candidata anterior | Conserva el contenido de AGENTS.md y deja ambos arranques completos e idénticos. |
 | AIOS personalizado, sin decisión | Inspecciona todos los conflictos y se detiene antes de escribir. |
 | Migración interrumpida y reejecución | Retoma sin pérdidas; segunda pasada no cambia el resultado. |
 | Historial GPT parcial, archivado, antiguo o ajeno | Solo usa turnos del día y carpeta; declara límites; sugerencias no aceptadas no son decisiones. |
@@ -38,6 +39,6 @@ Registrar archivos antes/después y comprobar que ME.md (salvo Pendientes al eje
 
 ## Comprobación final en cada app
 
-En una carpeta de prueba, instalar desde la revisión candidata, abrir otra sesión y comprobar la lectura de AGENTS/ME/mapas. Leer conversaciones reales de esa carpeta. Crear una sola programación con el horario elegido, repetir su configuración y verificar que no se duplica. Revisar una ejecución efectiva del programador: carpeta correcta, herramientas accesibles, log y propuestas sin aplicar. Probar por separado Cowork y GPT y desactivar la tarea de prueba al terminar.
+En una carpeta de prueba, instalar desde la revisión candidata, abrir otra sesión y comprobar que se lee el arranque del entorno (CLAUDE.md en Cowork, AGENTS.md en GPT), ME y los mapas. Ambos arranques deben contener las mismas instrucciones completas. Leer conversaciones reales de esa carpeta. Crear una sola programación con el horario elegido, repetir su configuración y verificar que no se duplica. Revisar una ejecución efectiva del programador: carpeta correcta, herramientas accesibles, log y propuestas sin aplicar. Probar por separado Cowork y GPT y desactivar la tarea de prueba al terminar.
 
 La ejecución manual y la creación de la tarea no acreditan por sí solas su ejecución programada.

@@ -37,7 +37,7 @@ Ejecuta el mismo flujo de revisión una vez con el usuario delante, usando esta 
 
 Si hay propuestas, deja que apruebe o descarte alguna y comprueba el resultado. **Cero propuestas es válido**: no inventes una para completar la instalación. En ese caso basta con enseñar el log y explicar que hoy no hay cambios que validar.
 
-Comprueba después, en una sesión nueva, que se leen `AGENTS.md`, `ME.md` y los mapas. La prueba manual no demuestra que la ejecución programada disponga de las mismas herramientas: deja esa comprobación pendiente hasta revisar su primera ejecución. En Cowork puedes usar «Run now» si existe; en GPT usa la acción disponible o la interfaz, sin inventar un parámetro de ejecución.
+Verifica que `CLAUDE.md` y `AGENTS.md` contienen exactamente las mismas instrucciones. Comprueba después, en una sesión nueva, que se lee el archivo de arranque del entorno (`CLAUDE.md` en Cowork, `AGENTS.md` en GPT), `ME.md` y los mapas. Si esa sesión no carga las instrucciones, informa de que el arranque queda pendiente; no declares la instalación completamente verificada. La prueba manual no demuestra que la ejecución programada disponga de las mismas herramientas: deja esa comprobación pendiente hasta revisar su primera ejecución. En Cowork puedes usar «Run now» si existe; en GPT usa la acción disponible o la interfaz, sin inventar un parámetro de ejecución.
 
 ---
 

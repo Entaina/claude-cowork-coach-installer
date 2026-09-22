@@ -9,7 +9,7 @@ Contrato de acceso a conversaciones y programación. El contenido canónico sigu
 - **Sin herramientas equivalentes**: explica la limitación. Puedes generar un registro parcial con la conversación actual y los archivos accesibles. No prometas leer otras sesiones ni programar tareas.
 - Web/cloud, Antigravity y adaptación del historial de Claude Code CLI quedan fuera de esta versión. No accedas a sus almacenes privados como alternativa.
 
-Al abrir el coach en otra app, verifica la carpeta real y lee `AGENTS.md`. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
+Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork, `AGENTS.md` en GPT. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
 
 ## Leer las conversaciones del día
 

@@ -4,8 +4,7 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 
 ## Navegación
 
-- `AGENTS.md` — instrucciones canónicas de arranque.
-- `CLAUDE.md` — puntero a `AGENTS.md` para compatibilidad con Claude.
+- `AGENTS.md` y `CLAUDE.md` — instrucciones completas de arranque, idénticas y sincronizadas. Cada app usa el nombre que reconoce; al modificar el arranque, actualiza ambos sin perder personalizaciones.
 - `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork y GPT local; léelo antes de usar esas capacidades.
 - `ME.md` — briefing del usuario: quién es, goals, preferencias, reglas, pendientes. Se lee en cada arranque.
 - `projects/` — memoria de trabajo: un archivo por proyecto (resultado concreto con final), con `status: pending | working | done`. Los `working` son el frente abierto del usuario: consúltalos al planificar o cuando el tema lo pida.
