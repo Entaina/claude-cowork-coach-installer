@@ -28,7 +28,11 @@ Dos vías a demanda y una programada diaria:
 - **Higiene**: project-janitor, a demanda o antes de una revisión de cartera, para que la revisión parta de datos que cuadran.
 - **Detección diaria programada**: en Cowork, 23:45 por defecto, Europe/Madrid, tras Learning; en GPT local, segunda fase de la revisión conjunta de `AIOS/entornos-locales.md`. Lee el mismo log después de que termine la fase de aprendizaje; no escribas sobre él mientras otra pasada lo esté modificando. Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
-> "Ejecuta el Sistema Proyectos y Áreas según `AIOS/systems/proyectos-y-areas.md`: project-learner sobre el log de hoy; termina presentándome sus propuestas (proyectos nuevos, áreas nuevas, avances, cambios de estado) y espera mi respuesta."
+> "Ejecuta el Sistema Proyectos y Áreas según `AIOS/systems/proyectos-y-areas.md` sobre el log correspondiente a esta revisión; termina presentándome sus propuestas y espera mi respuesta."
+
+Fija la fecha y la ruta del log antes de invocar project-learner; «hoy» en la skill se refiere a esa fecha durante la pasada. En la revisión conjunta o al reanudar una pasada aplazada, conserva el log elegido por Learning aunque haya cambiado el día. Si no puedes identificarlo con certeza, informa y deja la revisión pendiente en vez de elegir otro por suposición.
+
+Al generar propuestas, reutiliza las pendientes equivalentes por destino, cambio y fuente y respeta las incorporadas o descartadas. No las regeneres por releer la misma evidencia ni por aparecer una señal nueva ajena; una nueva propuesta sobre el mismo asunto requiere evidencia nueva relevante o petición explícita, y explica qué cambió sin borrar el estado anterior.
 
 **El hand-off**: todas las vías escriben solo con firma del usuario. La sesión diaria queda a la espera, como la del Learning System: el usuario responde al abrirla, el coach aplica lo aprobado vía project-manager (plantilla incluida si es creación), descarta el resto y actualiza los estados en el log. Las propuestas pendientes de días anteriores se re-presentan. El Learning System no toca `projects/` ni `areas/`; el janitor detecta pero nunca cambia estados. Los archivos son la fuente de verdad, no el log.
 

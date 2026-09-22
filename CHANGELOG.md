@@ -24,13 +24,13 @@ Entrevista breve y soporte para ChatGPT Work / Codex en la app local, conservand
 - `AIOS/mapa-contenido.md` y `AIOS/mapa-skills.md` — registran el arranque común y el acceso a conversaciones de GPT. El mapa de contenido aclara cómo completar un día histórico a petición explícita sin perder su contenido ni propuestas.
 - `AIOS/skills/episodic-learner/SKILL.md` — usa el adaptador local disponible, indica cobertura, no interpreta falta de acceso como falta de actividad y conserva señales/propuestas al reejecutarse. Los compromisos requieren evidencia del usuario.
 - Las descripciones de `semantic-learner` y `procedural-learner` reflejan el orden secuencial; se mantienen sus criterios de aprendizaje.
-- `AIOS/systems/learning-system.md` — las pasadas escriben en secuencia para no pisarse; distingue prueba manual y ejecución programada.
-- `AIOS/systems/proyectos-y-areas.md` — admite objetivos sin definir y la revisión conjunta en GPT.
+- `AIOS/systems/learning-system.md` — las pasadas escriben en secuencia, mantienen el mismo día/log al cruzar medianoche y respetan propuestas ya resueltas; distingue prueba manual y ejecución programada.
+- `AIOS/systems/proyectos-y-areas.md` — admite objetivos sin definir y la revisión conjunta en GPT; conserva la fecha del log y evita regenerar propuestas resueltas.
 
 ### Repo (no se aplica a tu carpeta)
 
 - `INSTALL.md`, `README.md` y plantilla `ME.md` — tres bloques de entrevista, asistente personal y Goals opcionales. Los huecos de contexto detectados (rol, tareas frecuentes…) quedan en Pendientes para próximas sesiones, sin alargar la entrevista ni convertirlos en compromisos. Reanudación sin volver a copiar y prueba válida con cero propuestas.
-- `migrations/2.1.0.md` y sus originales 2.0.0 — actualización conservadora y retomable; no cambia ME.md ni configura tareas automáticamente.
+- `migrations/2.1.0.md` y sus originales 2.0.0 — actualización conservadora y retomable; no cambia ME.md ni configura tareas automáticamente. Advierte del prompt antiguo de Cowork y ofrece adaptarlo con confirmación.
 - `tests/` — comprobaciones del paquete y guía de pruebas de comportamiento; se excluye de la copia al usuario.
 - `AIOS/VERSION.md` del repositorio pasa a `2.1.0`. Las releases de GitHub se gestionan aparte.
 

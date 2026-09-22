@@ -35,6 +35,9 @@ Ejecutar en carpetas de prueba, con datos sintéticos y sin programaciones reale
 | Reejecutar un log consolidado con una señal nueva | Conserva propuestas resueltas, añade la señal una vez y reabre consolidación. |
 | Reconstruir ayer | Escribe el log de ayer; no incorpora cambios que solo ocurrieron hoy. |
 | Cowork con transcripciones completas | Sigue generando el log con las herramientas de Cowork. |
+| Tarea Cowork con el prompt original 2.0.0 | Detecta la instrucción paralela; ofrece adaptar el prompt con confirmación y conserva configuración si falta aprobación. |
+| Revisión con propuesta descartada y señal nueva ajena | Conserva el rechazo y no crea una propuesta equivalente; reutiliza las pendientes existentes. |
+| Pasada que cruza medianoche | Todos los learners conservan la fecha y el log elegidos al iniciar. |
 | Día sin propuestas | Termina sin inventar una propuesta para demostrar el flujo. |
 
 Registrar archivos antes/después y comprobar que ME.md (salvo Pendientes al ejecutar episodic-learner), proyectos, áreas y conocimiento permanecen intactos. Una simulación de estas situaciones acredita decisiones bajo esos datos, no la disponibilidad de herramientas en una app real.
