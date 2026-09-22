@@ -6,14 +6,14 @@ description: >-
   toca projects/ ni areas/ (eso es del Sistema Proyectos y Áreas). Cada
   propuesta lleva destino, cambio concreto y fuente. No aplica nada: la
   memoria semántica solo cambia con la firma del usuario. Segundo paso de la
-  tarea nocturna del Learning System, antes de procedural-learner. Se
+  tarea nocturna del Learning System, en paralelo con procedural-learner. Se
   activa con frases como: "propuestas semánticas", "qué has aprendido de mí",
   "semantic learner".
 metadata:
   system: learning-system
   status: active
   created: "2026-06-11"
-  updated: "2026-09-22"
+  updated: "2026-06-11"
 ---
 # semantic-learner
 

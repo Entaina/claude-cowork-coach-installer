@@ -1,42 +1,46 @@
 # INSTALL — prompt de instalación del coach
 
-> **Si eres el usuario**: no necesitas leer esto. Sigue la instalación del README — su prompt hace que la IA ejecute este archivo desde el repositorio. Este archivo no se copia a tu carpeta.
+> **Si eres el usuario**: sigue el README. Este archivo se lee desde el repositorio y no se copia a tu carpeta.
 
----
-
-La estructura de mi coach ya existe en esta carpeta: mapas, skills, sistemas y plantillas están decididos. **No los rediseñes, no los reescribas, no los "mejores".** Tu trabajo es instalarlo conmigo, en cuatro pasos:
+La estructura del coach ya está en esta carpeta. Conserva sus mapas, skills, sistemas y plantillas. Instálalo conmigo en cuatro pasos. Si retomas una entrevista interrumpida, conserva lo ya respondido y no vuelvas a copiar archivos ni a crear tareas existentes.
 
 ## 1. Entrevístame
 
-Asume el rol de entrevistador: **una sola pregunta por turno**, escucha, conecta con lo anterior y decide la siguiente. Cinco temas, en este orden aproximado (6-8 preguntas en total con los follow-ups):
+**Una sola pregunta por turno.** Tres temas, sin un mínimo de preguntas ni repreguntas obligatorias:
 
-1. Nombre, rol, empresa, ubicación.
-2. Cómo quiero llamarte (el nombre del coach: "Coach", "Aria", lo que sea).
-3. Mi día a día: responsabilidades, decisiones que tomo, con quién trabajo, qué herramientas uso.
-4. Hacia dónde quiero crecer y qué gaps veo.
-5. Cómo me gusta trabajar: tono, cuándo desafiarme y cuándo acompañarme, qué evitar.
+1. Nombre, rol, empresa y ubicación; puedo explicar en una frase qué hago.
+2. Cómo quiero llamarte (por ejemplo, «Coach» o «Aria»).
+3. Cómo me gusta trabajar: tono, cuándo desafiarme y cuándo acompañarme, qué evitar.
 
-Ofrece opciones cerradas cuando ayude; siempre puedo responder en libre o decir "siguiente". Todo lo que dé para más (CV o LinkedIn, métricas, clientes o proyectos uno a uno...) no lo preguntes hoy: apúntalo para Pendientes y ve sacándolo en próximas sesiones. La entrevista se completa con el tiempo, no en una tirada.
+Aprovecha lo que ya haya contado; no vuelvas a pedirlo. Puedo responder en libre o decir «siguiente». No preguntes por mi día a día detallado, interlocutores, herramientas, crecimiento ni gaps. Tampoco conviertas esos temas automáticamente en pendientes: se podrán incorporar cuando surjan o yo lo pida.
 
 ## 2. Rellena ME.md
 
-Con lo que salga, completa `ME.md`: Quién soy, Goals, Preferencias (incluido tu nombre) y Pendientes (con lo aplazado de la entrevista). No dejes ninguna llave `{así}` sin rellenar. Las Reglas ya están escritas; ajústalas solo si dije algo en la entrevista que las matice. Antes de guardar, enséñame el resultado: "¿guardo?".
+Completa la presentación, Quién soy y Preferencias con mis respuestas. Si omito un dato, usa «No indicado» o una frase que no lo afirme; no lo inventes. Si salto el nombre del asistente, usa «Asistente». No dejes marcadores de plantilla sin resolver.
 
-## 3. Crea las dos tareas programadas
+`Goals` es opcional: conserva los objetivos que haya expresado espontáneamente; si no hay ninguno, escribe «Sin objetivos definidos por ahora». No me pidas definirlos para terminar. Los sistemas solo contrastan mi trabajo con objetivos que yo haya declarado.
 
-- **Learning System, cada noche** (proponme la hora; por defecto 23:30): con el prompt que indica `AIOS/systems/learning-system.md` en su sección Orquestación.
-- **Sistema Proyectos y Áreas, cada noche, después de la anterior** (por defecto 23:45): con el prompt que indica `AIOS/systems/proyectos-y-areas.md` en su sección Orquestación.
+En Pendientes pon únicamente asuntos que yo haya dejado abiertos o aceptado retomar. Si no los hay, escribe «Sin pendientes». Conserva las Reglas; ajústalas solo si mis respuestas las matizan. Enséñame el resultado antes de guardarlo: «¿guardo?».
 
-Explícame en dos frases qué veré cada mañana con las dos.
+## 3. Configura la revisión diaria
 
-Los prompts de las tareas son finos y apuntan a las skills — sin duplicar sus workflows.
+Lee `AIOS/entornos-locales.md` y comprueba la carpeta, el acceso al historial y las herramientas de programación disponibles.
+
+- **Cowork**: conserva las dos tareas de los sistemas, Learning System a las 23:30 y Proyectos y Áreas a las 23:45 por defecto (Europe/Madrid).
+- **ChatGPT Work / Codex en la app local**: configura la revisión conjunta descrita en ese documento, a las 23:30 por defecto (Europe/Madrid). Trabaja en esta carpeta permanente.
+
+Propón el horario, explica qué revisaré por la mañana y confirma la configuración. Busca tareas existentes antes de crear ninguna. Si falta una capacidad, explica cuál: la memoria puede quedar instalada para uso manual, pero la automatización queda pendiente y no se declara operativa. No actives otra revisión en una segunda app sobre la misma carpeta sin resolver cuál será la responsable.
 
 ## 4. Prueba
 
-Sigue la sección "Primer arranque" de `AIOS/systems/learning-system.md`: ejecuta la tarea nocturna una vez ahora mismo, usando esta misma conversación como material. Enséñame mi primer log en `episodic/logs/`, las primeras propuestas con su estado, y deja que apruebe o descarte alguna. Ejecuta también una vez la tarea diaria de proyectos — si la entrevista destapó algún proyecto, saldrán sus primeras propuestas; si no, solo confirmará que arranca, y en ambos casos deja los permisos pre-aprobados. Terminado = he visto mi primer log y he respondido a una propuesta.
+Ejecuta el mismo flujo de revisión una vez con el usuario delante, usando esta conversación como material disponible. Genera el primer log, enseña la cobertura real de las fuentes y las propuestas. Ejecuta también la revisión de proyectos aunque no haya proyectos nuevos.
+
+Si hay propuestas, deja que apruebe o descarte alguna y comprueba el resultado. **Cero propuestas es válido**: no inventes una para completar la instalación. En ese caso basta con enseñar el log y explicar que hoy no hay cambios que validar.
+
+Comprueba después, en una sesión nueva, que se leen `AGENTS.md`, `ME.md` y los mapas. La prueba manual no demuestra que la ejecución programada disponga de las mismas herramientas: deja esa comprobación pendiente hasta revisar su primera ejecución. En Cowork puedes usar «Run now» si existe; en GPT usa la acción disponible o la interfaz, sin inventar un parámetro de ejecución.
 
 ---
 
-Reglas de esta sesión: español de España, tuteo. Soy un perfil no técnico: nada de rutas, JSON ni configuración — la fontanería es tuya, con confirmaciones simples. Nada de código ejecutable: todo se hace con skills en Markdown, subagentes y tareas programadas de Cowork.
+Español de España, tuteo y explicaciones para un perfil no técnico. El funcionamiento del coach se describe en Markdown y usa las herramientas nativas de la app; no requiere instalar scripts, servicios externos ni herramientas de otra aplicación.
 
 Empieza la entrevista cuando estés listo.

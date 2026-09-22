@@ -4,19 +4,17 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 
 ## Navegación
 
-- `AGENTS.md` — instrucciones canónicas de arranque.
-- `CLAUDE.md` — puntero a `AGENTS.md` para compatibilidad con Claude.
-- `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork y GPT local; léelo antes de usar esas capacidades.
+- `CLAUDE.md` — wrapper de arranque. No se toca.
 - `ME.md` — briefing del usuario: quién es, goals, preferencias, reglas, pendientes. Se lee en cada arranque.
 - `projects/` — memoria de trabajo: un archivo por proyecto (resultado concreto con final), con `status: pending | working | done`. Los `working` son el frente abierto del usuario: consúltalos al planificar o cuando el tema lo pida.
 - `areas/` — memoria de trabajo: un archivo por área de responsabilidad continua (no se termina; tiene un estándar que mantener), con `status: active | archived`. El test proyecto/área: "¿puede acabarse?". Ambas carpetas se gestionan vía project-manager (Sistema Proyectos y Áreas).
 - `knowledge/` — memoria semántica: el mundo del usuario (clientes, personas, equipo...). Archivos sueltos, sin subcarpetas; la estructura se gana cuando duele no tenerla, no antes. Se lee según el tema de la sesión.
-- `episodic/logs/` — memoria episódica: un log por día (`AAAA-MM-DD.md`), compuesto por el episodic-learner. Los logs de días anteriores son historia: no se reescriben, salvo sus estados de consolidación/propuestas al resolverlas. A petición explícita del usuario, episodic-learner puede completar el día solicitado conservando lo existente y los estados de las propuestas.
+- `episodic/logs/` — memoria episódica: un log por día (`AAAA-MM-DD.md`), compuesto por el episodic-learner. Los logs de días anteriores son historia: no se reescriben (solo su frontmatter, al consolidar).
 - `AIOS/` — memoria procedural: este mapa, `mapa-skills.md`, `Templates/` (plantillas), `skills/` (un directorio por skill, con su `SKILL.md` dentro), `systems/` (una nota por sistema) y `VERSION.md` (versión instalada del coach; la mantiene la actualización, no se edita a mano).
 
 ### Reglas de escritura
 
-- El único que escribe sin permiso es el **episodic-learner**, y solo en sus dos destinos: el log del día (o el día histórico solicitado explícitamente) y la sección Pendientes de `ME.md`.
+- El único que escribe sin permiso es el **episodic-learner**, y solo en sus dos destinos: el log del día y la sección Pendientes de `ME.md`.
 - `projects/`, `areas/`, `knowledge/`, `AIOS/` y el resto de `ME.md` cambian únicamente con confirmación explícita del usuario.
 - Skills y sistemas se crean solo vía **skill-builder**.
 

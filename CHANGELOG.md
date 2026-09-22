@@ -8,6 +8,36 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.1.0] - 2026-09-22
+
+Entrevista breve y soporte para ChatGPT Work / Codex en la app local, conservando Cowork. El acceso al historial se adapta a las herramientas realmente disponibles y declara la cobertura. Cómo aplicarlo, en `migrations/2.1.0.md`.
+
+### Añadido
+
+- `AGENTS.md` — arranque canónico común. `CLAUDE.md` se conserva como puntero de compatibilidad.
+- `AIOS/entornos-locales.md` — acceso nativo a conversaciones de Cowork y GPT local, filtrado por proyecto/fecha, cobertura y programación. En GPT, una revisión conjunta; en Cowork, se conservan las dos tareas.
+
+### Migrado
+
+- Las reglas de un `CLAUDE.md` personalizado se conservan en `AGENTS.md` antes de sustituir el origen por el puntero. Si ambos existen y difieren, se resuelve el conflicto antes de tocar nada.
+
+### Cambiado
+
+- `AIOS/mapa-contenido.md` y `AIOS/mapa-skills.md` — registran el arranque común y el acceso a conversaciones de GPT. El mapa de contenido aclara cómo completar un día histórico a petición explícita sin perder su contenido ni propuestas.
+- `AIOS/skills/episodic-learner/SKILL.md` — usa el adaptador local disponible, indica cobertura, no interpreta falta de acceso como falta de actividad y conserva señales/propuestas al reejecutarse. Los compromisos requieren evidencia del usuario.
+- Las descripciones de `semantic-learner` y `procedural-learner` reflejan el orden secuencial; se mantienen sus criterios de aprendizaje.
+- `AIOS/systems/learning-system.md` — las pasadas escriben en secuencia para no pisarse; distingue prueba manual y ejecución programada.
+- `AIOS/systems/proyectos-y-areas.md` — admite objetivos sin definir y la revisión conjunta en GPT.
+
+### Repo (no se aplica a tu carpeta)
+
+- `INSTALL.md`, `README.md` y plantilla `ME.md` — tres bloques de entrevista, asistente personal, Goals opcionales y preguntas eliminadas que no vuelven como pendientes automáticos. Reanudación sin volver a copiar y prueba válida con cero propuestas.
+- `migrations/2.1.0.md` y sus originales 2.0.0 — actualización conservadora y retomable; no cambia ME.md ni configura tareas automáticamente.
+- `tests/` — comprobaciones del paquete y guía de pruebas de comportamiento; se excluye de la copia al usuario.
+- `AIOS/VERSION.md` del repositorio pasa a `2.1.0`. Las releases de GitHub se gestionan aparte.
+
+Antigravity, las modalidades web/cloud y la adaptación del historial de Claude Code CLI no se incorporan en esta versión.
+
 ## [2.0.0] - 2026-07-23
 
 Las skills adoptan el estándar [Agent Skills](https://agentskills.io/specification): cada una pasa de archivo suelto a directorio con su `SKILL.md`, y su frontmatter al formato de la especificación — `name`, `description` (con las frases de disparo dentro) y `metadata` (`system`, `status`, fechas). Cambia la forma, no el contenido — con una excepción declarada: las tres skills que gestionan skills actualizan además su workflow. Es un salto MAYOR porque rompe las rutas canónicas y el esquema anterior. Cómo aplicarlo, en `migrations/2.0.0.md`.

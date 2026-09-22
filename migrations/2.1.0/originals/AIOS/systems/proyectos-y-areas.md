@@ -5,7 +5,7 @@ created: 2026-06-11
 ---
 # Sistema Proyectos y Áreas
 
-Mantiene visible, al día y fiable el frente de ejecución del usuario: qué proyectos hay y en qué estado, qué responsabilidades continuas atiende, y, cuando el usuario haya definido Goals, si todo ello los apoya. No exige objetivos para trabajar. Los proyectos viven en `projects/` y las áreas en `areas/`, como memoria de trabajo.
+Mantiene visible, al día y fiable el frente de ejecución del usuario: qué proyectos hay y en qué estado, qué responsabilidades continuas atiende, y si todo ello empuja hacia los Goals. Los proyectos viven en `projects/` y las áreas en `areas/`, como memoria de trabajo.
 
 ## Proyecto vs. Área (al estilo PARA)
 
@@ -26,7 +26,7 @@ Dos vías a demanda y una programada diaria:
 
 - **En vivo**: project-manager, cuando el usuario habla de sus proyectos o responsabilidades.
 - **Higiene**: project-janitor, a demanda o antes de una revisión de cartera, para que la revisión parta de datos que cuadran.
-- **Detección diaria programada**: en Cowork, 23:45 por defecto, Europe/Madrid, tras Learning; en GPT local, segunda fase de la revisión conjunta de `AIOS/entornos-locales.md`. Lee el mismo log después de que termine la fase de aprendizaje; no escribas sobre él mientras otra pasada lo esté modificando. Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
+- **Detección diaria programada** (23:45 por defecto, Europe/Madrid — tras la nocturna del Learning System, porque lee su log). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
 > "Ejecuta el Sistema Proyectos y Áreas según `AIOS/systems/proyectos-y-areas.md`: project-learner sobre el log de hoy; termina presentándome sus propuestas (proyectos nuevos, áreas nuevas, avances, cambios de estado) y espera mi respuesta."
 

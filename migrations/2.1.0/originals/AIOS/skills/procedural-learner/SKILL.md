@@ -5,14 +5,14 @@ description: >-
   secciones Preferencias y Reglas de ME.md, y skills nuevas cuando detecta
   patrones repetidos en los logs recientes. Cada propuesta lleva destino,
   cambio concreto y fuente. No aplica nada ni crea skills: las aprobadas pasan
-  por skill-builder. Tercer paso de la tarea nocturna del Learning System,
-  después de semantic-learner. Se activa con frases como: "propuestas
+  por skill-builder. Segundo paso de la tarea nocturna del Learning System, en
+  paralelo con semantic-learner. Se activa con frases como: "propuestas
   procedurales", "qué deberías hacer distinto", "procedural learner".
 metadata:
   system: learning-system
   status: active
   created: "2026-06-11"
-  updated: "2026-09-22"
+  updated: "2026-06-11"
 ---
 # procedural-learner
 

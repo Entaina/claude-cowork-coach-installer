@@ -9,17 +9,17 @@ Cómo aprende el coach. Sin este sistema, el coach del día 30 sabe lo mismo que
 
 ## Skills
 
-- **episodic-learner** — compone el log del día leyendo las conversaciones accesibles según `AIOS/entornos-locales.md`. El único que escribe directo.
+- **episodic-learner** — compone el log del día leyendo las sesiones de Cowork. El único que escribe directo.
 - **semantic-learner** — propone cambios a la memoria semántica (knowledge/ y Quién soy/Goals de ME.md).
 - **procedural-learner** — propone cambios a Preferencias/Reglas de ME.md y candidatas a skill nueva.
 
 ## Orquestación
 
-**Una pasada nocturna** (23:30 por defecto, Europe/Madrid). En Cowork tiene su propia tarea; en GPT local es la primera fase de la revisión conjunta de `AIOS/entornos-locales.md`. Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
+**Una sola tarea programada nocturna** (23:30 por defecto, Europe/Madrid). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
-> "Ejecuta el Learning System según `AIOS/systems/learning-system.md`: episodic-learner primero; después semantic-learner y procedural-learner en secuencia; termina presentándome las propuestas y espera mi respuesta."
+> "Ejecuta el Learning System según `AIOS/systems/learning-system.md`: episodic-learner primero; después semantic-learner y procedural-learner en paralelo, como subagentes; termina presentándome las propuestas y espera mi respuesta."
 
-Secuencia: (1) episodic-learner escribe el log; (2) los dos learners de propuestas leen *el log* (no las transcripciones) y anotan sus propuestas al pie con estado `pendiente`; (3) la sesión termina presentándolas al usuario y queda a la espera. En la revisión conjunta de GPT, genera antes las propuestas de proyectos y presenta ambas al final. Las pasadas escriben el log en secuencia para no pisarse; una reejecución conserva las propuestas existentes y sus estados. Si falta el log por falta de fuentes, no ejecutes learners a ciegas. Una cobertura parcial permite propuestas solo sobre la evidencia disponible.
+Secuencia: (1) episodic-learner escribe el log; (2) los dos learners de propuestas leen *el log* (no las transcripciones) y anotan sus propuestas al pie con estado `pendiente`; (3) la sesión termina presentándolas al usuario y queda a la espera.
 
 **El hand-off**: el usuario responde esa noche o al abrir la sesión a la mañana siguiente — sí, no, o corrige. El coach aplica las aprobadas en sus destinos, descarta el resto, actualiza el estado de cada una en el log y marca el log como `consolidado: sí`. **Al aplicar una propuesta que crea un archivo o directorio nuevo, parte de la plantilla correspondiente de `AIOS/Templates/` — lee el archivo de la plantilla antes, no la reconstruyas de memoria.** Las propuestas `pendiente` de días anteriores se re-presentan cada noche hasta que el usuario las resuelva: nada se pierde por no contestar un día.
 
@@ -41,4 +41,4 @@ Secuencia: (1) episodic-learner escribe el log; (2) los dos learners de propuest
 
 ## Primer arranque
 
-Sigue la verificación de `AIOS/entornos-locales.md`: prueba el flujo con el usuario delante y comprueba después la primera ejecución programada. En Cowork puedes usar «Run now» si está disponible; en GPT usa la acción real del host. No declares resueltos los permisos de futuras ejecuciones solo porque la prueba manual haya funcionado. Cero propuestas es válido.
+Tras crear la tarea programada, ejecútala una vez a mano (botón "Run now" en la sección Programadas de Claude) con el usuario delante: así se pre-aprueban los permisos que necesita y las ejecuciones nocturnas no se quedan colgadas esperando autorizaciones.

@@ -1,0 +1,29 @@
+{
+  "commit": "6bf66cfa4eb2a906426cb7a310eda99bc1dbfc3b",
+  "originals": {
+    "AIOS/mapa-contenido.md": "9efad55dcddee922f18a6c77777740961caf1836234c95403e430fe57c67745f",
+    "AIOS/mapa-skills.md": "16d129619db41f206f3ff6d1f1dee2b2b207505bafff4c3c9b987f393f7c2083",
+    "AIOS/skills/episodic-learner/SKILL.md": "f6814481857234d4da1221f29eef3655685c54f59d6f5ba8245c457f67710792",
+    "AIOS/skills/procedural-learner/SKILL.md": "ea63ad861318dfeb35109fa0df279e424f7fa82e9de05e16ec200a4022b43405",
+    "AIOS/skills/semantic-learner/SKILL.md": "cf6412fc27c4e3c73099956cc30d7091ffa39286fda97ba53241d6ddadad67a3",
+    "AIOS/systems/learning-system.md": "6510e8e7d141e27934319f29a8ab79eedfdda9ada589c8a8e689727d8464510e",
+    "AIOS/systems/proyectos-y-areas.md": "37422e0864cad89cf902322208c3efa5bce5d02fb8f945832812ebe9bf71579f",
+    "CLAUDE.md": "014010024b90a005d4a833fea63a323b0cfeddd0e41c9bf6cd2a055de32eaab1"
+  },
+  "historical_migrations": {
+    "migrations/1.1.0.md": "10ca318e40d6e34265186358736c418aa02fd56656f400c61f7856387c018c67",
+    "migrations/2.0.0.md": "7cf4b9907c6609853a5da1455569ca0ce442dfc6fcd4d362fca3c1bfda1fd670",
+    "migrations/2.0.0/originals/contenido-janitor.md": "9536da5948aa83d7c17fa28c5b164c72b7a3826b52ff6aecfac53257ec764031",
+    "migrations/2.0.0/originals/episodic-learner.md": "9e95141f7549b26cfff2ad76ef05783f8069b1e95cd7732bd69115091e1feffe",
+    "migrations/2.0.0/originals/procedural-learner.md": "de7179055d1843337efc999a5cd8ecf63d74eb542e4d8786bd340d536074098b",
+    "migrations/2.0.0/originals/project-janitor.md": "5cfe1ef172f0ac16b54ea75a9699ff5be3e0889880ff00249cb4fceb3527799d",
+    "migrations/2.0.0/originals/project-learner.md": "30587a18200029c61562ffc4db09f9dfbb0780f7b72efcd9e5e45108a7d75861",
+    "migrations/2.0.0/originals/project-manager.md": "8b1b266433994554fea4585b3f71b5a8d745f491fde4894d789d89155b7ad085",
+    "migrations/2.0.0/originals/pulidor.md": "03052ab96937c81c67e443b420e6bb98975a3ef9459c3ff89cdf37db020cd3d4",
+    "migrations/2.0.0/originals/semantic-learner.md": "4886436441c9296810242572baf4a8dda0494196d1e589218060bc3075da91e7",
+    "migrations/2.0.0/originals/skill-builder.md": "71fcc478193bdbe5fab35a630d3414918b9d70ae6a3da3892f6abefbb5524cf2",
+    "migrations/2.0.0/originals/skill-installer.md": "8978d4ecbab480e6868ecc4febd9cd4d03a4019de5e92a9c336a4fdca5746d55",
+    "migrations/2.0.0/originals/skill-template.md": "99d349a18242b54fe9f6563cd8c266fa1b7f783eb12eac9f79b189039eb4605e",
+    "migrations/2.0.0/originals/skills-janitor.md": "d817fea619288dab10d461806d4c29d1fc4e5e92a6a36becd79b89785de4b1df"
+  }
+}

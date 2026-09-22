@@ -6,7 +6,7 @@ Catálogo de lo que el coach sabe hacer, agrupado por sistema. **Consúltalo ant
 
 Ver `systems/learning-system.md`. Una tarea programada nocturna; el usuario firma por la mañana.
 
-- **episodic-learner** — compone el log del día leyendo las conversaciones accesibles de Cowork o GPT local (ver `entornos-locales.md`) y mantiene los Pendientes de ME.md. El único que escribe directo. Triggers: `genera el log de hoy`, `cierra el día`, `reconstruye el log`.
+- **episodic-learner** — compone el log del día leyendo las sesiones de Cowork y mantiene los Pendientes de ME.md. El único que escribe directo. Triggers: `genera el log de hoy`, `cierra el día`, `reconstruye el log`.
 - **semantic-learner** — propone cambios a knowledge/ y a Quién soy/Goals de ME.md, con destino, cambio y fuente. No toca projects/. No aplica nada. Triggers: `propuestas semánticas`, `qué has aprendido de mí`.
 - **procedural-learner** — propone cambios a Preferencias/Reglas de ME.md y candidatas a skill cuando detecta patrones repetidos. No aplica nada. Triggers: `propuestas procedurales`, `qué deberías hacer distinto`.
 
