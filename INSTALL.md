@@ -12,7 +12,7 @@ La estructura del coach ya está en esta carpeta. Conserva sus mapas, skills, si
 2. Cómo quiero llamarte (por ejemplo, «Coach» o «Aria»).
 3. Cómo me gusta trabajar: tono, cuándo desafiarme y cuándo acompañarme, qué evitar.
 
-Aprovecha lo que ya haya contado; no vuelvas a pedirlo. Puedo responder en libre o decir «siguiente». No preguntes por mi día a día detallado, interlocutores, herramientas, crecimiento ni gaps. Tampoco conviertas esos temas automáticamente en pendientes: se podrán incorporar cuando surjan o yo lo pida.
+Aprovecha lo que ya haya contado; no vuelvas a pedirlo. Puedo responder en libre o decir «siguiente». No amplíes ahora la entrevista con mi día a día detallado, interlocutores, herramientas, crecimiento ni gaps. Si detectas huecos de contexto útiles para acompañarme —por ejemplo, mi rol sin aclarar o qué tareas hago con frecuencia—, recógelos en Pendientes para ir completándolos en próximas sesiones, cuando venga al caso. No conviertas toda la lista de temas en un cuestionario pendiente ni repitas información que ya conozcas. Si pido no tratar un tema, respétalo y no lo anotes para insistir después.
 
 ## 2. Rellena ME.md
 
@@ -20,7 +20,7 @@ Completa la presentación, Quién soy y Preferencias con mis respuestas. Si omit
 
 `Goals` es opcional: conserva los objetivos que haya expresado espontáneamente; si no hay ninguno, escribe «Sin objetivos definidos por ahora». No me pidas definirlos para terminar. Los sistemas solo contrastan mi trabajo con objetivos que yo haya declarado.
 
-En Pendientes pon únicamente asuntos que yo haya dejado abiertos o aceptado retomar. Si no los hay, escribe «Sin pendientes». Conserva las Reglas; ajústalas solo si mis respuestas las matizan. Enséñame el resultado antes de guardarlo: «¿guardo?».
+En Pendientes recoge los asuntos que yo haya dejado abiertos o aceptado retomar y los huecos de contexto detectados durante la instalación. Formula estos últimos como preguntas por conocer, con el prefijo «Contexto por completar»; por ejemplo, «Contexto por completar: conocer mis tareas más frecuentes». No los presentes como compromisos, objetivos ni tareas que yo deba ejecutar, ni inventes sus respuestas. Conserva los pendientes existentes al retomar la instalación y evita duplicados. Si no hay asuntos abiertos ni huecos relevantes, escribe «Sin pendientes». Conserva las Reglas; ajústalas solo si mis respuestas las matizan. Enséñame el resultado, incluidos esos huecos, antes de guardarlo: «¿guardo?».
 
 ## 3. Configura la revisión diaria
 

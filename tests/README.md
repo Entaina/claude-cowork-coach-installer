@@ -20,8 +20,10 @@ Ejecutar en carpetas de prueba, con datos sintéticos y sin programaciones reale
 
 | Caso | Resultado observable |
 | --- | --- |
-| Instalación nueva; saltar datos y objetivos | ME.md sin marcadores pendientes; Goals opcionales; ningún pendiente inventado. |
-| Retomar entrevista | Conserva respuestas y archivos; no vuelve a copiar la plantilla. |
+| Instalación nueva; saltar datos y objetivos | ME.md sin marcadores de plantilla; Goals opcionales; no inventa respuestas ni compromisos. |
+| Huecos de contexto detectados (rol, tareas frecuentes…) | Los recoge como «Contexto por completar» en el ME que muestra antes de guardar, sin ampliar la entrevista. |
+| Tema rechazado expresamente o dato ya conocido | No lo añade a Pendientes para insistir después ni genera una lista genérica de temas. |
+| Retomar entrevista | Conserva respuestas, archivos y pendientes existentes sin duplicarlos; no vuelve a copiar la plantilla. |
 | Migrar 2.0.0 sin personalización | Dos archivos de arranque completos e idénticos; versión final 2.1.0. |
 | Migrar CLAUDE.md personalizado | Conserva cada regla acordada en ambos archivos de arranque. |
 | AGENTS y CLAUDE diferentes, sin decisión | No altera archivos ni avanza versión. |

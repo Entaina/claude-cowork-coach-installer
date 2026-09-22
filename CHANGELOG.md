@@ -29,7 +29,7 @@ Entrevista breve y soporte para ChatGPT Work / Codex en la app local, conservand
 
 ### Repo (no se aplica a tu carpeta)
 
-- `INSTALL.md`, `README.md` y plantilla `ME.md` — tres bloques de entrevista, asistente personal, Goals opcionales y preguntas eliminadas que no vuelven como pendientes automáticos. Reanudación sin volver a copiar y prueba válida con cero propuestas.
+- `INSTALL.md`, `README.md` y plantilla `ME.md` — tres bloques de entrevista, asistente personal y Goals opcionales. Los huecos de contexto detectados (rol, tareas frecuentes…) quedan en Pendientes para próximas sesiones, sin alargar la entrevista ni convertirlos en compromisos. Reanudación sin volver a copiar y prueba válida con cero propuestas.
 - `migrations/2.1.0.md` y sus originales 2.0.0 — actualización conservadora y retomable; no cambia ME.md ni configura tareas automáticamente.
 - `tests/` — comprobaciones del paquete y guía de pruebas de comportamiento; se excluye de la copia al usuario.
 - `AIOS/VERSION.md` del repositorio pasa a `2.1.0`. Las releases de GitHub se gestionan aparte.
