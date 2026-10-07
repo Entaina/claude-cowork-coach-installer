@@ -1,17 +1,17 @@
-# Tu asistente personal en Cowork o GPT local
+# Tu asistente personal en Cowork, Claude Code o GPT local
 
 Un asistente cuya memoria vive en archivos Markdown locales: el agente es reemplazable; tu contexto es tuyo.
 
-Compatible con Claude Cowork y con ChatGPT Work / Codex en la app de escritorio, trabajando sobre una carpeta local. El acceso al historial y la automatización dependen de las herramientas que exponga tu app; el instalador comprueba esas capacidades. Antigravity y las modalidades web/cloud quedan pendientes.
+Compatible con Claude Cowork, Claude Code CLI y ChatGPT Work / Codex en la app de escritorio, trabajando sobre una carpeta local. El acceso al historial y la automatización dependen de las herramientas que exponga tu app; el instalador comprueba esas capacidades. Antigravity y las modalidades web/cloud quedan pendientes.
 
 ## Instalación
 
 1. Crea una carpeta nueva y **vacía** en tu ordenador (por ejemplo, `mi-coach`). No la muevas ni la renombres después.
-2. Abre Cowork o ChatGPT Work / Codex en la app de escritorio y selecciona esa carpeta. En GPT elige **trabajar localmente**, sobre la carpeta permanente, sin crear un worktree.
+2. Abre Cowork o ChatGPT Work / Codex y selecciona esa carpeta. En GPT elige **trabajar localmente**, sin crear un worktree. En Claude Code, abre una terminal en esa carpeta y ejecuta `claude`; la integración nativa requiere Python 3.9 o posterior con la zona Europe/Madrid disponible.
 3. Copia y pega este prompt en el chat:
 
 ```
-Instala mi asistente personal en esta carpeta local permanente:
+Instala mi asistente personal en esta carpeta local permanente. Si estamos en Claude Code, configura su integración nativa con alcance local de proyecto, conservando cualquier configuración existente:
 
 1. Copia toda la estructura del repositorio
    https://github.com/Entaina/claude-cowork-coach-installer en esta carpeta.
@@ -36,6 +36,7 @@ Si la entrevista se interrumpe, pide «retoma mi instalación leyendo INSTALL.md
 ## El día a día
 
 - Trabaja con tu coach con normalidad: prepara reuniones, piensa decisiones, pídele que pula tu trabajo ("pule esto", "¿qué se me escapa?").
+- En Claude Code quedan disponibles las skills nativas y `/coach-review` para la revisión conjunta; el historial registrado se limita a esta carpeta desde que se activa la integración. La programación del CLI depende de que siga abierto y no sustituye a un servicio nocturno permanente.
 - La revisión diaria aprende de ti y detecta proyectos y avances. Cowork conserva sus dos tareas; GPT local ejecuta ambas fases en una sola tarea para que terminen en orden. Configúrala solo en una app por carpeta y mantén el ordenador y la app abiertos.
 - Revisa las propuestas y contesta sí o no. Los cambios duraderos requieren tu permiso; el registro diario y los Pendientes se actualizan directamente. El log indica si solo se pudo consultar parte del historial. No disponer del historial no significa que no hayas trabajado.
 
@@ -67,6 +68,7 @@ Actualiza mi coach con los últimos cambios del repositorio, sin tocar nada mío
 
 - `AGENTS.md` y `CLAUDE.md` — las mismas instrucciones completas de arranque, con ambos nombres para que cada app lea su archivo habitual. Se mantienen sincronizados.
 - `AIOS/entornos-locales.md` — adaptación del historial y las tareas a cada app local.
+- `AIOS/claude-code.md` — instalación de skills, registro de sesiones y revisión en Claude Code. Su adaptador local está en `AIOS/integrations/claude_code.py`; se ejecuta solo al activar Code.
 - `ME.md` — quién eres y cómo trabajar contigo. Lo rellena la entrevista; es tuyo.
 - `projects/` — tus proyectos: cosas con final, con estado (pending, working, done).
 - `areas/` — tus áreas de responsabilidad: lo que no se acaba y hay que mantener bien.

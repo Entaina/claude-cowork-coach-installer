@@ -19,7 +19,7 @@ metadata:
   system: skills
   status: active
   created: "2026-07-16"
-  updated: "2026-07-23"
+  updated: "2026-10-07"
 ---
 # skill-installer
 
@@ -66,7 +66,9 @@ Si lo conoces con certeza, sigue. Si no, verifícalo (config o docs del host) o 
 
 ### 3. Resuelve el scope
 
-Si tu host ofrece **varios** scopes de instalación (p. ej. dentro del proyecto vs global de la máquina), **pregunta al usuario cuál** antes de materializar. No asumas un default. Si solo hay uno, úsalo.
+Respeta el alcance que ya indique la petición o la instalación. Si quedan **varios** scopes posibles sin elegir (proyecto o global), pregunta antes de materializar. La instalación de este coach en Claude Code fija alcance local de proyecto; no modifica `~/.claude/`.
+
+En Claude Code, la forma de proyecto es `.claude/skills/<name>/SKILL.md`. Resuelve el puntero con `${CLAUDE_SKILL_DIR}/../../../AIOS/skills/<name>/SKILL.md`, para que también funcione desde subcarpetas. La integración completa descrita en `AIOS/claude-code.md` genera todos los wrappers, `/coach-review` y el hook con vista previa. Úsala solo cuando se autorice esa integración completa: instalar una skill aislada no autoriza añadir hooks ni instalar las demás.
 
 ### 4. Compón el wrapper delgado
 
@@ -75,7 +77,7 @@ Si tu host ofrece **varios** scopes de instalación (p. ej. dentro del proyecto 
 - **Cuerpo (puntero de runtime)**: solo la instrucción de ejecución, del tipo —
   > *La skill canónica vive en `<ruta-al-directorio-de-la-skill>/SKILL.md`. Léela completa y ejecútala al pie de la letra.*
   Mantén el cuerpo mínimo. Nada de meta-notas sobre no duplicar o regenerar — eso es regla del instalador, no contenido del wrapper.
-- **Regla de ruta**: si el wrapper queda **dentro de la carpeta del coach** (scope de proyecto), apunta al canónico con una **ruta relativa a la raíz de la carpeta** — así viaja con ella y es portable entre máquinas. Si queda **fuera** (scope global de máquina), usa la **ruta absoluta de la carpeta del coach** tal como la ves ahora, y anótalo como específico de esa máquina.
+- **Regla de ruta**: si el wrapper queda **dentro de la carpeta del coach** (scope de proyecto), resuelve el canónico desde una ubicación estable dentro de esa carpeta — en Claude Code, usa `CLAUDE_SKILL_DIR` como en el paso 3, no el directorio actual del terminal. Así viaja con ella y es portable entre máquinas. Si queda **fuera** (scope global de máquina), usa la **ruta absoluta de la carpeta del coach** tal como la ves ahora, y anótalo como específico de esa máquina.
 
 ### 5. Materializa el wrapper
 
@@ -96,7 +98,7 @@ Un wrapper nativo por el que el host descubre y dispara la skill por sí solo, a
 - **El puntero es texto que se resuelve en tiempo de ejecución. NUNCA un symlink ni enlace de sistema de archivos.**
 - **Respeta los límites del host** (longitud de descripción, reglas de nombre). Recorta con criterio.
 - **No inventes cómo carga skills tu host.** Si dudas, verifícalo o pregunta.
-- **Sin default de scope.** Pregunta cuando hay varios.
+- **Alcance explícito.** Reutiliza el alcance ya elegido; pregunta cuando siga ambiguo.
 - **Idempotente y no destructivo.** Reinstalar/actualizar un wrapper es seguro; borrar algo se pregunta.
 - **No dupliques reglas del coach.** Refiérete a `ME.md` y a los mapas; no los repitas en el wrapper.
 
@@ -106,7 +108,7 @@ Un wrapper nativo por el que el host descubre y dispara la skill por sí solo, a
 - **Host con skills nativas pero cuyo registro no es escribible por el agente en sesión** (p. ej. Cowork y apps de escritorio, donde `.claude/` está protegido y las skills se cargan al arrancar). No es modo degradado, es el flujo normal del host — el usuario instala desde la UI. Emite el wrapper como carpeta `<name>/SKILL.md` (mismo formato que el canónico, cuerpo de puntero), empaquétala en un `.skill` (o ZIP) y entrégasela al usuario para instalarla (en Cowork, *Customize > Skills* → subir, o el botón *Save skill*). Empaquétala como plugin si hay que distribuir a varias personas.
 - **La `description` del canónico supera el límite del host.** Resume conservando *qué hace* + *cuándo* + 2-3 frases de disparo.
 - **La skill pedida no existe o no está en `mapa-skills.md`.** Dilo, no instales a ciegas. Sugiere skill-builder para crearla o registrarla.
-- **Reinstalar / actualizar.** Re-deriva del canónico y sobreescribe el wrapper. No acumules copias.
+- **Reinstalar / actualizar.** Re-deriva del canónico. Si el wrapper ya coincide, no escribas. Actualiza automáticamente solo uno gestionado cuyo hash siga coincidiendo con la última versión instalada; si está personalizado o su procedencia es desconocida, muestra el conflicto antes de escribir y conserva el contenido acordado. No acumules copias ni interpretes el mismo nombre como permiso para sustituirlo.
 - **Wrapper huérfano** (canónico borrado o con `metadata.status: retired`). Ofrece limpiarlo al reinstalar. La auditoría sistemática de drift es de skills-janitor.
 - **Instalar la propia `skill-installer`.** Permitido — es una skill canónica más. Instálala como cualquier otra para que el host la dispare nativamente.
 

@@ -4,9 +4,9 @@ Catálogo de lo que el coach sabe hacer, agrupado por sistema. **Consúltalo ant
 
 ## Learning System — cómo aprende el coach
 
-Ver `systems/learning-system.md`. Una tarea programada nocturna; el usuario firma por la mañana.
+Ver `systems/learning-system.md`. Revisión nocturna en las apps configuradas o conjunta a demanda en Claude Code; el usuario valida las propuestas. En Code, `/coach-review` es el acceso nativo a Learning y Proyectos, no un workflow duplicado; consulta `claude-code.md`.
 
-- **episodic-learner** — compone el log del día leyendo las conversaciones accesibles de Cowork o GPT local (ver `entornos-locales.md`) y mantiene los Pendientes de ME.md. El único que escribe directo. Triggers: `genera el log de hoy`, `cierra el día`, `reconstruye el log`.
+- **episodic-learner** — compone el log del día leyendo las conversaciones accesibles de Cowork, Claude Code o GPT local (ver `entornos-locales.md`) y mantiene los Pendientes de ME.md. El único que escribe directo. Triggers: `genera el log de hoy`, `cierra el día`, `reconstruye el log`.
 - **semantic-learner** — propone cambios a knowledge/ y a Quién soy/Goals de ME.md, con destino, cambio y fuente. No toca projects/. No aplica nada. Triggers: `propuestas semánticas`, `qué has aprendido de mí`.
 - **procedural-learner** — propone cambios a Preferencias/Reglas de ME.md y candidatas a skill cuando detecta patrones repetidos. No aplica nada. Triggers: `propuestas procedurales`, `qué deberías hacer distinto`.
 
@@ -26,7 +26,7 @@ Ver `systems/contenido.md`. A demanda.
 
 ## Proyectos y Áreas — tu frente de ejecución, visible y al día
 
-Ver `systems/proyectos-y-areas.md`. A demanda, más una detección diaria programada (project-learner, tras la nocturna del learning). Proyecto = se puede acabar (`pending|working|done`); área = responsabilidad continua con estándar (`active|archived`). El Learning System no toca projects/ ni areas/: la única vía de escritura es project-manager.
+Ver `systems/proyectos-y-areas.md`. A demanda, más una detección diaria programada o a demanda en Code (project-learner, tras la nocturna del learning). Proyecto = se puede acabar (`pending|working|done`); área = responsabilidad continua con estándar (`active|archived`). El Learning System no toca projects/ ni areas/: la única vía de escritura es project-manager.
 
 - **project-manager** — crea, actualiza, revisa y cierra proyectos y áreas, siempre con confirmación. En la revisión agrupa por área, contrasta con los Goals y señala estancados y áreas descuidadas. Triggers: `nuevo proyecto`, `nueva área`, `cómo van mis proyectos`, `actualiza el proyecto`, `cierra el proyecto`, `en qué estoy`.
 - **project-learner** — detecta en el log del día proyectos nuevos, áreas que asoman y movimiento de los existentes; solo propone, y lo aprobado se aplica vía project-manager. Triggers: `propuestas de proyectos`, `qué proyectos has detectado`.

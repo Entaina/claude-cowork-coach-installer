@@ -8,6 +8,29 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.2.0] - 2026-10-07
+
+Integración nativa de Claude Code CLI en la carpeta local del coach. Cowork y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.2.0.md`.
+
+### Añadido
+
+- `AIOS/claude-code.md` — configuración, historial, revisión y verificación de Code; requiere Python 3.9+ y zona horaria Europe/Madrid.
+- `AIOS/integrations/claude_code.py` — instalación local con vista previa, wrappers delgados de skills, `/coach-review` y hook SessionStart que registra solo metadatos de esta carpeta. Lector acotado a las transcripciones registradas, con fechas/fuentes, límites de lectura y cobertura parcial. No escanea historiales globales ni cambia permisos o programaciones.
+
+### Cambiado
+
+- `AIOS/entornos-locales.md`, mapas y sistemas de Learning/Proyectos — incorporan Code y la revisión conjunta a demanda. La programación del CLI depende de una sesión activa; no se presenta como tarea nocturna permanente.
+- Descripción de `episodic-learner` — incluye Code; su workflow se conserva.
+- `skill-installer` — reutiliza el alcance que ya haya elegido el usuario, concreta la ubicación nativa de Code y detiene la actualización ante wrappers personalizados.
+
+### Repo (no se aplica a tu carpeta)
+
+- README e INSTALL — añaden la instalación de Code en la carpeta permanente y su prueba en una sesión nueva. Las skills/hook se generan al activar esta integración, no se copian ya activados a otras apps.
+- Migración 2.2.0 con los siete originales afectados de 2.1.0; no cambia los dos arranques ni los datos del usuario.
+- Pruebas del adaptador y originales; `AIOS/VERSION.md` del repositorio pasa a 2.2.0.
+
+El historial JSONL de Claude es un formato interno: cambios o fuentes inaccesibles se comunican como límites, nunca como falta de actividad. Las sesiones anteriores al alta no se importan automáticamente. Antigravity y cloud siguen fuera.
+
 ## [2.1.0] - 2026-09-22
 
 Entrevista breve y soporte para ChatGPT Work / Codex en la app local, conservando Cowork. El acceso al historial se adapta a las herramientas realmente disponibles y declara la cobertura. Cómo aplicarlo, en `migrations/2.1.0.md`.

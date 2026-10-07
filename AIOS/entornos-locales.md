@@ -5,11 +5,12 @@ Contrato de acceso a conversaciones y programación. El contenido canónico sigu
 ## Alcance y detección
 
 - **Cowork**: usa `list_sessions` y `read_transcript` si están disponibles.
+- **Claude Code CLI**: `CLAUDE.md`, skills de proyecto y registro acotado de sesiones; sigue `AIOS/claude-code.md`. Su adaptador usa únicamente las rutas de transcripción entregadas por el hook de esta carpeta.
 - **GPT local**: ChatGPT Work o Codex en la app de escritorio, con acceso a la carpeta permanente del coach. Usa las herramientas nativas de tareas descritas abajo si están expuestas. El modelo GPT por sí solo no garantiza esas herramientas.
 - **Sin herramientas equivalentes**: explica la limitación. Puedes generar un registro parcial con la conversación actual y los archivos accesibles. No prometas leer otras sesiones ni programar tareas.
-- Web/cloud, Antigravity y adaptación del historial de Claude Code CLI quedan fuera de esta versión. No accedas a sus almacenes privados como alternativa.
+- Web/cloud y Antigravity quedan fuera de esta versión. No accedas a sus almacenes privados como alternativa.
 
-Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork, `AGENTS.md` en GPT. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
+Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork y Claude Code, `AGENTS.md` en GPT. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
 
 ## Leer las conversaciones del día
 
@@ -18,6 +19,10 @@ El intervalo es desde las 00:00 del día solicitado hasta las 00:00 del siguient
 ### Cowork
 
 Lista las sesiones de la carpeta, sigue la paginación disponible y lee sus transcripciones con `read_transcript`. Filtra los mensajes al intervalo solicitado. Si la herramienta limita o resume el resultado, declara esa limitación igual que en GPT.
+
+### Claude Code CLI
+
+Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Learning: `python3 AIOS/integrations/claude_code.py history --date AAAA-MM-DD`. Solo recupera mensajes de sesiones registradas por el hook de esta carpeta, desde su alta, con fechas y fuentes verificables. El formato interno puede cambiar y la cobertura se declara parcial. No busques otras carpetas bajo `~/.claude/` si falla; usa la conversación actual o una exportación aportada por el usuario y comunica el límite. No confundas los metadatos del registro con el contenido de una conversación.
 
 ### GPT local
 
@@ -50,6 +55,10 @@ Antes de crear, lista o consulta las tareas existentes y confirma carpeta, horar
 
 Usa el programador nativo y los prompts de Orquestación de `AIOS/systems/learning-system.md` y `AIOS/systems/proyectos-y-areas.md`. Proyectos y Áreas consume el log producido por Learning. Si Learning sigue escribiéndolo, no ejecutes la segunda pasada a la vez; aplázala mediante el mecanismo disponible o indica que quedó pendiente.
 
+### Claude Code CLI: revisión conjunta a demanda
+
+`/coach-review` invoca los dos sistemas sobre el mismo log, en secuencia y dejando propuestas sin aplicar. La integración y su comprobación viven en `AIOS/claude-code.md`. No crea una programación por instalar las skills. Si el usuario pide `/loop` o programación nativa, comprueba sus límites de sesión y su caducidad; no equivale a una tarea nocturna permanente. Conserva como responsable la app que ya tuviera esa revisión, salvo cambio autorizado y verificado.
+
 ### GPT local: una revisión conjunta
 
 Usa `automation_update` (o su equivalente nativo expuesto). Consulta las automatizaciones existentes mediante las herramientas disponibles o, si el host lo documenta y permite, sus archivos `automation.toml` en `$CODEX_HOME/automations/`; después verifica la coincidencia por ID con la herramienta. Actualiza la existente y conserva los campos no solicitados. No escribas la configuración del programador a mano.
@@ -62,7 +71,7 @@ Prompt (sustituye «CARPETA_VERIFICADA» por la ruta real):
 
 Horario por defecto: 23:30, Europe/Madrid, a confirmar. El equipo y la app deben estar abiertos para trabajar con los archivos locales. Comprueba el horario efectivo que devuelve el programador (incluida su zona horaria); no des por hecho que el reloj del equipo usa Madrid.
 
-No actives a la vez Cowork y GPT para revisar automáticamente la misma carpeta. Si el usuario cambia de app responsable, confirma y desactiva las tareas anteriores mediante su entorno antes de activar las nuevas. Si no puedes comprobar las del otro entorno, deja la activación pendiente. Cambiar de app para conversar no obliga a cambiar quién ejecuta la revisión nocturna.
+No actives a la vez Cowork, Claude Code y GPT para revisar automáticamente la misma carpeta. Si el usuario cambia de app responsable, confirma y desactiva las tareas anteriores mediante su entorno antes de activar las nuevas. Si no puedes comprobar las del otro entorno, deja la activación pendiente. Cambiar de app para conversar no obliga a cambiar quién ejecuta la revisión nocturna.
 
 ## Verificación
 

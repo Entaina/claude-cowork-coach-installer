@@ -22,10 +22,11 @@ Completa la presentación, Quién soy y Preferencias con mis respuestas. Si omit
 
 En Pendientes recoge los asuntos que yo haya dejado abiertos o aceptado retomar y los huecos de contexto detectados durante la instalación. Formula estos últimos como preguntas por conocer, con el prefijo «Contexto por completar»; por ejemplo, «Contexto por completar: conocer mis tareas más frecuentes». No los presentes como compromisos, objetivos ni tareas que yo deba ejecutar, ni inventes sus respuestas. Conserva los pendientes existentes al retomar la instalación y evita duplicados. Si no hay asuntos abiertos ni huecos relevantes, escribe «Sin pendientes». Conserva las Reglas; ajústalas solo si mis respuestas las matizan. Enséñame el resultado, incluidos esos huecos, antes de guardarlo: «¿guardo?».
 
-## 3. Configura la revisión diaria
+## 3. Configura el entorno y la revisión
 
 Lee `AIOS/entornos-locales.md` y comprueba la carpeta, el acceso al historial y las herramientas de programación disponibles.
 
+- **Claude Code CLI**: sigue `AIOS/claude-code.md`. La petición de instalación local fija el alcance de proyecto: muestra la vista previa del adaptador y aplica con la autorización correspondiente, sin volver a preguntar un alcance ya elegido. Comprueba las skills y el hook en una sesión nueva. Ofrece `/coach-review` a demanda; una programación del CLI depende de la sesión abierta y no se declara nocturna permanente.
 - **Cowork**: conserva las dos tareas de los sistemas, Learning System a las 23:30 y Proyectos y Áreas a las 23:45 por defecto (Europe/Madrid).
 - **ChatGPT Work / Codex en la app local**: configura la revisión conjunta descrita en ese documento, a las 23:30 por defecto (Europe/Madrid). Trabaja en esta carpeta permanente.
 
@@ -37,10 +38,10 @@ Ejecuta el mismo flujo de revisión una vez con el usuario delante, usando esta 
 
 Si hay propuestas, deja que apruebe o descarte alguna y comprueba el resultado. **Cero propuestas es válido**: no inventes una para completar la instalación. En ese caso basta con enseñar el log y explicar que hoy no hay cambios que validar.
 
-Verifica que `CLAUDE.md` y `AGENTS.md` contienen exactamente las mismas instrucciones. Comprueba después, en una sesión nueva, que se lee el archivo de arranque del entorno (`CLAUDE.md` en Cowork, `AGENTS.md` en GPT), `ME.md` y los mapas. Si esa sesión no carga las instrucciones, informa de que el arranque queda pendiente; no declares la instalación completamente verificada. La prueba manual no demuestra que la ejecución programada disponga de las mismas herramientas: deja esa comprobación pendiente hasta revisar su primera ejecución. En Cowork puedes usar «Run now» si existe; en GPT usa la acción disponible o la interfaz, sin inventar un parámetro de ejecución.
+Verifica que `CLAUDE.md` y `AGENTS.md` contienen exactamente las mismas instrucciones. Comprueba después, en una sesión nueva, que se lee el archivo de arranque del entorno (`CLAUDE.md` en Cowork y Claude Code, `AGENTS.md` en GPT), `ME.md` y los mapas. Si esa sesión no carga las instrucciones, informa de que el arranque queda pendiente; no declares la instalación completamente verificada. La prueba manual no demuestra que la ejecución programada disponga de las mismas herramientas: deja esa comprobación pendiente hasta revisar su primera ejecución. En Cowork puedes usar «Run now» si existe; en GPT usa la acción disponible o la interfaz, sin inventar un parámetro de ejecución.
 
 ---
 
-Español de España, tuteo y explicaciones para un perfil no técnico. El funcionamiento del coach se describe en Markdown y usa las herramientas nativas de la app; no requiere instalar scripts, servicios externos ni herramientas de otra aplicación.
+Español de España, tuteo y explicaciones para un perfil no técnico. El funcionamiento del coach se describe en Markdown y usa las herramientas de cada entorno. Cowork y GPT no necesitan scripts adicionales. Claude Code añade el adaptador Python local descrito arriba, sin servicios externos ni herramientas de otra app.
 
 Empieza la entrevista cuando estés listo.

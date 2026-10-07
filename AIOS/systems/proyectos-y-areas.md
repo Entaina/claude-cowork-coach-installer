@@ -26,7 +26,7 @@ Dos vías a demanda y una programada diaria:
 
 - **En vivo**: project-manager, cuando el usuario habla de sus proyectos o responsabilidades.
 - **Higiene**: project-janitor, a demanda o antes de una revisión de cartera, para que la revisión parta de datos que cuadran.
-- **Detección diaria programada**: en Cowork, 23:45 por defecto, Europe/Madrid, tras Learning; en GPT local, segunda fase de la revisión conjunta de `AIOS/entornos-locales.md`. Lee el mismo log después de que termine la fase de aprendizaje; no escribas sobre él mientras otra pasada lo esté modificando. Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
+- **Detección diaria programada**: en Cowork, 23:45 por defecto, Europe/Madrid, tras Learning; en Claude Code, segunda fase de `/coach-review` a demanda; en GPT local, segunda fase de la revisión conjunta de `AIOS/entornos-locales.md`. Lee el mismo log después de que termine la fase de aprendizaje; no escribas sobre él mientras otra pasada lo esté modificando. Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
 > "Ejecuta el Sistema Proyectos y Áreas según `AIOS/systems/proyectos-y-areas.md` sobre el log correspondiente a esta revisión; termina presentándome sus propuestas y espera mi respuesta."
 

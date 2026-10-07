@@ -1,8 +1,8 @@
 ---
 name: episodic-learner
 description: >-
-  Compone el log diario con las conversaciones disponibles de Cowork o GPT
-  en la app local y los cambios en los archivos de la carpeta. Declara la
+  Compone el log diario con las conversaciones disponibles de Cowork, Claude Code o GPT
+  en local y los cambios en los archivos de la carpeta. Declara la
   cobertura real cuando el historial es parcial. Escribe directo, sin
   pedir permiso — es el registro, la única skill con esa licencia. Extrae
   señales tipadas (novedoso, decidido, no resuelto, preferencia/regla) y
@@ -14,7 +14,7 @@ metadata:
   system: learning-system
   status: active
   created: "2026-06-11"
-  updated: "2026-09-22"
+  updated: "2026-10-07"
   dependencies: "AIOS/entornos-locales.md; herramientas nativas de historial disponibles"
 ---
 # episodic-learner

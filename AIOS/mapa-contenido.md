@@ -5,7 +5,9 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 ## Navegación
 
 - `AGENTS.md` y `CLAUDE.md` — instrucciones completas de arranque, idénticas y sincronizadas. Cada app usa el nombre que reconoce; al modificar el arranque, actualiza ambos sin perder personalizaciones.
-- `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork y GPT local; léelo antes de usar esas capacidades.
+- `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork, Claude Code y GPT local; léelo antes de usar esas capacidades.
+- `AIOS/claude-code.md` — configuración y límites de Code; `AIOS/integrations/claude_code.py` genera wrappers locales, registra sesiones del proyecto y filtra su historial.
+- `.claude/skills/` — wrappers nativos generados solo al configurar Code; `.claude/settings.json` conserva sus hooks y ajustes. `.claude/coach-local/` es estado técnico local, excluido de Git; el hook autorizado registra metadatos, no escribe memoria personal.
 - `ME.md` — briefing del usuario: quién es, goals, preferencias, reglas, pendientes. Se lee en cada arranque.
 - `projects/` — memoria de trabajo: un archivo por proyecto (resultado concreto con final), con `status: pending | working | done`. Los `working` son el frente abierto del usuario: consúltalos al planificar o cuando el tema lo pida.
 - `areas/` — memoria de trabajo: un archivo por área de responsabilidad continua (no se termina; tiene un estándar que mantener), con `status: active | archived`. El test proyecto/área: "¿puede acabarse?". Ambas carpetas se gestionan vía project-manager (Sistema Proyectos y Áreas).
