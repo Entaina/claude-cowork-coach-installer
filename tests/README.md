@@ -77,7 +77,17 @@ Para verificar la app real, usa una cuenta de prueba, una carpeta vacía conecta
 
 No se ha probado la revisión conjunta completa con los tres learners, varias ejecuciones diarias, una cuenta de empresa con administrador ni Windows.
 
-La zona horaria del usuario se añadió después de esta prueba: el lector de Code la tiene cubierta por `test_claude_code.py` (Ciudad de México, `--tz` y vuelta a Madrid), pero la entrevista que la confirma y su uso en Quick no se han ejecutado en una app real.
+La zona horaria del usuario se añadió después de esta prueba; el lector de Code la tiene cubierta por `test_claude_code.py` (Ciudad de México, `--tz` y vuelta a Madrid).
+
+### Verificación de 2.3.0 en Quick (2026-10-27)
+
+- Instalación desde GitHub con la release 2.3.0 y el prompt del README, en una carpeta nueva sin indexación en la nube: 33 archivos idénticos a la revisión y cuatro carpetas vacías, en un minuto.
+- Perfil ficticio de Ciudad de México: la entrevista preguntó la zona, `ME.md` guardó `America/Mexico_City` y un chat nuevo con el agente dio la hora local.
+- El instalador guió la creación del agente y su paso a predeterminado, y detectó que el creador de agentes había metido el nombre de la cuenta en las instrucciones; propuso corregirlo y lo hizo tras la confirmación.
+- La rutina no se pudo fijar en la zona de `ME.md`: Quick la programa en la zona de la cuenta (Madrid). El instalador lo explicó y dejó la programación pendiente, sin convertir la hora a mano.
+- Revisión conjunta en el chat: log con cobertura parcial y señales fechadas en hora de Ciudad de México; propuestas de Learning y de Proyectos y Áreas; tras aprobar dos y descartar una, solo cambiaron `ME.md`, el mapa de contenido, el área nueva (con su plantilla) y el log, consolidado con el estado de cada propuesta.
+
+Sin probar: la revisión conjunta ejecutada como rutina con la zona de la cuenta igualada a la de `ME.md`.
 
 ## Verificación realizada para 2.2.0 (2026-10-07)
 

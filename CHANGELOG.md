@@ -8,6 +8,18 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.3.2] - 2026-10-27
+
+Corrección para Amazon Quick tras la prueba de instalación de 2.3.0 con un perfil de Ciudad de México. Cómo actualizar, en `migrations/2.3.2.md`.
+
+### Cambiado
+
+- `AIOS/amazon-quick.md` y `AIOS/entornos-locales.md` — la hora de una rutina de Quick se fija en la zona horaria de la cuenta (Settings → Appearance and language → Timezone), no en una propia. Si no coincide con la de `ME.md`, el usuario la cambia allí o la programación queda pendiente. La guía precisa además que la subida de la carpeta a la nube viene apagada al añadirla, que el creador de agentes puede meter el nombre de la cuenta en las instrucciones y que un cambio en el agente queda en borrador hasta publicarlo.
+
+### Repo (no se aplica a tu carpeta)
+
+- Migración 2.3.2 con los dos originales afectados de 2.3.1, prueba de su integridad y verificación del 27 de octubre en `tests/README.md`. `AIOS/VERSION.md` del repositorio pasa a 2.3.2.
+
 ## [2.3.1] - 2026-10-27
 
 Claude Code en Windows sin Git ni pasos manuales con Python, y Cowork deja de ser la opción recomendada para instalaciones nuevas. Cómo actualizar, en `migrations/2.3.1.md`.
