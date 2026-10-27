@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local Claude Code adapter. No model calls, global scan, or third-party packages.
 
-The registered JSONL format is internal to Claude Code (tested with 2.1.286).
+The registered JSONL format is internal to Claude Code (tested with 2.1.286 and 2.1.310).
 Unknown/missing records reduce coverage; this is never a complete history API.
 """
 import argparse
@@ -11,7 +11,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shlex
 import sys
 import tempfile
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
@@ -132,11 +131,23 @@ del usuario antes de aplicarlas. No crees ninguna programación por esta petici�
     return wrappers
 
 
-def hook_command(root):
-    # Pin the installed module: a nested project cannot shadow the parent hook.
-    # Reinstall after moving the coach to refresh this local absolute path.
+def hook_spec(root):
+    # Exec form, no shell: the interpreter that ran the installation, by absolute path.
+    # `python3` may be missing or a Microsoft Store alias on Windows, and Git Bash and
+    # PowerShell quote differently. Pin the module too: a nested project cannot shadow it.
+    # Reinstall after moving the coach or Python to refresh these local absolute paths.
+    executable = Path(sys.executable) if sys.executable else None
+    if executable is None or not executable.is_absolute() or not executable.is_file():
+        raise Refusal('No se identifica la ruta del intérprete de Python; ejecuta el instalador con la ruta completa de Python')
     module = root.resolve() / 'AIOS/integrations/claude_code.py'
-    return 'python3 ' + shlex.quote(str(module)) + ' hook'
+    return {'command': str(executable), 'args': [str(module), 'hook']}
+
+
+def is_hook(hook, spec):
+    if isinstance(spec, str):
+        # Shell form written by 2.2.0–2.3.0 (`python3 '<module>' hook`).
+        return 'args' not in hook and hook.get('command') == spec
+    return hook.get('command') == spec['command'] and hook.get('args') == spec['args']
 
 
 def install(root, apply=False):
@@ -170,8 +181,10 @@ def install(root, apply=False):
     groups = hooks.setdefault('SessionStart', [])
     if not isinstance(groups, list):
         raise Refusal('SessionStart no es una lista')
-    command = hook_command(root)
-    old_command = previous.get('hook_command')
+    spec = hook_spec(root)
+    old_spec = previous.get('hook', previous.get('hook_command'))
+    if old_spec is not None and not isinstance(old_spec, (str, dict)):
+        raise Refusal('Manifiesto de instalación incompatible')
     found = False
     for group in groups:
         if not isinstance(group, dict) or not isinstance(group.get('hooks'), list):
@@ -179,8 +192,8 @@ def install(root, apply=False):
         for hook in group['hooks']:
             if not isinstance(hook, dict):
                 raise Refusal('Hook SessionStart no reconocido')
-            if hook.get('type') == 'command' and (hook.get('command') == command or
-                    (old_command is not None and hook.get('command') == old_command)):
+            if hook.get('type') == 'command' and (is_hook(hook, spec) or
+                    (old_spec is not None and is_hook(hook, old_spec))):
                 if found:
                     raise Refusal('Hook del coach duplicado; resuélvelo antes de instalar')
                 matcher = group.get('matcher', '')
@@ -197,13 +210,14 @@ def install(root, apply=False):
                 timeout = hook.get('timeout', 600)
                 if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or timeout <= 0:
                     raise Refusal('El timeout del hook del coach impide verificar el registro; resuelve su configuración')
-                if old_command and hook['command'] == old_command:
-                    hook['command'] = command
+                if not is_hook(hook, spec):
+                    hook['command'] = spec['command']
+                    hook['args'] = list(spec['args'])
                 found = True
-    if not found and old_command is not None:
+    if not found and old_spec is not None:
         raise Refusal('El hook gestionado se ha modificado o retirado; decide antes de reinstalarlo')
     if not found:
-        groups.append({'hooks': [{'type': 'command', 'command': command}]})
+        groups.append({'hooks': [{'type': 'command', **spec}]})
     files['.claude/settings.json'] = encoded(settings)
     ignore_path = local_path(root, '.claude/.gitignore')
     ignore = ignore_path.read_text(encoding='utf-8') if ignore_path.exists() else ''
@@ -214,7 +228,7 @@ def install(root, apply=False):
     hashes = dict(old_files)
     hashes.update({relative: digest(content) for relative, content in files.items()
                    if relative.startswith('.claude/skills/')})
-    files[str(MANIFEST)] = encoded({'schema': 1, 'files': hashes, 'hook_command': command})
+    files[str(MANIFEST)] = encoded({'schema': 1, 'files': hashes, 'hook': spec})
     changes = []
     for relative, content in files.items():
         path = local_path(root, relative)
@@ -336,31 +350,44 @@ def bounded_lines(handle, on_error):
         yield raw, number, offset
 
 
-def user_timezone(root, explicit=None):
-    """Explicit --tz first, then the ME.md line, then the pre-2.3.0 default."""
-    if explicit:
-        try:
-            return ZoneInfo(explicit), explicit, 'argument'
-        except (ZoneInfoNotFoundError, ValueError):
-            raise ValueError('Zona horaria desconocida: ' + explicit)
+def load_zone(name):
     try:
-        match = TIMEZONE_LINE.search((root / 'ME.md').read_text(encoding='utf-8'))
-    except (OSError, UnicodeDecodeError):
-        match = None
-    if match:
+        return ZoneInfo(name)
+    except (ZoneInfoNotFoundError, ValueError):
+        return None
+
+
+def user_timezone(root, explicit=None):
+    """Explicit --tz first, then the ME.md line, then the pre-2.3.0 default.
+
+    Without a zone database (Windows without the tzdata package) the zone is None:
+    the caller uses the system's local time rules and reports it.
+    """
+    database = load_zone('UTC') is not None
+    if explicit:
+        if load_zone(explicit):
+            return load_zone(explicit), explicit, 'argument'
+        if database:
+            raise ValueError('Zona horaria desconocida: ' + explicit)
+    else:
         try:
-            return ZoneInfo(match[1]), match[1], 'ME.md'
-        except (ZoneInfoNotFoundError, ValueError):
-            pass
-    return ZoneInfo(DEFAULT_TIMEZONE), DEFAULT_TIMEZONE, 'default'
+            match = TIMEZONE_LINE.search((root / 'ME.md').read_text(encoding='utf-8'))
+        except (OSError, UnicodeDecodeError):
+            match = None
+        if match and load_zone(match[1]):
+            return load_zone(match[1]), match[1], 'ME.md'
+        if database:
+            return ZoneInfo(DEFAULT_TIMEZONE), DEFAULT_TIMEZONE, 'default'
+    return None, 'sistema: ' + (datetime.now().astimezone().tzname() or 'local'), 'system'
 
 
 def history(root, day, tz=None):
     root = root.resolve()
     selected = date.fromisoformat(day)
     zone, zone_name, zone_source = user_timezone(root, tz)
-    start = datetime.combine(selected, datetime.min.time(), zone)
-    end = datetime.combine(selected + timedelta(days=1), datetime.min.time(), zone)
+    # zone None: naive midnights converted with the system's local rules, DST included.
+    start = datetime.combine(selected, datetime.min.time(), zone).astimezone(zone)
+    end = datetime.combine(selected + timedelta(days=1), datetime.min.time(), zone).astimezone(zone)
     result = {'date': day, 'timezone': zone_name, 'timezone_source': zone_source, 'root': str(root),
               'interval': {'start': start.isoformat(), 'end': end.isoformat()},
               'coverage': {'status': 'partial', 'reason': 'Solo sesiones registradas desde el alta del hook; formato JSONL interno.'},

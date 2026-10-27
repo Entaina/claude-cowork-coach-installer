@@ -12,7 +12,7 @@ python3 -m unittest discover -s tests -v
 
 Comprueban el formato de las skills, las referencias a skills y archivos de AIOS, la coherencia de la versión, la integridad de las migraciones y la igualdad exacta de CLAUDE.md y AGENTS.md. `baseline-2.0.0.json` registra los hashes de los originales de la revisión indicada. No se regenera desde archivos editados para hacer pasar una prueba.
 
-Esta carpeta se excluye de la copia al usuario. Cowork y GPT no requieren Python ni estas pruebas para funcionar. La integración nativa opcional de Claude Code sí requiere Python 3.9+ con la base de zonas horarias; no requiere PyYAML.
+Esta carpeta se excluye de la copia al usuario. Cowork y GPT no requieren Python ni estas pruebas para funcionar. La integración nativa opcional de Claude Code sí requiere Python 3.9+; desde 2.3.1 no necesita la base de zonas horarias (sin ella usa la hora local del sistema) ni PyYAML.
 
 ## Pruebas de comportamiento
 

@@ -8,6 +8,22 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.3.1] - 2026-10-27
+
+Claude Code en Windows sin Git ni pasos manuales con Python. Cómo actualizar, en `migrations/2.3.1.md`.
+
+### Cambiado
+
+- `AIOS/integrations/claude_code.py` — el hook `SessionStart` se registra sin shell: Claude Code lanza el Python que hizo la instalación por su ruta absoluta, con el adaptador como argumento. Deja de depender de `python3`, que en Windows suele faltar o abrir la Microsoft Store, y de las diferencias de comillas entre Git Bash y PowerShell. Reinstalar sustituye en su sitio el hook de texto de 2.2.0–2.3.0. Sin base de zonas horarias (Windows sin `tzdata`), el lector corta el día con la hora local del sistema e indica `timezone_source: system`.
+- `AIOS/claude-code.md` — Python pasa a ser un paso de la instalación: el agente lo comprueba y, si falta, lo instala con el OK del usuario (`winget` para el usuario en Windows, herramientas de línea de comandos en macOS). Git no se instala y el aviso de Claude Code de que no está disponible se explica como normal. Ya no se pide `tzdata`.
+
+### Repo (no se aplica a tu carpeta)
+
+- README e INSTALL — Python lo instala el coach y Git no hace falta.
+- Pruebas — hook sin shell ejecutado como lo lanza Claude Code, sustitución del hook de 2.3.0, intérprete no identificable y lector sin base de zonas. Originales 2.3.0 de los dos archivos cambiados y su prueba de integridad.
+
+Contrastado el 2026-10-27 en Linux con Claude Code 2.1.310: el hook sin shell registra la sesión y el lector recupera sus mensajes. Windows sigue sin probarse en una máquina real.
+
 ## [2.3.0] - 2026-10-27
 
 Compatibilidad con la app de escritorio de Amazon Quick, sobre la misma carpeta local, y zona horaria del usuario en lugar de Madrid fija. Cowork, Claude Code y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.3.0.md`.

@@ -7,7 +7,7 @@ Compatible con Claude Cowork, Claude Code CLI, ChatGPT Work / Codex en la app de
 ## Instalación
 
 1. Crea una carpeta nueva y **vacía** en tu ordenador (por ejemplo, `mi-coach`). No la muevas ni la renombres después.
-2. Abre Cowork o ChatGPT Work / Codex y selecciona esa carpeta. En GPT elige **trabajar localmente**, sin crear un worktree. En Claude Code, abre una terminal en esa carpeta y ejecuta `claude`; la integración nativa requiere Python 3.9 o posterior con la base de zonas horarias disponible. En Amazon Quick, conecta la carpeta en Customize → Knowledge y abre un chat; al pegar el prompt del paso 3, añade al principio una línea con la ruta: «La carpeta de trabajo es «NOMBRE» (RUTA COMPLETA).». Revisa antes las opciones de indexación de esa carpeta: suben los archivos a la nube y el coach no las necesita.
+2. Abre Cowork o ChatGPT Work / Codex y selecciona esa carpeta. En GPT elige **trabajar localmente**, sin crear un worktree. En Claude Code, abre una terminal en esa carpeta y ejecuta `claude`; la integración nativa usa Python 3.9 o posterior; si no lo tienes, el coach lo instala durante la instalación, con tu permiso. Git no hace falta: en Windows, Claude Code puede avisar de que no está disponible y funciona igual. En Amazon Quick, conecta la carpeta en Customize → Knowledge y abre un chat; al pegar el prompt del paso 3, añade al principio una línea con la ruta: «La carpeta de trabajo es «NOMBRE» (RUTA COMPLETA).». Revisa antes las opciones de indexación de esa carpeta: suben los archivos a la nube y el coach no las necesita.
 3. Copia y pega este prompt en el chat:
 
 ```

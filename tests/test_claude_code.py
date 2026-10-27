@@ -191,12 +191,14 @@ class NativeCodeIntegration(unittest.TestCase):
                  'cwd': str(nested), 'transcript_path': str(path)}
         environment = dict(os.environ, CLAUDE_PROJECT_DIR=str(nested))
         settings = json.loads((self.coach / '.claude/settings.json').read_text())
-        command = settings['hooks']['SessionStart'][-1]['hooks'][0]['command']
-        self.assertIn(str(self.coach), command)
+        hook = settings['hooks']['SessionStart'][-1]['hooks'][0]
+        self.assertEqual(hook['command'], sys.executable)
+        self.assertIn(str(self.coach), hook['args'][0])
+        command = [hook['command'], *hook['args']]
         shadow = nested / 'AIOS/integrations/claude_code.py'
         shadow.parent.mkdir(parents=True)
         shadow.write_text('raise SystemExit("Nested module must not execute")')
-        completed = subprocess.run(command, shell=True, cwd=nested, env=environment,
+        completed = subprocess.run(command, cwd=nested, env=environment,
                                    input=json.dumps(event), text=True, capture_output=True)
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertEqual(completed.stdout, '')
@@ -205,7 +207,7 @@ class NativeCodeIntegration(unittest.TestCase):
         self.assertEqual(data['cwd'], str(nested))
         self.assertEqual(set(data), {'session_id', 'cwd', 'transcript_path', 'registered_at'})
         first = registration.read_bytes()
-        again = subprocess.run(command, shell=True, cwd=nested, env=environment,
+        again = subprocess.run(command, cwd=nested, env=environment,
                                input=json.dumps(event), text=True, capture_output=True)
         self.assertEqual(again.returncode, 0, again.stderr)
         self.assertEqual(registration.read_bytes(), first)
@@ -256,7 +258,7 @@ class NativeCodeIntegration(unittest.TestCase):
                 settings = json.loads(initial)
                 group = settings['hooks']['SessionStart'][-1]
                 if change == 'edit':
-                    group['hooks'][0]['command'] += ' --my-custom-flag'
+                    group['hooks'][0]['args'].append('--my-custom-flag')
                 else:
                     group['hooks'] = []
                 settings_path.write_text(adapter.encoded(settings))
@@ -267,7 +269,7 @@ class NativeCodeIntegration(unittest.TestCase):
 
     def test_reinstall_after_move_refreshes_only_the_managed_hook_path(self):
         adapter.install(self.coach, apply=True)
-        previous_command = adapter.hook_command(self.coach)
+        previous = adapter.hook_spec(self.coach)
         moved = self.base / 'coach moved with spaces'
         shutil.move(self.coach, moved)
         self.coach = moved
@@ -276,9 +278,36 @@ class NativeCodeIntegration(unittest.TestCase):
         settings = json.loads((moved / '.claude/settings.json').read_text())
         hooks = settings['hooks']['SessionStart'][-1]['hooks']
         self.assertEqual(len(hooks), 1)
-        self.assertEqual(hooks[0]['command'], adapter.hook_command(moved))
-        self.assertNotEqual(hooks[0]['command'], previous_command)
+        self.assertEqual({key: hooks[0][key] for key in ('command', 'args')}, adapter.hook_spec(moved))
+        self.assertNotEqual(hooks[0]['args'], previous['args'])
         self.assertEqual(adapter.install(moved, apply=True)['changed'], [])
+
+    def test_upgrade_replaces_the_shell_form_hook_of_2_3_0_in_place(self):
+        module = self.coach.resolve() / 'AIOS/integrations/claude_code.py'
+        legacy = "python3 '" + str(module) + "' hook"
+        settings = {'hooks': {'SessionStart': [
+            {'hooks': [{'type': 'command', 'command': 'printf existing'}]},
+            {'hooks': [{'type': 'command', 'command': legacy, 'timeout': 30}]}]}}
+        (self.coach / '.claude/coach-local').mkdir(parents=True)
+        (self.coach / '.claude/settings.json').write_text(adapter.encoded(settings))
+        (self.coach / '.claude/coach-local/managed.json').write_text(
+            adapter.encoded({'schema': 1, 'files': {}, 'hook_command': legacy}))
+        adapter.install(self.coach, apply=True)
+        groups = json.loads((self.coach / '.claude/settings.json').read_text())['hooks']['SessionStart']
+        self.assertEqual(len(groups), 2)
+        self.assertEqual(groups[0]['hooks'][0], {'type': 'command', 'command': 'printf existing'})
+        self.assertEqual(groups[1]['hooks'][0], {'type': 'command', 'timeout': 30,
+                                                 **adapter.hook_spec(self.coach)})
+        manifest = json.loads((self.coach / '.claude/coach-local/managed.json').read_text())
+        self.assertEqual(manifest['hook'], adapter.hook_spec(self.coach))
+        self.assertNotIn('hook_command', manifest)
+        self.assertEqual(adapter.install(self.coach, apply=True)['changed'], [])
+
+    def test_unidentified_interpreter_refuses_before_writing(self):
+        before = snapshots(self.coach)
+        with patch.object(adapter.sys, 'executable', ''), self.assertRaisesRegex(adapter.Refusal, 'intérprete'):
+            adapter.install(self.coach, apply=True)
+        self.assertEqual(before, snapshots(self.coach))
 
     def test_long_transcript_reads_final_window_with_real_offsets(self):
         path, _ = self.transcript()
@@ -384,6 +413,24 @@ class NativeCodeIntegration(unittest.TestCase):
         self.assertEqual((fallback['timezone'], fallback['timezone_source']), ('Europe/Madrid', 'default'))
         with self.assertRaises(ValueError):
             adapter.history(self.coach, '2026-10-07', 'Marte/Olympus')
+
+    def test_without_zone_database_uses_system_local_time(self):
+        # Windows without the tzdata package: no IANA zone loads, not even UTC.
+        path, _ = self.transcript(registered='2026-01-01T00:00:00Z')
+        self.put(path, [self.record(timestamp='2026-10-07T12:00:00Z', uuid='noon')])
+        (self.coach / 'ME.md').write_text('# Rosa\nZona horaria: America/Mexico_City\n')
+
+        def missing(name):
+            raise adapter.ZoneInfoNotFoundError(name)
+        with patch.object(adapter, 'ZoneInfo', missing):
+            for tz in (None, 'Europe/Madrid'):
+                with self.subTest(tz=tz):
+                    result = adapter.history(self.coach, '2026-10-07', tz)
+                    self.assertEqual(result['timezone_source'], 'system')
+                    self.assertTrue(result['timezone'].startswith('sistema'))
+                    self.assertEqual([message['uuid'] for message in result['messages']], ['noon'])
+                    start = datetime.fromisoformat(result['interval']['start'])
+                    self.assertEqual(start.utcoffset(), datetime(2026, 10, 7).astimezone().utcoffset())
 
     def test_malformed_missing_and_unexpected_transcripts_remain_partial(self):
         self.assertEqual(adapter.history(self.coach, '2026-10-07')['messages'], [])
