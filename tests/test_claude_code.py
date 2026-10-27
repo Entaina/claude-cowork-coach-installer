@@ -360,6 +360,31 @@ class NativeCodeIntegration(unittest.TestCase):
         spring = adapter.history(self.coach, '2026-03-29')
         self.assertEqual([message['uuid'] for message in spring['messages']], ['spring-start', 'spring-last'])
 
+    def test_user_timezone_from_me_md_argument_and_fallback(self):
+        path, _ = self.transcript(registered='2026-01-01T00:00:00Z')
+        self.put(path, [
+            self.record(timestamp='2026-10-07T05:59:59Z', uuid='before'),
+            self.record(timestamp='2026-10-07T06:00:00Z', uuid='start'),
+            self.record(timestamp='2026-10-08T05:59:59Z', uuid='last'),
+            self.record(timestamp='2026-10-08T06:00:00Z', uuid='after'),
+        ])
+        me = self.coach / 'ME.md'
+        me.write_text('# Rosa\n\n## Quién soy\n\nZona horaria: America/Mexico_City\n')
+        mexico = adapter.history(self.coach, '2026-10-07')
+        self.assertEqual((mexico['timezone'], mexico['timezone_source']), ('America/Mexico_City', 'ME.md'))
+        self.assertEqual([message['uuid'] for message in mexico['messages']], ['start', 'last'])
+        self.assertTrue(mexico['messages'][0]['timestamp'].endswith('-06:00'))
+        me.write_text('# Rosa\n- **Zona horaria:** `America/Mexico_City`\n')
+        self.assertEqual(adapter.history(self.coach, '2026-10-07')['timezone_source'], 'ME.md')
+        forced = adapter.history(self.coach, '2026-10-07', 'Europe/Madrid')
+        self.assertEqual((forced['timezone'], forced['timezone_source']), ('Europe/Madrid', 'argument'))
+        self.assertEqual([message['uuid'] for message in forced['messages']], ['before', 'start'])
+        me.write_text('# Rosa\nZona horaria: Marte/Olympus\n')
+        fallback = adapter.history(self.coach, '2026-10-07')
+        self.assertEqual((fallback['timezone'], fallback['timezone_source']), ('Europe/Madrid', 'default'))
+        with self.assertRaises(ValueError):
+            adapter.history(self.coach, '2026-10-07', 'Marte/Olympus')
+
     def test_malformed_missing_and_unexpected_transcripts_remain_partial(self):
         self.assertEqual(adapter.history(self.coach, '2026-10-07')['messages'], [])
         path, _ = self.transcript()

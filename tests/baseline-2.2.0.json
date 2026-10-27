@@ -1,7 +1,9 @@
 {
   "source_commit": "820a1ecf2dbe903da5c50b5179ceaf33e560cb55",
   "originals": {
+    "AIOS/claude-code.md": "035c991ae64e60d11653f8a37f772b3c511237cdaaac5cbd289a792a30e931e7",
     "AIOS/entornos-locales.md": "408caf2fae0b740d61b4a08ee56d54e806c565066f4615b4e522c95ae6b9c0de",
+    "AIOS/integrations/claude_code.py": "0f5a4bde2edf86177b29c0ff01efc7fa1ef42099477de5130f43b92d7824cba0",
     "AIOS/mapa-contenido.md": "d10a427d6f2c98fe5dbdaea1dc5a8c281efbc1891dce80dd036dd18d64c09d3b",
     "AIOS/mapa-skills.md": "570025288b34f9f4bdfd862b93f0adf458ecc48da1f67c02edec601a3a6944b3",
     "AIOS/skills/episodic-learner/SKILL.md": "057f6f38e894d64c7358e0dc6331e301c839b67f08d5cb140698017c0c0a2992",

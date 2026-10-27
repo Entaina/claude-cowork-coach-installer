@@ -33,11 +33,11 @@ Automático. El usuario no lo toca: el coach construye el log escaneando lo que 
 
 ## Zona horaria
 
-Todas las marcas de tiempo en Europe/Madrid, siempre: el nombre del archivo y cada señal. Los relojes del sistema suelen ir en UTC — convierte antes de escribir. Nunca escribas una hora futura; si no puedes determinar la hora local con confianza, dilo en el propio log.
+Todas las marcas de tiempo en la zona horaria del usuario, siempre: el nombre del archivo y cada señal. Es la línea «Zona horaria» de `ME.md`; si falta o no es válida, `Europe/Madrid` (ver `AIOS/entornos-locales.md`). Los relojes del sistema suelen ir en UTC — convierte antes de escribir. Nunca escribas una hora futura; si no puedes determinar la hora local con confianza, dilo en el propio log.
 
 ## Workflow
 
-1. Lee `AIOS/entornos-locales.md` y aplica el acceso a conversaciones de la app actual. Recupera solo las fuentes de esta carpeta y del día solicitado (Europe/Madrid), pagina según las herramientas disponibles y declara la cobertura real. No confundas historial inaccesible con un día sin actividad. Salta las sesiones vacías o triviales.
+1. Lee `AIOS/entornos-locales.md` y aplica el acceso a conversaciones de la app actual. Recupera solo las fuentes de esta carpeta y del día solicitado (en la zona horaria del usuario), pagina según las herramientas disponibles y declara la cobertura real. No confundas historial inaccesible con un día sin actividad. Salta las sesiones vacías o triviales.
 2. Revisa también los archivos modificados durante el día solicitado en la carpeta, por si hubo trabajo fuera de las sesiones. El día por defecto es hoy.
 3. Si hay fuentes útiles, crea `episodic/logs/{día-solicitado}.md` (fecha `AAAA-MM-DD`) con la plantilla `AIOS/Templates/log-template.md` (léela, no la reconstruyas de memoria), añadiendo la nota de Cobertura definida en `AIOS/entornos-locales.md`. Si ya existe el log del día, conserva su contenido y propuestas; incorpora solo señales nuevas, sin duplicarlas por sesión/momento/hecho. Si entran señales nuevas en un log consolidado, vuelve a `consolidado: pendiente` conservando los estados de las propuestas resueltas. Sin fuentes, informa de la limitación y no sustituyas un log existente.
 4. Redacta **Qué pasó**: una narrativa breve con la forma del día, no una lista de actividades.

@@ -7,7 +7,7 @@ Compatible con Claude Cowork, Claude Code CLI, ChatGPT Work / Codex en la app de
 ## Instalación
 
 1. Crea una carpeta nueva y **vacía** en tu ordenador (por ejemplo, `mi-coach`). No la muevas ni la renombres después.
-2. Abre Cowork o ChatGPT Work / Codex y selecciona esa carpeta. En GPT elige **trabajar localmente**, sin crear un worktree. En Claude Code, abre una terminal en esa carpeta y ejecuta `claude`; la integración nativa requiere Python 3.9 o posterior con la zona Europe/Madrid disponible. En Amazon Quick, conecta la carpeta en Customize → Knowledge y abre un chat; al pegar el prompt del paso 3, añade al principio una línea con la ruta: «La carpeta de trabajo es «NOMBRE» (RUTA COMPLETA).». Revisa antes las opciones de indexación de esa carpeta: suben los archivos a la nube y el coach no las necesita.
+2. Abre Cowork o ChatGPT Work / Codex y selecciona esa carpeta. En GPT elige **trabajar localmente**, sin crear un worktree. En Claude Code, abre una terminal en esa carpeta y ejecuta `claude`; la integración nativa requiere Python 3.9 o posterior con la base de zonas horarias disponible. En Amazon Quick, conecta la carpeta en Customize → Knowledge y abre un chat; al pegar el prompt del paso 3, añade al principio una línea con la ruta: «La carpeta de trabajo es «NOMBRE» (RUTA COMPLETA).». Revisa antes las opciones de indexación de esa carpeta: suben los archivos a la nube y el coach no las necesita.
 3. Copia y pega este prompt en el chat:
 
 ```
@@ -28,7 +28,7 @@ Instala mi asistente personal en esta carpeta local permanente. Si estamos en Cl
    la entrevista de instalación y sigue sus pasos hasta el final.
 ```
 
-4. Responde tres bloques breves: quién eres, cómo llamar al asistente y cómo te gusta trabajar. Una pregunta cada vez; di «siguiente» si alguna no aplica. No necesitas definir objetivos.
+4. Responde tres bloques breves: quién eres (con tu ubicación, para fijar tu zona horaria), cómo llamar al asistente y cómo te gusta trabajar. Una pregunta cada vez; di «siguiente» si alguna no aplica. No necesitas definir objetivos.
 5. Comprueba tu primer log y responde a las propuestas, si las hay. Si faltan herramientas para automatizar, el instalador te indicará qué queda pendiente. En Amazon Quick, crea además el agente Coach con el texto que te dé el instalador (Customize → Agents → Create → From chat) y elígelo en cada chat: Quick no lee las instrucciones de la carpeta por sí solo.
 
 Si la entrevista se interrumpe, pide «retoma mi instalación leyendo INSTALL.md del repositorio». No vuelvas a copiar la estructura sobre la carpeta existente.

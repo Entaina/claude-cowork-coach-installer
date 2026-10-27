@@ -52,7 +52,7 @@ Prompt (sustituye CARPETA_VERIFICADA):
 
 Tres condiciones de esta rutina:
 
-- **Horario.** La rutina corre en la nube, pero solo llega a la carpeta a través de la app. Elige una hora dentro de la jornada, con el equipo encendido y Quick abierto. Las 23:30 por defecto fallan si el equipo se apaga al terminar el día. Comprueba la hora y la zona horaria que muestra la tarjeta.
+- **Horario.** La rutina corre en la nube, pero solo llega a la carpeta a través de la app. Elige una hora dentro de la jornada, con el equipo encendido y Quick abierto. Las 23:30 por defecto fallan si el equipo se apaga al terminar el día. Comprueba la hora y que la zona horaria de la tarjeta coincida con la de `ME.md`.
 - **Permisos.** La rutina recibe permiso para escribir en cualquier archivo de las carpetas conectadas; no se puede limitar a uno. Que solo toque sus destinos depende de las instrucciones. Por eso conviene conectar únicamente la carpeta del coach.
 - **Aviso.** Al terminar, Quick deja un aviso con el resultado (en la prueba, en el Feed).
 
@@ -68,4 +68,4 @@ Sin contrastar todavía: la revisión conjunta completa con las propuestas de lo
 
 - Los títulos de las conversaciones y parte del razonamiento intermedio salen en inglés aunque las respuestas sean en español.
 - La instalación y las rutinas consumen la cuota del plan. AWS no publica cuántas horas de agente incluyen los planes Free, Plus y Max.
-- El coach fecha el día en Europe/Madrid. Si el usuario trabaja en otra zona horaria, el día del log no coincide con su jornada; tenlo en cuenta al elegir la hora de la rutina y avisa al usuario.
+- El coach fecha el día en la zona horaria de `ME.md`. Si la instalación es anterior a 2.3.0 y no tiene esa línea, usa `Europe/Madrid`: para un usuario de otra zona, añádela con su confirmación antes de programar la rutina.

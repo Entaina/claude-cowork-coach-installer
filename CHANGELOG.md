@@ -10,7 +10,7 @@ Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `p
 
 ## [2.3.0] - 2026-10-27
 
-Compatibilidad con la app de escritorio de Amazon Quick, sobre la misma carpeta local. Cowork, Claude Code y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.3.0.md`.
+Compatibilidad con la app de escritorio de Amazon Quick, sobre la misma carpeta local, y zona horaria del usuario en lugar de Madrid fija. Cowork, Claude Code y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.3.0.md`.
 
 ### Añadido
 
@@ -18,15 +18,17 @@ Compatibilidad con la app de escritorio de Amazon Quick, sobre la misma carpeta 
 
 ### Cambiado
 
+- Zona horaria del usuario — el coach fecha el día, las señales, el intervalo de conversaciones y los horarios con la línea «Zona horaria» de `ME.md` (identificador IANA). Sin esa línea, como en las instalaciones anteriores, sigue usando `Europe/Madrid`. Cambian `AIOS/entornos-locales.md` (la regla), `episodic-learner`, los sistemas de Learning y Proyectos y el mapa de contenido.
+- `AIOS/claude-code.md` y `AIOS/integrations/claude_code.py` — el lector de historial toma la zona de `ME.md`, admite `--tz` e informa de la zona usada; `/coach-review` elige el día en esa zona. Sin la línea, mismo resultado que en 2.2.0.
 - `AIOS/entornos-locales.md` — Quick en el alcance, el arranque, el historial y la programación. La versión web de Quick queda fuera, con el resto de modalidades cloud.
 - Mapas y sistemas de Learning/Proyectos — Quick ejecuta las dos fases en una sola revisión, como GPT local, y su primera comprobación es una ejecución única a pocos minutos vista.
 - Descripción de `episodic-learner` — incluye Quick; su workflow se conserva.
 
 ### Repo (no se aplica a tu carpeta)
 
-- README e INSTALL — instalación en Quick con la ruta de la carpeta al principio del prompt, creación del agente Coach por el usuario y rutina dentro de la jornada.
-- Migración 2.3.0 con los seis originales afectados de 2.2.0; no cambia los dos arranques ni los datos del usuario.
-- Prueba de integridad de esos originales; `AIOS/VERSION.md` del repositorio pasa a 2.3.0.
+- README e INSTALL — instalación en Quick con la ruta de la carpeta al principio del prompt, creación del agente Coach por el usuario y rutina dentro de la jornada. La entrevista confirma la zona horaria a partir de la ubicación y la plantilla `ME.md` gana la línea «Zona horaria»; solo afecta a instalaciones nuevas.
+- Migración 2.3.0 con los ocho originales afectados de 2.2.0; no cambia los dos arranques ni los datos del usuario, `ME.md` incluido.
+- Prueba de integridad de esos originales y prueba del lector con una zona distinta de Madrid; `AIOS/VERSION.md` del repositorio pasa a 2.3.0.
 
 Contrastado el 2026-10-27 en macOS con Quick 1.1.3905 y una cuenta individual. La revisión conjunta completa, varias ejecuciones diarias, las cuentas de empresa con administrador y Windows siguen sin probar.
 

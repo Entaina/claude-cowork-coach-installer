@@ -14,12 +14,14 @@ import re
 import shlex
 import sys
 import tempfile
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parents[2]
 STATE = Path('.claude/coach-local')
 MANIFEST = STATE / 'managed.json'
-MADRID = ZoneInfo('Europe/Madrid')
+DEFAULT_TIMEZONE = 'Europe/Madrid'
+# ME.md line written by the installer interview, e.g. "Zona horaria: America/Mexico_City".
+TIMEZONE_LINE = re.compile(r'^[ \t]*(?:[-*][ \t]+)?\**Zona horaria\**[ \t]*:\**[ \t]*`?([A-Za-z0-9_+\-]+(?:/[A-Za-z0-9_+\-]+)*)`?', re.M)
 MAX_LINE = 8 * 1024 * 1024
 MAX_BYTES = 32 * 1024 * 1024
 MAX_MESSAGES = 1000
@@ -122,7 +124,8 @@ La raíz del coach es `${CLAUDE_SKILL_DIR}/../../..`.
 Lee `AIOS/entornos-locales.md` desde esa raíz. Ejecuta el Learning System
 según `AIOS/systems/learning-system.md` y después el Sistema Proyectos y Áreas
 según `AIOS/systems/proyectos-y-areas.md`, para la misma fecha y sobre el mismo log.
-Fecha solicitada (opcional): $ARGUMENTS. Si falta, usa hoy en Europe/Madrid.
+Fecha solicitada (opcional): $ARGUMENTS. Si falta, usa hoy en la zona horaria del usuario
+(línea «Zona horaria» de ME.md; Europe/Madrid si no consta).
 Completa ambas fases antes de presentar sus propuestas; espera la confirmación
 del usuario antes de aplicarlas. No crees ninguna programación por esta petición.
 '''
@@ -333,12 +336,32 @@ def bounded_lines(handle, on_error):
         yield raw, number, offset
 
 
-def history(root, day):
+def user_timezone(root, explicit=None):
+    """Explicit --tz first, then the ME.md line, then the pre-2.3.0 default."""
+    if explicit:
+        try:
+            return ZoneInfo(explicit), explicit, 'argument'
+        except (ZoneInfoNotFoundError, ValueError):
+            raise ValueError('Zona horaria desconocida: ' + explicit)
+    try:
+        match = TIMEZONE_LINE.search((root / 'ME.md').read_text(encoding='utf-8'))
+    except (OSError, UnicodeDecodeError):
+        match = None
+    if match:
+        try:
+            return ZoneInfo(match[1]), match[1], 'ME.md'
+        except (ZoneInfoNotFoundError, ValueError):
+            pass
+    return ZoneInfo(DEFAULT_TIMEZONE), DEFAULT_TIMEZONE, 'default'
+
+
+def history(root, day, tz=None):
     root = root.resolve()
     selected = date.fromisoformat(day)
-    start = datetime.combine(selected, datetime.min.time(), MADRID)
-    end = datetime.combine(selected + timedelta(days=1), datetime.min.time(), MADRID)
-    result = {'date': day, 'timezone': 'Europe/Madrid', 'root': str(root),
+    zone, zone_name, zone_source = user_timezone(root, tz)
+    start = datetime.combine(selected, datetime.min.time(), zone)
+    end = datetime.combine(selected + timedelta(days=1), datetime.min.time(), zone)
+    result = {'date': day, 'timezone': zone_name, 'timezone_source': zone_source, 'root': str(root),
               'interval': {'start': start.isoformat(), 'end': end.isoformat()},
               'coverage': {'status': 'partial', 'reason': 'Solo sesiones registradas desde el alta del hook; formato JSONL interno.'},
               'sessions': [], 'messages': [], 'errors': [], 'errors_omitted': 0}
@@ -441,7 +464,7 @@ def history(root, day):
                     break
                 seen.add(key)
                 result['messages'].append({'session_id': sid, 'uuid': uuid,
-                    'timestamp': timestamp.astimezone(MADRID).isoformat(), 'role': record['type'],
+                    'timestamp': timestamp.astimezone(zone).isoformat(), 'role': record['type'],
                     'text': text, 'source': {'path': str(path), 'line': number, 'byte_offset': byte_offset}})
     result['messages'].sort(key=lambda item: (instant(item['timestamp']), item['session_id'], item['uuid']))
     return result
@@ -455,6 +478,7 @@ def main():
     commands.add_parser('hook', help='SessionStart input on stdin; metadata only')
     history_parser = commands.add_parser('history', help='Read only registered sessions')
     history_parser.add_argument('--date', required=True)
+    history_parser.add_argument('--tz', help='IANA timezone; default: ME.md line, then Europe/Madrid')
     args = parser.parse_args()
     try:
         if args.command == 'install':
@@ -465,7 +489,7 @@ def main():
                 raise Refusal('El evento no es un objeto')
             record_session(ROOT, event)
         else:
-            print(encoded(history(ROOT, args.date)), end='')
+            print(encoded(history(ROOT, args.date, args.tz)), end='')
     except (Refusal, OSError, ValueError, KeyError, TypeError) as exc:
         print(encoded({'status': 'error', 'message': str(exc)}), file=sys.stderr, end='')
         return 2

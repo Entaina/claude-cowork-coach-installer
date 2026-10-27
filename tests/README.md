@@ -12,7 +12,7 @@ python3 -m unittest discover -s tests -v
 
 Comprueban el formato de las skills, las referencias a skills y archivos de AIOS, la coherencia de la versión, la integridad de las migraciones y la igualdad exacta de CLAUDE.md y AGENTS.md. `baseline-2.0.0.json` registra los hashes de los originales de la revisión indicada. No se regenera desde archivos editados para hacer pasar una prueba.
 
-Esta carpeta se excluye de la copia al usuario. Cowork y GPT no requieren Python ni estas pruebas para funcionar. La integración nativa opcional de Claude Code sí requiere Python 3.9+ y Europe/Madrid; no requiere PyYAML.
+Esta carpeta se excluye de la copia al usuario. Cowork y GPT no requieren Python ni estas pruebas para funcionar. La integración nativa opcional de Claude Code sí requiere Python 3.9+ con la base de zonas horarias; no requiere PyYAML.
 
 ## Pruebas de comportamiento
 
@@ -39,6 +39,7 @@ Ejecutar en carpetas de prueba, con datos sintéticos y sin programaciones reale
 | Revisión con propuesta descartada y señal nueva ajena | Conserva el rechazo y no crea una propuesta equivalente; reutiliza las pendientes existentes. |
 | Pasada que cruza medianoche | Todos los learners conservan la fecha y el log elegidos al iniciar. |
 | Día sin propuestas | Termina sin inventar una propuesta para demostrar el flujo. |
+| Usuario en otra zona horaria (p. ej. Ciudad de México) | La entrevista la confirma y `ME.md` lleva su identificador IANA; el log, las señales y la revisión usan su día local. Sin la línea, se mantiene `Europe/Madrid`. |
 
 Registrar archivos antes/después y comprobar que ME.md (salvo Pendientes al ejecutar episodic-learner), proyectos, áreas y conocimiento permanecen intactos. Una simulación de estas situaciones acredita decisiones bajo esos datos, no la disponibilidad de herramientas en una app real.
 
@@ -74,6 +75,8 @@ Para verificar la app real, usa una cuenta de prueba, una carpeta vacía conecta
 - Límites observados: respuestas del asistente truncadas en el historial (una pregunta contestada quedó como pendiente), modo incógnito fuera del historial y título de las conversaciones en inglés.
 
 No se ha probado la revisión conjunta completa con los tres learners, varias ejecuciones diarias, una cuenta de empresa con administrador ni Windows.
+
+La zona horaria del usuario se añadió después de esta prueba: el lector de Code la tiene cubierta por `test_claude_code.py` (Ciudad de México, `--tz` y vuelta a Madrid), pero la entrevista que la confirma y su uso en Quick no se han ejecutado en una app real.
 
 ## Verificación realizada para 2.2.0 (2026-10-07)
 

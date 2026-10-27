@@ -13,9 +13,13 @@ Contrato de acceso a conversaciones y programación. El contenido canónico sigu
 
 Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork y Claude Code, `AGENTS.md` en GPT y, en Amazon Quick, `AGENTS.md` a través del agente Coach, porque la app no lo carga sola. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
 
+## Zona horaria del usuario
+
+Es la línea «Zona horaria» de `ME.md`, con un identificador IANA (`Europe/Madrid`, `America/Mexico_City`…). Si falta o no es válida, usa `Europe/Madrid`, que es lo que hacían las instalaciones anteriores a 2.3.0. Esa zona fecha el día del log, las señales, el intervalo de conversaciones y los horarios de las tareas programadas, con sus cambios de hora. Si el usuario cambia de zona, actualiza la línea con su confirmación; los logs anteriores conservan su fecha.
+
 ## Leer las conversaciones del día
 
-El intervalo es desde las 00:00 del día solicitado hasta las 00:00 del siguiente, **Europe/Madrid**, con su cambio de hora; no uses las últimas 24 horas. No confundas la fecha de creación del hilo con la fecha de sus turnos. La hora de modificación de un archivo sirve para encontrar candidatos, no para atribuir una decisión al usuario.
+El intervalo es desde las 00:00 del día solicitado hasta las 00:00 del siguiente, **en la zona horaria del usuario**, con su cambio de hora; no uses las últimas 24 horas. No confundas la fecha de creación del hilo con la fecha de sus turnos. La hora de modificación de un archivo sirve para encontrar candidatos, no para atribuir una decisión al usuario.
 
 ### Cowork
 
@@ -23,7 +27,7 @@ Lista las sesiones de la carpeta, sigue la paginación disponible y lee sus tran
 
 ### Claude Code CLI
 
-Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Learning: `python3 AIOS/integrations/claude_code.py history --date AAAA-MM-DD`. Solo recupera mensajes de sesiones registradas por el hook de esta carpeta, desde su alta, con fechas y fuentes verificables. El formato interno puede cambiar y la cobertura se declara parcial. No busques otras carpetas bajo `~/.claude/` si falla; usa la conversación actual o una exportación aportada por el usuario y comunica el límite. No confundas los metadatos del registro con el contenido de una conversación.
+Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Learning: `python3 AIOS/integrations/claude_code.py history --date AAAA-MM-DD`; toma la zona de `ME.md` y `--tz` la fuerza. Solo recupera mensajes de sesiones registradas por el hook de esta carpeta, desde su alta, con fechas y fuentes verificables. El formato interno puede cambiar y la cobertura se declara parcial. No busques otras carpetas bajo `~/.claude/` si falla; usa la conversación actual o una exportación aportada por el usuario y comunica el límite. No confundas los metadatos del registro con el contenido de una conversación.
 
 ### GPT local
 
@@ -74,11 +78,11 @@ Prompt (sustituye «CARPETA_VERIFICADA» por la ruta real):
 
 > Trabaja localmente en CARPETA_VERIFICADA, la carpeta permanente de mi coach. Lee AGENTS.md, ME.md y los mapas. Ejecuta el Learning System según AIOS/systems/learning-system.md y después el Sistema Proyectos y Áreas según AIOS/systems/proyectos-y-areas.md sobre ese mismo log. Completa ambas fases de generación de propuestas antes de pedir validación. Usa AIOS/entornos-locales.md para recuperar conversaciones y declarar su cobertura. No apliques propuestas sin mi respuesta. Si no hay novedades ni propuestas pendientes, no me envíes una notificación rutinaria; avisa si necesitas mi decisión o falla el acceso necesario.
 
-Horario por defecto: 23:30, Europe/Madrid, a confirmar. El equipo y la app deben estar abiertos para trabajar con los archivos locales. Comprueba el horario efectivo que devuelve el programador (incluida su zona horaria); no des por hecho que el reloj del equipo usa Madrid.
+Horario por defecto: 23:30 en la zona horaria del usuario, a confirmar. El equipo y la app deben estar abiertos para trabajar con los archivos locales. Comprueba el horario efectivo que devuelve el programador (incluida su zona horaria); no des por hecho que el reloj del equipo usa esa zona.
 
 ### Amazon Quick: una revisión conjunta con el equipo encendido
 
-Una sola rutina, creada desde un chat con el agente Coach, ejecuta las dos fases como en GPT; su prompt y sus condiciones están en `AIOS/amazon-quick.md`. La rutina corre en la nube, pero solo llega a la carpeta a través de la app: elige una hora con el equipo encendido y Quick abierto, no las 23:30 si el equipo se apaga antes. Su permiso de escritura cubre todas las carpetas conectadas; conecta solo la del coach. Revisa con el usuario la hora, la zona horaria y los permisos que muestra Quick antes de aprobarla.
+Una sola rutina, creada desde un chat con el agente Coach, ejecuta las dos fases como en GPT; su prompt y sus condiciones están en `AIOS/amazon-quick.md`. La rutina corre en la nube, pero solo llega a la carpeta a través de la app: elige una hora con el equipo encendido y Quick abierto, no las 23:30 si el equipo se apaga antes. Su permiso de escritura cubre todas las carpetas conectadas; conecta solo la del coach. Revisa con el usuario la hora, que la zona horaria coincida con la de `ME.md` y los permisos que muestra Quick antes de aprobarla.
 
 No actives a la vez Cowork, Claude Code, GPT y Quick para revisar automáticamente la misma carpeta. Si el usuario cambia de app responsable, confirma y desactiva las tareas anteriores mediante su entorno antes de activar las nuevas. Si no puedes comprobar las del otro entorno, deja la activación pendiente. Cambiar de app para conversar no obliga a cambiar quién ejecuta la revisión nocturna.
 

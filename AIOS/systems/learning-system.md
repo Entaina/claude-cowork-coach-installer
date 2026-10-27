@@ -15,13 +15,13 @@ Cómo aprende el coach. Sin este sistema, el coach del día 30 sabe lo mismo que
 
 ## Orquestación
 
-**Una pasada nocturna** (23:30 por defecto, Europe/Madrid). En Cowork tiene su propia tarea; en Claude Code puede ejecutarse a demanda mediante `/coach-review` (la programación depende de la sesión abierta); en GPT local y en Amazon Quick es la primera fase de la revisión conjunta de `AIOS/entornos-locales.md` (en Quick, con el equipo encendido y la app abierta; ver `AIOS/amazon-quick.md`). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
+**Una pasada nocturna** (23:30 por defecto, en la zona horaria del usuario). En Cowork tiene su propia tarea; en Claude Code puede ejecutarse a demanda mediante `/coach-review` (la programación depende de la sesión abierta); en GPT local y en Amazon Quick es la primera fase de la revisión conjunta de `AIOS/entornos-locales.md` (en Quick, con el equipo encendido y la app abierta; ver `AIOS/amazon-quick.md`). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
 > "Ejecuta el Learning System según `AIOS/systems/learning-system.md` para el día correspondiente a esta revisión; termina presentándome las propuestas y espera mi respuesta."
 
 Secuencia: (1) episodic-learner escribe el log; (2) los dos learners de propuestas leen *el log* (no las transcripciones) y anotan sus propuestas al pie con estado `pendiente`; (3) la sesión termina presentándolas al usuario y queda a la espera. En la revisión conjunta de GPT, Claude Code o Quick, genera antes las propuestas de proyectos y presenta ambas al final. Las pasadas escriben el log en secuencia para no pisarse; una reejecución conserva las propuestas existentes y sus estados. Si falta el log por falta de fuentes, no ejecutes learners a ciegas. Una cobertura parcial permite propuestas solo sobre la evidencia disponible.
 
-Al comenzar fija el día de la revisión (hoy en Europe/Madrid, salvo petición expresa de otra fecha) y la ruta de su log. Pasa ambos a cada learner: sus referencias a «hoy» significan ese día durante esta ejecución. Mantén el mismo log aunque se cruce medianoche; una ejecución nueva sí vuelve a determinar su fecha.
+Al comenzar fija el día de la revisión (hoy en la zona horaria del usuario, salvo petición expresa de otra fecha) y la ruta de su log. Pasa ambos a cada learner: sus referencias a «hoy» significan ese día durante esta ejecución. Mantén el mismo log aunque se cruce medianoche; una ejecución nueva sí vuelve a determinar su fecha.
 
 Antes de añadir propuestas, cada pasada contrasta las ya existentes por destino, cambio y fuente, aunque estén redactadas de otra forma. Reutiliza una pendiente equivalente; no vuelve a proponer una incorporada o descartada por releer la misma evidencia. Una señal nueva ajena a esa propuesta no cambia su estado. Solo evidencia nueva relevante o una petición explícita del usuario justifican una propuesta nueva, explicando qué cambió y conservando la anterior.
 

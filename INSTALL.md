@@ -8,7 +8,7 @@ La estructura del coach ya está en esta carpeta. Conserva sus mapas, skills, si
 
 **Una sola pregunta por turno.** Tres temas, sin un mínimo de preguntas ni repreguntas obligatorias:
 
-1. Nombre, rol, empresa y ubicación; puedo explicar en una frase qué hago.
+1. Nombre, rol, empresa y ubicación; puedo explicar en una frase qué hago. Con la ubicación, confírmame la zona horaria que deduces («¿tu hora es la de Ciudad de México?»): el coach la usa para fechar el día y programar la revisión.
 2. Cómo quiero llamarte (por ejemplo, «Coach» o «Aria»).
 3. Cómo me gusta trabajar: tono, cuándo desafiarme y cuándo acompañarme, qué evitar.
 
@@ -16,7 +16,7 @@ Aprovecha lo que ya haya contado; no vuelvas a pedirlo. Puedo responder en libre
 
 ## 2. Rellena ME.md
 
-Completa la presentación, Quién soy y Preferencias con mis respuestas. Si omito un dato, usa «No indicado» o una frase que no lo afirme; no lo inventes. Si salto el nombre del asistente, usa «Asistente». No dejes marcadores de plantilla sin resolver.
+Completa la presentación, Quién soy y Preferencias con mis respuestas. Escribe la línea `Zona horaria` con el identificador IANA confirmado (por ejemplo, `America/Mexico_City`). Si no la confirmo, deja `Europe/Madrid` y añade a Pendientes «Contexto por completar: confirmar mi zona horaria». Si omito un dato, usa «No indicado» o una frase que no lo afirme; no lo inventes. Si salto el nombre del asistente, usa «Asistente». No dejes marcadores de plantilla sin resolver.
 
 `Goals` es opcional: conserva los objetivos que haya expresado espontáneamente; si no hay ninguno, escribe «Sin objetivos definidos por ahora». No me pidas definirlos para terminar. Los sistemas solo contrastan mi trabajo con objetivos que yo haya declarado.
 
@@ -27,8 +27,8 @@ En Pendientes recoge los asuntos que yo haya dejado abiertos o aceptado retomar 
 Lee `AIOS/entornos-locales.md` y comprueba la carpeta, el acceso al historial y las herramientas de programación disponibles.
 
 - **Claude Code CLI**: sigue `AIOS/claude-code.md`. La petición de instalación local fija el alcance de proyecto: muestra la vista previa del adaptador y aplica con la autorización correspondiente, sin volver a preguntar un alcance ya elegido. Comprueba las skills y el hook en una sesión nueva. Ofrece `/coach-review` a demanda; una programación del CLI depende de la sesión abierta y no se declara nocturna permanente.
-- **Cowork**: conserva las dos tareas de los sistemas, Learning System a las 23:30 y Proyectos y Áreas a las 23:45 por defecto (Europe/Madrid).
-- **ChatGPT Work / Codex en la app local**: configura la revisión conjunta descrita en ese documento, a las 23:30 por defecto (Europe/Madrid). Trabaja en esta carpeta permanente.
+- **Cowork**: conserva las dos tareas de los sistemas, Learning System a las 23:30 y Proyectos y Áreas a las 23:45 por defecto, en mi zona horaria de `ME.md`.
+- **ChatGPT Work / Codex en la app local**: configura la revisión conjunta descrita en ese documento, a las 23:30 por defecto, en mi zona horaria de `ME.md`. Trabaja en esta carpeta permanente.
 - **Amazon Quick (app de escritorio)**: sigue `AIOS/amazon-quick.md`. Dale al usuario el texto del agente Coach con la ruta real para que lo cree en Customize → Agents, y comprueba que lo ha publicado. Después, desde un chat con Coach, configura una sola rutina conjunta dentro de su jornada, con el equipo encendido y Quick abierto. En la versión web de Quick no hay carpeta local: explica que el coach no se puede instalar ahí y no lo simules.
 
 Propón el horario, explica qué revisaré por la mañana y confirma la configuración. Busca tareas existentes antes de crear ninguna. Si falta una capacidad, explica cuál: la memoria puede quedar instalada para uso manual, pero la automatización queda pendiente y no se declara operativa. No actives otra revisión en una segunda app sobre la misma carpeta sin resolver cuál será la responsable.

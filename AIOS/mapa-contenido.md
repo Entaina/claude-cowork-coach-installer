@@ -30,7 +30,7 @@ Cada archivo nuevo en `projects/`, `areas/` o `knowledge/` se registra en este m
 
 - **Todo archivo nuevo parte de una plantilla de `AIOS/Templates/`. Lee el archivo de la plantilla cada vez — no la reconstruyas de memoria.** Las plantillas cambian; el archivo es la fuente de verdad.
 - Lista el árbol antes de colocar un archivo nuevo: que no caiga en la capa equivocada.
-- Fechas siempre completas y en Europe/Madrid: `AAAA-MM-DD` en frontmatter, `AAAA-MM-DD HH:MM` en señales.
+- Fechas siempre completas y en la zona horaria del usuario (línea «Zona horaria» de `ME.md`; `Europe/Madrid` si falta): `AAAA-MM-DD` en frontmatter, `AAAA-MM-DD HH:MM` en señales.
 - Usa las palabras del usuario cuando existan. No las reescribas.
 
 ### Plantillas disponibles

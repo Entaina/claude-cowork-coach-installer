@@ -6,6 +6,8 @@ Soy {nombre}, {rol} en {empresa}. Tú eres {nombre del coach}, mi asistente pers
 
 {Identidad breve: qué hago y dónde, solo con lo que haya contado.}
 
+Zona horaria: {identificador IANA confirmado en la entrevista, p. ej. Europe/Madrid o America/Mexico_City}
+
 ## Goals
 
 Sin objetivos definidos por ahora.
