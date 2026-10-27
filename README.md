@@ -2,7 +2,9 @@
 
 Un asistente cuya memoria vive en archivos Markdown locales: el agente es reemplazable; tu contexto es tuyo.
 
-Compatible con Claude Cowork, Claude Code CLI, ChatGPT Work / Codex en la app de escritorio y la app de escritorio de Amazon Quick, trabajando sobre una carpeta local. El acceso al historial y la automatización dependen de las herramientas que exponga tu app; el instalador comprueba esas capacidades. Antigravity y las modalidades web/cloud, incluida la versión web de Quick, quedan pendientes.
+Compatible con Claude Cowork, Claude Code, ChatGPT Work / Codex en la app de escritorio y la app de escritorio de Amazon Quick, trabajando sobre una carpeta local. El acceso al historial y la automatización dependen de las herramientas que exponga tu app; el instalador comprueba esas capacidades. Antigravity y las modalidades web/cloud, incluida la versión web de Quick, quedan pendientes.
+
+**Ahora mismo no recomendamos instalarlo en Claude Cowork**: tiene problemas para leer las sesiones anteriores, que es de donde aprende la revisión diaria. Si trabajas con Claude, usa Claude Code. Las instalaciones que ya tienes en Cowork siguen funcionando.
 
 ## Instalación
 
@@ -36,7 +38,7 @@ Si la entrevista se interrumpe, pide «retoma mi instalación leyendo INSTALL.md
 ## El día a día
 
 - Trabaja con tu coach con normalidad: prepara reuniones, piensa decisiones, pídele que pula tu trabajo ("pule esto", "¿qué se me escapa?").
-- En Claude Code quedan disponibles las skills nativas y `/coach-review` para la revisión conjunta; el historial registrado se limita a esta carpeta desde que se activa la integración. La programación del CLI depende de que siga abierto y no sustituye a un servicio nocturno permanente.
+- En Claude Code quedan disponibles las skills nativas y `/coach-review` para la revisión conjunta; el historial registrado se limita a esta carpeta desde que se activa la integración. La programación en Claude Code depende de que la sesión siga abierta y no sustituye a un servicio nocturno permanente.
 - La revisión diaria aprende de ti y detecta proyectos y avances. Cowork conserva sus dos tareas; GPT local y Amazon Quick ejecutan ambas fases en una sola tarea para que terminen en orden. En Quick, esa tarea es una rutina que necesita el ordenador encendido y la app abierta a su hora: prográmala dentro de tu jornada. Configúrala solo en una app por carpeta y mantén el ordenador y la app abiertos.
 - Revisa las propuestas y contesta sí o no. Los cambios duraderos requieren tu permiso; el registro diario y los Pendientes se actualizan directamente. El log indica si solo se pudo consultar parte del historial. No disponer del historial no significa que no hayas trabajado.
 

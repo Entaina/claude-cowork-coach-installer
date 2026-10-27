@@ -10,16 +10,19 @@ Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `p
 
 ## [2.3.1] - 2026-10-27
 
-Claude Code en Windows sin Git ni pasos manuales con Python. Cómo actualizar, en `migrations/2.3.1.md`.
+Claude Code en Windows sin Git ni pasos manuales con Python, y Cowork deja de ser la opción recomendada para instalaciones nuevas. Cómo actualizar, en `migrations/2.3.1.md`.
 
 ### Cambiado
 
 - `AIOS/integrations/claude_code.py` — el hook `SessionStart` se registra sin shell: Claude Code lanza el Python que hizo la instalación por su ruta absoluta, con el adaptador como argumento. Deja de depender de `python3`, que en Windows suele faltar o abrir la Microsoft Store, y de las diferencias de comillas entre Git Bash y PowerShell. Reinstalar sustituye en su sitio el hook de texto de 2.2.0–2.3.0. Sin base de zonas horarias (Windows sin `tzdata`), el lector corta el día con la hora local del sistema e indica `timezone_source: system`.
-- `AIOS/claude-code.md` — Python pasa a ser un paso de la instalación: el agente lo comprueba y, si falta, lo instala con el OK del usuario (`winget` para el usuario en Windows, herramientas de línea de comandos en macOS). Git no se instala y el aviso de Claude Code de que no está disponible se explica como normal. Ya no se pide `tzdata`.
+- `AIOS/claude-code.md` — Python pasa a ser un paso de la instalación: el agente lo comprueba y, si falta, lo instala con el OK del usuario (`winget` para el usuario en Windows, herramientas de línea de comandos en macOS). Git no se instala y el aviso de Claude Code de que no está disponible se explica como normal. Ya no se pide `tzdata`. «Claude Code», sin «CLI».
+- `AIOS/entornos-locales.md` — «Claude Code», sin «CLI»; el lector del historial remite a la ruta de Python si `python3` no responde.
 
 ### Repo (no se aplica a tu carpeta)
 
-- README e INSTALL — Python lo instala el coach y Git no hace falta.
+- README e INSTALL — Python lo instala el coach y Git no hace falta. Ahora mismo no se recomienda instalar en Cowork, que tiene problemas para leer las sesiones anteriores; las instalaciones existentes siguen igual. «Claude Code», sin «CLI».
+- UPDATE.md — excepción a la edición quirúrgica: un archivo que coincide con el original adjunto se sustituye entero si la migración lo manda; los scripts de `AIOS/integrations/` nunca se editan por líneas.
+- Migración 2.3.1 — el adaptador Python se sustituye entero si no se ha modificado, nunca por líneas; la reinstalación de Claude Code se hace una sola vez al final de la actualización.
 - Pruebas — hook sin shell ejecutado como lo lanza Claude Code, sustitución del hook de 2.3.0, intérprete no identificable y lector sin base de zonas. Originales 2.3.0 de los dos archivos cambiados y su prueba de integridad.
 
 Contrastado el 2026-10-27 en Linux con Claude Code 2.1.310: el hook sin shell registra la sesión y el lector recupera sus mensajes. Windows sigue sin probarse en una máquina real.

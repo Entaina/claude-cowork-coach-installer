@@ -2,6 +2,7 @@
   "source_commit": "494dc5fcb34ccc636e88a36a1231359c3f4ff93a",
   "originals": {
     "AIOS/claude-code.md": "2e0ea6087850a91a27860f9f60a0018e289f46852cddef238abf0d249f45c925",
+    "AIOS/entornos-locales.md": "513bf0a7c300cbff1429e8a20e6ad21fe2d6eab09e9f3264cbedd6e0d2b8b2b0",
     "AIOS/integrations/claude_code.py": "b315454d6d164aef0c68c78800425d4c60d4d71355175d5bc5d954079ef66882"
   }
 }

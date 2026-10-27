@@ -1,6 +1,6 @@
 # Claude Code local
 
-Adaptación de la carpeta del coach al CLI de Claude Code. Los canónicos siguen en `AIOS/skills/`; las reglas personales siguen en `ME.md`. `CLAUDE.md` y `AGENTS.md` conservan su contenido completo e idéntico. Cowork y GPT mantienen sus adaptadores.
+Adaptación de la carpeta del coach a Claude Code. Los canónicos siguen en `AIOS/skills/`; las reglas personales siguen en `ME.md`. `CLAUDE.md` y `AGENTS.md` conservan su contenido completo e idéntico. Cowork y GPT mantienen sus adaptadores.
 
 ## Instalación nativa en esta carpeta
 
@@ -67,7 +67,7 @@ Si no hay material recuperable, usa la conversación actual o una exportación q
 
 `/coach-review` ejecuta Learning y después Proyectos y Áreas sobre el mismo diario. También admite una fecha expresa: `/coach-review 2026-10-07`. Las propuestas quedan pendientes; no se aplican sin respuesta del usuario. El diario y Pendientes conservan las mismas reglas que en Cowork y GPT. Si otra revisión de la carpeta está escribiendo ese log, aplaza esta pasada; no ejecutes el cierre manual a la vez que la tarea de la app responsable.
 
-La revisión funciona a demanda. Si el usuario quiere programarla y el CLI ofrece `/loop` o herramientas de programación, comprueba su esquema y las tareas existentes, acuerda horario/zona horaria y explica su alcance: requieren que la sesión de Claude siga funcionando y tienen caducidad. Reanudar una sesión no acredita la ejecución de las pasadas que se perdieron mientras estaba cerrada. No uses `/schedule` ni otra modalidad que ejecute en cloud para esta carpeta local. No presentes una programación de sesión como un servicio nocturno permanente ni instales `cron`/`launchd` por defecto. Para una revisión persistente en otra app local, usa su adaptador y acuerda una única app responsable por carpeta.
+La revisión funciona a demanda. Si el usuario quiere programarla y Claude Code ofrece `/loop` o herramientas de programación, comprueba su esquema y las tareas existentes, acuerda horario/zona horaria y explica su alcance: requieren que la sesión de Claude siga funcionando y tienen caducidad. Reanudar una sesión no acredita la ejecución de las pasadas que se perdieron mientras estaba cerrada. No uses `/schedule` ni otra modalidad que ejecute en cloud para esta carpeta local. No presentes una programación de sesión como un servicio nocturno permanente ni instales `cron`/`launchd` por defecto. Para una revisión persistente en otra app local, usa su adaptador y acuerda una única app responsable por carpeta.
 
 ## Verificación
 

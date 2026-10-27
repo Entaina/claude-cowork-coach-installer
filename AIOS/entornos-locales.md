@@ -5,7 +5,7 @@ Contrato de acceso a conversaciones y programación. El contenido canónico sigu
 ## Alcance y detección
 
 - **Cowork**: usa `list_sessions` y `read_transcript` si están disponibles.
-- **Claude Code CLI**: `CLAUDE.md`, skills de proyecto y registro acotado de sesiones; sigue `AIOS/claude-code.md`. Su adaptador usa únicamente las rutas de transcripción entregadas por el hook de esta carpeta.
+- **Claude Code**: `CLAUDE.md`, skills de proyecto y registro acotado de sesiones; sigue `AIOS/claude-code.md`. Su adaptador usa únicamente las rutas de transcripción entregadas por el hook de esta carpeta.
 - **GPT local**: ChatGPT Work o Codex en la app de escritorio, con acceso a la carpeta permanente del coach. Usa las herramientas nativas de tareas descritas abajo si están expuestas. El modelo GPT por sí solo no garantiza esas herramientas.
 - **Amazon Quick**: app de escritorio con la carpeta del coach conectada en Knowledge; sigue `AIOS/amazon-quick.md`. El arranque lo hace el agente Coach, y el historial y las rutinas son los de la app.
 - **Sin herramientas equivalentes**: explica la limitación. Puedes generar un registro parcial con la conversación actual y los archivos accesibles. No prometas leer otras sesiones ni programar tareas.
@@ -25,9 +25,9 @@ El intervalo es desde las 00:00 del día solicitado hasta las 00:00 del siguient
 
 Lista las sesiones de la carpeta, sigue la paginación disponible y lee sus transcripciones con `read_transcript`. Filtra los mensajes al intervalo solicitado. Si la herramienta limita o resume el resultado, declara esa limitación igual que en GPT.
 
-### Claude Code CLI
+### Claude Code
 
-Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Learning: `python3 AIOS/integrations/claude_code.py history --date AAAA-MM-DD`; toma la zona de `ME.md` y `--tz` la fuerza. Solo recupera mensajes de sesiones registradas por el hook de esta carpeta, desde su alta, con fechas y fuentes verificables. El formato interno puede cambiar y la cobertura se declara parcial. No busques otras carpetas bajo `~/.claude/` si falla; usa la conversación actual o una exportación aportada por el usuario y comunica el límite. No confundas los metadatos del registro con el contenido de una conversación.
+Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Learning: `python3 AIOS/integrations/claude_code.py history --date AAAA-MM-DD` (si `python3` no responde, lo habitual en Windows, usa la ruta de Python que indica `AIOS/claude-code.md`); toma la zona de `ME.md` y `--tz` la fuerza. Solo recupera mensajes de sesiones registradas por el hook de esta carpeta, desde su alta, con fechas y fuentes verificables. El formato interno puede cambiar y la cobertura se declara parcial. No busques otras carpetas bajo `~/.claude/` si falla; usa la conversación actual o una exportación aportada por el usuario y comunica el límite. No confundas los metadatos del registro con el contenido de una conversación.
 
 ### GPT local
 
@@ -64,7 +64,7 @@ Antes de crear, lista o consulta las tareas existentes y confirma carpeta, horar
 
 Usa el programador nativo y los prompts de Orquestación de `AIOS/systems/learning-system.md` y `AIOS/systems/proyectos-y-areas.md`. Proyectos y Áreas consume el log producido por Learning. Si Learning sigue escribiéndolo, no ejecutes la segunda pasada a la vez; aplázala mediante el mecanismo disponible o indica que quedó pendiente.
 
-### Claude Code CLI: revisión conjunta a demanda
+### Claude Code: revisión conjunta a demanda
 
 `/coach-review` invoca los dos sistemas sobre el mismo log, en secuencia y dejando propuestas sin aplicar. La integración y su comprobación viven en `AIOS/claude-code.md`. No crea una programación por instalar las skills. Si el usuario pide `/loop` o programación nativa, comprueba sus límites de sesión y su caducidad; no equivale a una tarea nocturna permanente. Conserva como responsable la app que ya tuviera esa revisión, salvo cambio autorizado y verificado.
 
