@@ -1,8 +1,8 @@
 ---
 name: episodic-learner
 description: >-
-  Compone el log diario con las conversaciones disponibles de Cowork, Claude Code o GPT
-  en local y los cambios en los archivos de la carpeta. Declara la
+  Compone el log diario con las conversaciones disponibles de Cowork, Claude Code, GPT
+  en local o Amazon Quick (escritorio) y los cambios en los archivos de la carpeta. Declara la
   cobertura real cuando el historial es parcial. Escribe directo, sin
   pedir permiso — es el registro, la única skill con esa licencia. Extrae
   señales tipadas (novedoso, decidido, no resuelto, preferencia/regla) y

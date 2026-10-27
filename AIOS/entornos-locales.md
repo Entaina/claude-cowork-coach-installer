@@ -7,10 +7,11 @@ Contrato de acceso a conversaciones y programación. El contenido canónico sigu
 - **Cowork**: usa `list_sessions` y `read_transcript` si están disponibles.
 - **Claude Code CLI**: `CLAUDE.md`, skills de proyecto y registro acotado de sesiones; sigue `AIOS/claude-code.md`. Su adaptador usa únicamente las rutas de transcripción entregadas por el hook de esta carpeta.
 - **GPT local**: ChatGPT Work o Codex en la app de escritorio, con acceso a la carpeta permanente del coach. Usa las herramientas nativas de tareas descritas abajo si están expuestas. El modelo GPT por sí solo no garantiza esas herramientas.
+- **Amazon Quick**: app de escritorio con la carpeta del coach conectada en Knowledge; sigue `AIOS/amazon-quick.md`. El arranque lo hace el agente Coach, y el historial y las rutinas son los de la app.
 - **Sin herramientas equivalentes**: explica la limitación. Puedes generar un registro parcial con la conversación actual y los archivos accesibles. No prometas leer otras sesiones ni programar tareas.
-- Web/cloud y Antigravity quedan fuera de esta versión. No accedas a sus almacenes privados como alternativa.
+- Web/cloud (incluida la versión web de Quick) y Antigravity quedan fuera de esta versión. No accedas a sus almacenes privados como alternativa.
 
-Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork y Claude Code, `AGENTS.md` en GPT. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
+Al abrir el coach en otra app, verifica la carpeta real y lee su archivo de arranque: `CLAUDE.md` en Cowork y Claude Code, `AGENTS.md` en GPT y, en Amazon Quick, `AGENTS.md` a través del agente Coach, porque la app no lo carga sola. Ambos contienen las mismas instrucciones completas; no requieren una redirección entre ellos. Antes de operar sobre otras conversaciones, resuelve el identificador de proyecto y host correspondiente a esa carpeta mediante los metadatos disponibles (`list_projects` en GPT). Una coincidencia de título no identifica un proyecto. No crees un proyecto nuevo automáticamente si no encuentras el existente.
 
 ## Leer las conversaciones del día
 
@@ -32,6 +33,10 @@ Lee `AIOS/claude-code.md` y ejecuta el lector local con la fecha fijada por Lear
 4. **Lee cada candidato** con `read_thread`, pasando el ID y host devueltos. Sigue el cursor de turnos (`page.nextCursor` cuando `page.hasMore` sea verdadero) hasta cubrir el día. Un hilo antiguo puede contener turnos de hoy. `updatedAt` ayuda a priorizar, pero no demuestra cuándo ocurrió cada hecho. Usa las fechas de los turnos o mensajes que realmente devuelva la herramienta.
 5. **Usa el contenido verificable**: algunas respuestas contienen `userMessage` y `agentMessage`, otras ofrecen resúmenes. Ignora razonamiento interno, comandos y salidas técnicas salvo evidencia indispensable. Un resumen no es una cita literal. `includeOutputs` y `maxOutputCharsPerItem` no convierten por sí solos el resultado en una transcripción completa. Si hay truncamiento, intenta una lectura más acotada con los parámetros admitidos; si persiste, declara cobertura parcial.
 6. **Comprueba el alcance del listado**: amplía `limit` si faltan candidatos. Sin paginación o garantía de totalidad, conserva la etiqueta de cobertura parcial. Registra también hosts/fuentes no disponibles y páginas fallidas. No declares completo un día basándote solo en que terminaste una llamada.
+
+### Amazon Quick
+
+Usa la consulta del historial que exponga la app (en la versión contrastada, `query_conversations`) según `AIOS/amazon-quick.md`. El historial es de la cuenta, no de la carpeta: cuenta como fuente cualquier conversación de la persona dentro del intervalo, filtrada por la marca de cada mensaje. Algunas respuestas del asistente vuelven truncadas y el modo incógnito no aparece: declara cobertura parcial y no conviertas una respuesta incompleta en un asunto sin contestar.
 
 Los turnos que cruzan medianoche sin marcas por mensaje tienen fecha ambigua: no atribuyas todos sus hechos a uno de los días. Excluye del contenido narrativo las recapitulaciones automáticas y los subagentes técnicos identificables por su procedencia; las respuestas humanas a propuestas sí cuentan. No decidas que algo es automático solo por su título.
 
@@ -71,10 +76,14 @@ Prompt (sustituye «CARPETA_VERIFICADA» por la ruta real):
 
 Horario por defecto: 23:30, Europe/Madrid, a confirmar. El equipo y la app deben estar abiertos para trabajar con los archivos locales. Comprueba el horario efectivo que devuelve el programador (incluida su zona horaria); no des por hecho que el reloj del equipo usa Madrid.
 
-No actives a la vez Cowork, Claude Code y GPT para revisar automáticamente la misma carpeta. Si el usuario cambia de app responsable, confirma y desactiva las tareas anteriores mediante su entorno antes de activar las nuevas. Si no puedes comprobar las del otro entorno, deja la activación pendiente. Cambiar de app para conversar no obliga a cambiar quién ejecuta la revisión nocturna.
+### Amazon Quick: una revisión conjunta con el equipo encendido
+
+Una sola rutina, creada desde un chat con el agente Coach, ejecuta las dos fases como en GPT; su prompt y sus condiciones están en `AIOS/amazon-quick.md`. La rutina corre en la nube, pero solo llega a la carpeta a través de la app: elige una hora con el equipo encendido y Quick abierto, no las 23:30 si el equipo se apaga antes. Su permiso de escritura cubre todas las carpetas conectadas; conecta solo la del coach. Revisa con el usuario la hora, la zona horaria y los permisos que muestra Quick antes de aprobarla.
+
+No actives a la vez Cowork, Claude Code, GPT y Quick para revisar automáticamente la misma carpeta. Si el usuario cambia de app responsable, confirma y desactiva las tareas anteriores mediante su entorno antes de activar las nuevas. Si no puedes comprobar las del otro entorno, deja la activación pendiente. Cambiar de app para conversar no obliga a cambiar quién ejecuta la revisión nocturna.
 
 ## Verificación
 
-Prueba el flujo manual con la conversación de instalación y después revisa una ejecución real del programador: fuente accesible, log en la carpeta correcta, cobertura declarada y propuestas sin aplicar. Crear una programación no demuestra que funcione. Si la herramienta no ofrece «ejecutar ahora», usa la interfaz si existe; no inventes un parámetro.
+Prueba el flujo manual con la conversación de instalación y después revisa una ejecución real del programador: fuente accesible, log en la carpeta correcta, cobertura declarada y propuestas sin aplicar. Crear una programación no demuestra que funcione. Si la herramienta no ofrece «ejecutar ahora», usa la interfaz si existe; no inventes un parámetro. En Quick, programa una ejecución única a pocos minutos vista.
 
 Fuentes de referencia (revisadas el 2026-09-22): [tareas programadas](https://learn.chatgpt.com/docs/automations), [instrucciones AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [skills y plugins](https://learn.chatgpt.com/docs/skills-and-plugins). El esquema de herramientas de la app instalada prevalece para las llamadas concretas.

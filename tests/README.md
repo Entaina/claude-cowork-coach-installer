@@ -58,6 +58,23 @@ No uses `--safe-mode`, `--bare` o una prueba con todas las skills/hooks deshabil
 
 Un visto bueno textual de Claude no prueba la configuración: registra las llamadas, los archivos generados y las comprobaciones de conservación. La programación nocturna se acredita por separado.
 
+## Amazon Quick (2.3.0)
+
+Quick no ejecuta código del paquete: no hay prueba automática de su integración. Las comprobaciones de integridad cubren la guía nueva, sus referencias y los originales de la migración.
+
+Para verificar la app real, usa una cuenta de prueba, una carpeta vacía conectada solo a Quick y un perfil ficticio. Instala con el prompt del README y la ruta al principio, y compara el árbol con el de la revisión candidata. Crea el agente Coach y comprueba en un chat nuevo con él que lee `ME.md` y los mapas. Programa una ejecución única a pocos minutos vista y compara los archivos antes y después: solo deben cambiar el log del día y, si procede, Pendientes. No uses la memoria propia de Quick (My context) como prueba de que el coach recuerda: lo que cuenta es lo escrito en la carpeta.
+
+### Verificación realizada (2026-10-27)
+
+- macOS, app de escritorio 1.1.3905, cuenta individual en plan Free con prueba de Plus, sobre la revisión 2.2.0 y con la ruta de la carpeta añadida al prompt.
+- Copia de los 32 archivos idéntica al repositorio y cuatro carpetas vacías. La copia llevó unos diez minutos y pidió permisos de escritura en el equipo.
+- Entrevista completa con un perfil ficticio: `ME.md` sin marcadores, sin datos inventados y con «¿guardo?» antes de escribir. Sin el contrato de Quick, el instalador dejó la automatización pendiente y no ejecutó el adaptador de Code.
+- Un chat nuevo con el agente de serie no leyó `ME.md`. El agente Coach sí lo leyó al arrancar, propuso guardar una preferencia y la escribió en `ME.md` tras la confirmación. «Pule esto» activó `pulidor`.
+- Una rutina única escribió un archivo en la carpeta con el usuario ausente y listó las conversaciones de la cuenta, aunque el agente había asegurado antes que no tendría acceso. Otra rutina ejecutó `episodic-learner` sobre un día anterior: log con la plantilla, señales con su fuente y cobertura parcial; solo cambiaron el log y Pendientes.
+- Límites observados: respuestas del asistente truncadas en el historial (una pregunta contestada quedó como pendiente), modo incógnito fuera del historial y título de las conversaciones en inglés.
+
+No se ha probado la revisión conjunta completa con los tres learners, varias ejecuciones diarias, una cuenta de empresa con administrador ni Windows.
+
 ## Verificación realizada para 2.2.0 (2026-10-07)
 
 - 29 pruebas automáticas correctas: 20 del adaptador y 9 de integridad. Entorno real: macOS, Python 3.9.6 y Claude Code 2.1.286.

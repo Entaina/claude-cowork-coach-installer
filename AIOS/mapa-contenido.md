@@ -5,7 +5,8 @@ Manual del coach para moverse por esta carpeta y crear archivos en ella. Tiene d
 ## Navegación
 
 - `AGENTS.md` y `CLAUDE.md` — instrucciones completas de arranque, idénticas y sincronizadas. Cada app usa el nombre que reconoce; al modificar el arranque, actualiza ambos sin perder personalizaciones.
-- `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork, Claude Code y GPT local; léelo antes de usar esas capacidades.
+- `AIOS/entornos-locales.md` — acceso al historial y programación en Cowork, Claude Code, GPT local y Amazon Quick; léelo antes de usar esas capacidades.
+- `AIOS/amazon-quick.md` — preparación de la carpeta, agente Coach, historial, rutina y límites de la app de escritorio de Quick. La versión web queda fuera.
 - `AIOS/claude-code.md` — configuración y límites de Code; `AIOS/integrations/claude_code.py` genera wrappers locales, registra sesiones del proyecto y filtra su historial.
 - `.claude/skills/` — wrappers nativos generados solo al configurar Code; `.claude/settings.json` conserva sus hooks y ajustes. `.claude/coach-local/` es estado técnico local, excluido de Git; el hook autorizado registra metadatos, no escribe memoria personal.
 - `ME.md` — briefing del usuario: quién es, goals, preferencias, reglas, pendientes. Se lee en cada arranque.

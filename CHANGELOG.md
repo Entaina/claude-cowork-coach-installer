@@ -8,6 +8,28 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.3.0] - 2026-10-27
+
+Compatibilidad con la app de escritorio de Amazon Quick, sobre la misma carpeta local. Cowork, Claude Code y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.3.0.md`.
+
+### Añadido
+
+- `AIOS/amazon-quick.md` — preparación de la carpeta en Quick, agente Coach que lee `AGENTS.md` al empezar cada conversación, lectura del historial de la cuenta, una revisión conjunta programada con el equipo encendido y la app abierta, verificación y límites conocidos.
+
+### Cambiado
+
+- `AIOS/entornos-locales.md` — Quick en el alcance, el arranque, el historial y la programación. La versión web de Quick queda fuera, con el resto de modalidades cloud.
+- Mapas y sistemas de Learning/Proyectos — Quick ejecuta las dos fases en una sola revisión, como GPT local, y su primera comprobación es una ejecución única a pocos minutos vista.
+- Descripción de `episodic-learner` — incluye Quick; su workflow se conserva.
+
+### Repo (no se aplica a tu carpeta)
+
+- README e INSTALL — instalación en Quick con la ruta de la carpeta al principio del prompt, creación del agente Coach por el usuario y rutina dentro de la jornada.
+- Migración 2.3.0 con los seis originales afectados de 2.2.0; no cambia los dos arranques ni los datos del usuario.
+- Prueba de integridad de esos originales; `AIOS/VERSION.md` del repositorio pasa a 2.3.0.
+
+Contrastado el 2026-10-27 en macOS con Quick 1.1.3905 y una cuenta individual. La revisión conjunta completa, varias ejecuciones diarias, las cuentas de empresa con administrador y Windows siguen sin probar.
+
 ## [2.2.0] - 2026-10-07
 
 Integración nativa de Claude Code CLI en la carpeta local del coach. Cowork y GPT conservan sus adaptadores. Cómo actualizar, en `migrations/2.2.0.md`.
