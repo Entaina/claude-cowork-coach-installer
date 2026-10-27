@@ -29,7 +29,7 @@ Instala mi asistente personal en esta carpeta local permanente. Si estamos en Cl
 ```
 
 4. Responde tres bloques breves: quién eres (con tu ubicación, para fijar tu zona horaria), cómo llamar al asistente y cómo te gusta trabajar. Una pregunta cada vez; di «siguiente» si alguna no aplica. No necesitas definir objetivos.
-5. Comprueba tu primer log y responde a las propuestas, si las hay. Si faltan herramientas para automatizar, el instalador te indicará qué queda pendiente. En Amazon Quick, crea además el agente Coach con el texto que te dé el instalador (Customize → Agents → Create → From chat) y elígelo en cada chat: Quick no lee las instrucciones de la carpeta por sí solo.
+5. Comprueba tu primer log y responde a las propuestas, si las hay. Si faltan herramientas para automatizar, el instalador te indicará qué queda pendiente. En Amazon Quick, crea además el agente Coach con el texto que te dé el instalador (Customize → Agents → Create → From chat) y márcalo como predeterminado (menú «⋮» del agente → Make default) para que cada chat nuevo empiece con él: Quick no lee las instrucciones de la carpeta por sí solo.
 
 Si la entrevista se interrumpe, pide «retoma mi instalación leyendo INSTALL.md del repositorio». No vuelvas a copiar la estructura sobre la carpeta existente.
 

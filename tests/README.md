@@ -70,6 +70,7 @@ Para verificar la app real, usa una cuenta de prueba, una carpeta vacía conecta
 - macOS, app de escritorio 1.1.3905, cuenta individual en plan Free con prueba de Plus, sobre la revisión 2.2.0 y con la ruta de la carpeta añadida al prompt.
 - Copia de los 32 archivos idéntica al repositorio y cuatro carpetas vacías. La copia llevó unos diez minutos y pidió permisos de escritura en el equipo.
 - Entrevista completa con un perfil ficticio: `ME.md` sin marcadores, sin datos inventados y con «¿guardo?» antes de escribir. Sin el contrato de Quick, el instalador dejó la automatización pendiente y no ejecutó el adaptador de Code.
+- Con «Make default», un chat nuevo empieza con Coach.
 - Un chat nuevo con el agente de serie no leyó `ME.md`. El agente Coach sí lo leyó al arrancar, propuso guardar una preferencia y la escribió en `ME.md` tras la confirmación. «Pule esto» activó `pulidor`.
 - Una rutina única escribió un archivo en la carpeta con el usuario ausente y listó las conversaciones de la cuenta, aunque el agente había asegurado antes que no tendría acceso. Otra rutina ejecutó `episodic-learner` sobre un día anterior: log con la plantilla, señales con su fuente y cobertura parcial; solo cambiaron el log y Pendientes.
 - Límites observados: respuestas del asistente truncadas en el historial (una pregunta contestada quedó como pendiente), modo incógnito fuera del historial y título de las conversaciones en inglés.

@@ -27,7 +27,7 @@ Al terminar la entrevista y guardar `ME.md`, pide al usuario que cree el agente.
 
 > Quiero un agente llamado «Coach», solo para mí. Es un asistente personal cuya memoria vive en archivos Markdown de mi carpeta local CARPETA_VERIFICADA. Instrucciones: al empezar cada conversación, antes de responder, lee AGENTS.md de esa carpeta y sigue lo que dice (leer ME.md, AIOS/mapa-contenido.md y AIOS/mapa-skills.md). Trátame según ME.md. Cuando aprendas una preferencia o un dato duradero, propónme guardarlo en el archivo que toque con la pregunta «¿guardo?» y escríbelo en la carpeta solo si digo que sí. Fuentes: solo esa carpeta; nada de web salvo que yo lo pida.
 
-Si el creador pregunta qué hacer cuando falte un archivo, la respuesta coherente con el coach es avisar y preguntar. Revisa las instrucciones que redacta antes de publicar: las reescribe con sus palabras. Después, el usuario elige Coach en el selector de agentes de cada chat. Comprueba en un chat nuevo con Coach que lee `ME.md` y los mapas, y que una skill se activa por su frase («pule esto» activa `pulidor`).
+Si el creador pregunta qué hacer cuando falte un archivo, la respuesta coherente con el coach es avisar y preguntar. Revisa las instrucciones que redacta antes de publicar: las reescribe con sus palabras. Después, márcalo como predeterminado: Customize → Agents, menú «⋮» de Coach → Make default. Así cada chat nuevo empieza con Coach hasta que se elija otro agente; sin ese paso, hay que elegirlo en el selector de cada chat. Comprueba en un chat nuevo con Coach que lee `ME.md` y los mapas, y que una skill se activa por su frase («pule esto» activa `pulidor`).
 
 ## Conversaciones del día
 
@@ -44,7 +44,7 @@ Declara la cobertura como **Parcial** salvo que puedas acreditar el listado comp
 
 ## Programación: una revisión conjunta
 
-Una sola rutina ejecuta Learning y después Proyectos y Áreas, como en GPT local. Créala desde un chat con Coach, después de preguntarle por las rutinas existentes y reutilizar una coincidencia inequívoca. Quick muestra una tarjeta «Creating schedule» con la hora, la zona horaria y los permisos que concede; revísala con el usuario antes de aprobarla.
+Una sola rutina ejecuta Learning y después Proyectos y Áreas, como en GPT local. Créala desde un chat con Coach, después de revisar las rutinas existentes (menú «⋮» de Coach → Manage routines) y reutilizar una coincidencia inequívoca. Quick muestra una tarjeta «Creating schedule» con la hora, la zona horaria y los permisos que concede; revísala con el usuario antes de aprobarla.
 
 Prompt (sustituye CARPETA_VERIFICADA):
 
@@ -60,7 +60,7 @@ No actives a la vez la revisión de Quick y la de otra app sobre la misma carpet
 
 ## Verificación
 
-Para la primera comprobación, programa una ejecución única a pocos minutos vista y revisa después qué archivos cambiaron: el log del día con su nota de cobertura y, si procede, Pendientes. Crear la rutina no demuestra que funcione. Contrastado el 2026-10-27: copia íntegra del paquete, entrevista y `ME.md`, arranque mediante el agente Coach, escritura de una preferencia con confirmación, activación de `pulidor`, y una rutina de `episodic-learner` sin el usuario delante que escribió el log con su cobertura y no tocó ningún otro archivo.
+Para la primera comprobación, lanza la rutina con su botón de ejecutar (página de Coach → Activities → Routines, según la documentación de AWS) o programa una ejecución única a pocos minutos vista, y revisa después qué archivos cambiaron: el log del día con su nota de cobertura y, si procede, Pendientes. Crear la rutina no demuestra que funcione. Contrastado el 2026-10-27: copia íntegra del paquete, entrevista y `ME.md`, arranque mediante el agente Coach, escritura de una preferencia con confirmación, activación de `pulidor`, y una rutina de `episodic-learner` sin el usuario delante que escribió el log con su cobertura y no tocó ningún otro archivo.
 
 Sin contrastar todavía: la revisión conjunta completa con las propuestas de los tres learners, varias ejecuciones diarias seguidas, una cuenta de empresa con administrador y Windows.
 
