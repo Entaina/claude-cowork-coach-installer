@@ -49,7 +49,7 @@ Una sola rutina ejecuta Learning y después Proyectos y Áreas, como en GPT loca
 
 Prompt (sustituye CARPETA_VERIFICADA):
 
-> Crea una rutina diaria que trabaje en CARPETA_VERIFICADA, la carpeta permanente de mi coach. Que lea AGENTS.md, ME.md y los mapas, ejecute el Learning System según AIOS/systems/learning-system.md y después el Sistema Proyectos y Áreas según AIOS/systems/proyectos-y-areas.md sobre ese mismo log, leyendo mis conversaciones de Quick según AIOS/entornos-locales.md. Que complete ambas fases antes de pedir validación, no aplique propuestas sin mi respuesta y no escriba fuera del log del día y de la sección Pendientes de ME.md. Si no hay novedades ni propuestas pendientes, que no me avise.
+> Crea una rutina diaria que trabaje en CARPETA_VERIFICADA, la carpeta permanente de mi coach. Que lea AGENTS.md, ME.md y los mapas, ejecute el Learning System según AIOS/systems/learning-system.md y después el Sistema Proyectos y Áreas según AIOS/systems/proyectos-y-areas.md sobre ese mismo log, leyendo mis conversaciones de Quick según AIOS/entornos-locales.md. Que complete ambas fases antes de pedir validación, no aplique propuestas sin mi respuesta y no escriba fuera del log del día y de la sección Pendientes de ME.md, salvo el mantenimiento del pOKM si está activo, que solo escribe en la carpeta pokm. Si no hay novedades ni propuestas pendientes, que no me avise.
 
 Tres condiciones de esta rutina:
 
@@ -59,6 +59,10 @@ Tres condiciones de esta rutina:
 - **Aviso.** Al terminar, Quick deja un aviso con el resultado (en la prueba, en el Feed).
 
 No actives a la vez la revisión de Quick y la de otra app sobre la misma carpeta (ver `AIOS/entornos-locales.md`).
+
+## pOKM (beta)
+
+El pOKM funciona en Quick como versión de prueba. Quick no tiene terminal, así que no usa `AIOS/integrations/pokm.py`: sin foto de cambios ni lectura de Office por el programa. Por eso, solo niveles «mapa» y «fuera», sin índices por carpeta. Las carpetas del pOKM tienen que estar conectadas en Customize → Knowledge, como la del coach, con las mismas precauciones de indexación y de permisos de la rutina. El inventario y los cambios se hacen listando carpetas con las herramientas de la app y comparando con las fechas y recuentos de `pokm/mapa.md`, como mucho 10 carpetas por pasada. Si el usuario lo activa y ya tiene la rutina diaria de una versión anterior, su prompt prohíbe escribir fuera del log y de Pendientes: propón actualizarlo con el texto de arriba y aplícalo solo con su OK. Al activarlo, dile que en Quick es una versión de prueba. Sin contrastar todavía en la app.
 
 ## Verificación
 

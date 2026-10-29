@@ -6,7 +6,29 @@ Este archivo cuenta **qué** cambió en cada versión. **Cómo** aplicarlo a una
 
 Las secciones de cada versión usan el vocabulario de las migraciones — **Añadido**, **Cambiado**, **Retirado**, **Migrado** (cambios de sitio o de forma que conservan el contenido) y **Repo** (solo repositorio) — cuyas reglas exactas define `UPDATE.md`. El marcador `AIOS/VERSION.md` lo fija el propio proceso de actualización al completar cada versión; al actualizar nunca se copia del repositorio.
 
-Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
+Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/`, `episodic/` ni `pokm/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
+
+## [2.4.0] - 2026-10-29
+
+El pOKM: un mapa opcional de los documentos de trabajo del usuario para que el coach los encuentre sin pedir rutas y sin abrir lo que no debe, que se pone al día solo en la revisión diaria. Y la revisión de Claude Code se programa con las tareas locales de la app de escritorio. Cómo actualizar, en `migrations/2.4.0.md`.
+
+### Añadido
+
+- `AIOS/skills/pokm/SKILL.md` y `AIOS/systems/pokm.md` — el usuario decide qué carpetas entran y con qué nivel: «índice» (se describen sus documentos), «mapa» (solo la carpeta) o «fuera». El mapa vive en `pokm/`, fuera de sus carpetas, con el formato de índices del OKM; nunca copia contenido ni cifras. Si la empresa ya tiene OKM, solo cubre lo que quede fuera de él. En Amazon Quick es beta: sin programa ni índices.
+- `AIOS/integrations/pokm.py` — inventario por carpetas sin abrir archivos (abrir uno en Drive u OneDrive puede descargarlo), alcance con herencia, cambios desde la última foto con tope por pasada y límite de tiempo (lo no recorrido nunca cuenta como borrado), y texto de Word, Excel, PowerPoint y OpenDocument con la biblioteca estándar. Los documentos nativos de Google quedan como «solo en línea» con su enlace.
+
+### Cambiado
+
+- Revisión diaria — tercera fase tras Learning y Proyectos y Áreas: si el pOKM está activo, se pone al día sin propuestas, con cuatro límites (solo dentro del alcance elegido, lo sensible no se describe, tope de documentos por pasada y «Notas» del usuario intactas). Lo que cambió queda en la sección `## pOKM` del diario. Lo nuevo fuera del alcance se avisa y no entra.
+- `AIOS/integrations/claude_code.py` — `/coach-review` incluye esa fase. La instalación concede tres permisos estrechos y gestionados: ejecutar `pokm.py` y el lector del historial (para que una revisión programada no se pare), leer las bases del pOKM activo y no leer lo marcado como fuera. Respeta las entradas del usuario y se detiene si retiró una gestionada.
+- `AIOS/claude-code.md`, `AIOS/entornos-locales.md`, `AIOS/systems/learning-system.md` — la revisión de Claude Code se programa con una tarea programada local de la app de escritorio (corre con la app abierta y el equipo despierto, con recuperación al despertar), con su prompt. `/loop` no equivale a una tarea nocturna.
+- `AIOS/amazon-quick.md` — apartado «pOKM (beta)»; la rutina admite que el pOKM escriba en su carpeta.
+- Mapas y plantilla del diario — entrada `pokm/`, sección del pOKM en el mapa de skills y sección opcional `## pOKM` en el log.
+
+### Repo (no se aplica a tu carpeta)
+
+- README e INSTALL — el pOKM se menciona como opción al terminar la instalación, sin activarlo; la revisión de Claude Code se programa en la app de escritorio. UPDATE.md y la regla de oro añaden `pokm/` al contenido del usuario que nunca se toca.
+- Pruebas — `tests/test_pokm.py` (alcance, herencia, cambios, carpetas sin decidir, tope, tiempo agotado, lectura de formatos y que nunca escribe en las carpetas del usuario) y permisos gestionados de la integración en `tests/test_claude_code.py`. Originales 2.3.2 de los archivos cambiados y su prueba de integridad.
 
 ## [2.3.2] - 2026-10-27
 

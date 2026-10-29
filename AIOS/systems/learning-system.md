@@ -15,7 +15,7 @@ Cómo aprende el coach. Sin este sistema, el coach del día 30 sabe lo mismo que
 
 ## Orquestación
 
-**Una pasada nocturna** (23:30 por defecto, en la zona horaria del usuario). En Cowork tiene su propia tarea; en Claude Code puede ejecutarse a demanda mediante `/coach-review` (la programación depende de la sesión abierta); en GPT local y en Amazon Quick es la primera fase de la revisión conjunta de `AIOS/entornos-locales.md` (en Quick, con el equipo encendido y la app abierta; ver `AIOS/amazon-quick.md`). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
+**Una pasada nocturna** (23:30 por defecto, en la zona horaria del usuario). En Cowork tiene su propia tarea; en Claude Code, a demanda mediante `/coach-review` o con la tarea programada local de la app de escritorio (`AIOS/claude-code.md`); en GPT local y en Amazon Quick es la primera fase de la revisión conjunta de `AIOS/entornos-locales.md` (en Quick, con el equipo encendido y la app abierta; ver `AIOS/amazon-quick.md`). Su prompt es fino y apunta a las skills — nunca duplica sus workflows:
 
 > "Ejecuta el Learning System según `AIOS/systems/learning-system.md` para el día correspondiente a esta revisión; termina presentándome las propuestas y espera mi respuesta."
 

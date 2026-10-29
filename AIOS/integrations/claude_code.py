@@ -116,17 +116,19 @@ def canonical_wrappers(root):
         raise Refusal('No hay skills canónicas activas')
     wrappers['.claude/skills/coach-review/SKILL.md'] = '''---
 name: coach-review
-description: Revisa el día del coach local; genera diario y propuestas de aprendizaje y proyectos en orden.
+description: Revisa el día del coach local; genera diario y propuestas de aprendizaje y proyectos en orden, y pone al día el pOKM si está activo.
 ---
 
 La raíz del coach es `${CLAUDE_SKILL_DIR}/../../..`.
 Lee `AIOS/entornos-locales.md` desde esa raíz. Ejecuta el Learning System
 según `AIOS/systems/learning-system.md` y después el Sistema Proyectos y Áreas
-según `AIOS/systems/proyectos-y-areas.md`, para la misma fecha y sobre el mismo log.
+según `AIOS/systems/proyectos-y-areas.md`, para la misma fecha y sobre el mismo log,
+incluida su tercera fase: el mantenimiento del pOKM, solo si está activo.
 Fecha solicitada (opcional): $ARGUMENTS. Si falta, usa hoy en la zona horaria del usuario
 (línea «Zona horaria» de ME.md; Europe/Madrid si no consta).
-Completa ambas fases antes de presentar sus propuestas; espera la confirmación
-del usuario antes de aplicarlas. No crees ninguna programación por esta petición.
+Completa las fases antes de presentar sus propuestas; espera la confirmación
+del usuario antes de aplicarlas. El pOKM no genera propuestas: se actualiza solo.
+No crees ninguna programación por esta petición.
 '''
     return wrappers
 
@@ -141,6 +143,66 @@ def hook_spec(root):
         raise Refusal('No se identifica la ruta del intérprete de Python; ejecuta el instalador con la ruta completa de Python')
     module = root.resolve() / 'AIOS/integrations/claude_code.py'
     return {'command': str(executable), 'args': [str(module), 'hook']}
+
+
+def permission_rules(spec, root=None):
+    """Narrow allow rules for the coach's own read-only scripts, run from the coach root.
+
+    Without them a scheduled review stalls on a prompt nobody answers. Each rule covers
+    one script (and only the history subcommand of the adapter), with the interpreter
+    that ran the installation or `python3`.
+    """
+    executable = spec['command']
+    quote = lambda text: f'"{text}"' if ' ' in text else text
+    rules = []
+    for script, tail in (('AIOS/integrations/pokm.py', '*'), ('AIOS/integrations/claude_code.py', 'history *')):
+        # The relative form is the documented one; the absolute one covers a model that
+        # resolves the path on its own. Both point at this coach's own script.
+        scripts = [script] + ([quote(str(Path(root).resolve() / script))] if root else [])
+        for path in scripts:
+            for interpreter in dict.fromkeys((quote(executable), 'python3')):
+                rules.append(f'Bash({interpreter} {path} {tail})')
+            if os.name == 'nt':
+                rules.append(f'PowerShell(& "{executable}" {path} {tail})')
+    return rules
+
+
+def pokm_scope(root):
+    """Bases and exclusions of an active pOKM (AIOS/integrations/pokm.py), if any."""
+    path = root / 'pokm/.estado/alcance.json'
+    if not path.exists():
+        return [], []
+    scope = load_object(path)
+    if not scope.get('activo'):
+        return [], []
+    bases, rules = scope.get('bases'), scope.get('reglas')
+    if not isinstance(bases, list) or not isinstance(rules, dict) or not all(
+            isinstance(base, str) and Path(base).is_absolute() for base in bases):
+        raise Refusal('alcance.json del pOKM no reconocido')
+    excluded = []
+    if os.name != 'nt':  # Absolute Read rules use `//path`; Windows paths stay unmanaged.
+        for target, data in sorted(rules.items()):
+            if isinstance(data, dict) and data.get('nivel') == 'fuera' and Path(target).is_absolute():
+                suffix = '/**' if Path(target).is_dir() else ''
+                excluded.append(f'Read(/{target}{suffix})')
+    return list(dict.fromkeys(bases)), excluded
+
+
+def merge_managed(container, key, wanted, previous, label):
+    """Add managed entries, drop stale managed ones, keep everything else untouched."""
+    current = container.get(key, [])
+    if not isinstance(current, list):
+        raise Refusal(f'{label} no es una lista')
+    removed = [entry for entry in previous if entry in wanted and entry not in current]
+    if removed:
+        raise Refusal(f'{label}: el usuario retiró entradas gestionadas; decide antes de reinstalar: '
+                      + ', '.join(removed))
+    merged = [entry for entry in current if entry in wanted or entry not in previous]
+    merged += [entry for entry in wanted if entry not in merged]
+    if merged:
+        container[key] = merged
+    else:
+        container.pop(key, None)
 
 
 def is_hook(hook, spec):
@@ -218,6 +280,21 @@ def install(root, apply=False):
         raise Refusal('El hook gestionado se ha modificado o retirado; decide antes de reinstalarlo')
     if not found:
         groups.append({'hooks': [{'type': 'command', **spec}]})
+    rules = permission_rules(spec, root)
+    bases, excluded = pokm_scope(root)
+    permissions = settings.get('permissions', {})
+    if not isinstance(permissions, dict):
+        raise Refusal('permissions no es un objeto')
+    managed = previous.get('permissions', {'allow': [], 'deny': [], 'directories': []})
+    if not isinstance(managed, dict) or not all(isinstance(managed.get(k, []), list)
+                                                for k in ('allow', 'deny', 'directories')):
+        raise Refusal('Manifiesto de instalación incompatible')
+    merge_managed(permissions, 'allow', rules, managed.get('allow', []), 'permissions.allow')
+    merge_managed(permissions, 'deny', excluded, managed.get('deny', []), 'permissions.deny')
+    merge_managed(permissions, 'additionalDirectories', bases, managed.get('directories', []),
+                  'permissions.additionalDirectories')
+    if permissions:
+        settings['permissions'] = permissions
     files['.claude/settings.json'] = encoded(settings)
     ignore_path = local_path(root, '.claude/.gitignore')
     ignore = ignore_path.read_text(encoding='utf-8') if ignore_path.exists() else ''
@@ -228,7 +305,8 @@ def install(root, apply=False):
     hashes = dict(old_files)
     hashes.update({relative: digest(content) for relative, content in files.items()
                    if relative.startswith('.claude/skills/')})
-    files[str(MANIFEST)] = encoded({'schema': 1, 'files': hashes, 'hook': spec})
+    files[str(MANIFEST)] = encoded({'schema': 1, 'files': hashes, 'hook': spec,
+                                    'permissions': {'allow': rules, 'deny': excluded, 'directories': bases}})
     changes = []
     for relative, content in files.items():
         path = local_path(root, relative)

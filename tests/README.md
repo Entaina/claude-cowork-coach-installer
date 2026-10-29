@@ -99,3 +99,18 @@ Sin probar: la revisión conjunta ejecutada como rutina con la zona de la cuenta
 - Migración ejecutada sobre 2.1.0 con datos y personalizaciones ficticios: 28 archivos previos conservados, segunda pasada con 38/38 archivos idénticos y caso conflictivo con 37/37 intactos. Las migraciones históricas se conservaron.
 
 Las pruebas reales limitaron las herramientas al coach ficticio y a su lector de historial; no verificaron inventario por fecha de modificación ni programación. No se ha ejecutado una entrevista completa nueva, una tarea nocturna, Windows/Linux ni otra nueva prueba de Cowork/GPT en esta revisión. La selección implícita de cada una de las once skills no se ha ensayado individualmente. El formato de historial sigue siendo interno y su cobertura, parcial. Las transcripciones de QA se conservan fuera del paquete público.
+
+## pOKM (2.4.0)
+
+`test_pokm.py` ejecuta `AIOS/integrations/pokm.py` sobre un Drive sintético: nunca escribe en las carpetas del usuario, el inventario no guarda nada, el alcance hereda por carpetas y archivos, «fuera» exige motivo y una base, los cambios se clasifican por nivel (nuevo, modificado, borrado, fuera del alcance, sin decidir), las carpetas sin decidir se avisan una vez, el tope por pasada sirve primero lo modificado y lo conocido, un tiempo agotado nunca convierte lo no recorrido en borrado, el coach dentro de una base se salta y se lee texto de Word, Excel, PowerPoint, texto y accesos de Google. `test_claude_code.py` añade los permisos gestionados: reglas de los dos programas, lectura de las bases y veto de lo excluido del pOKM, conservación de las entradas del usuario, cambio de intérprete y retirada de una entrada gestionada.
+
+Prueba de comportamiento del 29-oct-2026, con un Drive ficticio de 72 archivos (Word, Excel, PowerPoint, PDF, accesos de Google, RRHH, fotos, un vídeo y un documento con instrucciones para la IA), una usuaria simulada y ejecuciones fuera de cualquier proyecto con `CLAUDE.md`:
+
+| Caso | Resultado observable |
+| --- | --- |
+| Actualizar un coach 2.3.2 con integración de Claude Code | Versión 2.4.0; los 9 cambiados y los 3 añadidos idénticos a la revisión; contenido del usuario intacto; `pokm/` sin crear; reinstalación con OK. |
+| Activar el pOKM | Pregunta por un OKM de empresa, inventario sin abrir archivos, nivel por carpeta confirmado por el usuario, mapa e índices, dos líneas en `ME.md` y la integración reinstalada con lectura de las bases y veto de lo excluido. |
+| Noche con cambios: modificado, adenda en un cliente, carpeta de cliente nueva, borrado, acta en carpeta «mapa», documento sensible, carpeta nueva fuera del alcance y 35 documentos en una carpeta nueva | Lo sensible pasa a «fuera» sin abrirse; la carpeta fuera del alcance se avisa y no se mapea; el tope deja pendientes para la noche siguiente; las «Notas» del usuario intactas; el Drive intacto. |
+| Preguntas en sesión nueva | Encuentra la tarifa vigente, el descuento, el vencimiento con la adenda, la fecha de Málaga, el transportista y el objetivo; el Google Doc se trata como «solo en línea»; no abre nóminas ni comisiones excluidas. |
+
+Lecciones que cambiaron la revisión: Claude Code ignora los permisos del proyecto hasta que la carpeta es de confianza; un comando compuesto (`cd … &&`, tuberías, bucles) no lo cubre la regla y se queda esperando aprobación; el permiso debe comprobarse antes del inventario; una pregunta cuya respuesta está en algo excluido no es permiso para abrirlo. Sin contrastar: la tarea programada local de la app de escritorio, Windows, Amazon Quick y un Drive real de cientos o miles de documentos.

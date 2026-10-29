@@ -64,9 +64,9 @@ Antes de crear, lista o consulta las tareas existentes y confirma carpeta, horar
 
 Usa el programador nativo y los prompts de Orquestación de `AIOS/systems/learning-system.md` y `AIOS/systems/proyectos-y-areas.md`. Proyectos y Áreas consume el log producido por Learning. Si Learning sigue escribiéndolo, no ejecutes la segunda pasada a la vez; aplázala mediante el mecanismo disponible o indica que quedó pendiente.
 
-### Claude Code: revisión conjunta a demanda
+### Claude Code: revisión conjunta a demanda o programada en la app de escritorio
 
-`/coach-review` invoca los dos sistemas sobre el mismo log, en secuencia y dejando propuestas sin aplicar. La integración y su comprobación viven en `AIOS/claude-code.md`. No crea una programación por instalar las skills. Si el usuario pide `/loop` o programación nativa, comprueba sus límites de sesión y su caducidad; no equivale a una tarea nocturna permanente. Conserva como responsable la app que ya tuviera esa revisión, salvo cambio autorizado y verificado.
+`/coach-review` invoca los dos sistemas sobre el mismo log, en secuencia y dejando propuestas sin aplicar, y después el mantenimiento del pOKM si está activo. La integración y su comprobación viven en `AIOS/claude-code.md`. No crea una programación por instalar las skills. Para programarla, usa una tarea programada local de la app de escritorio, con su prompt y sus condiciones de `AIOS/claude-code.md`; `/loop` solo corre con la sesión abierta y caduca, así que no equivale a una tarea nocturna. Conserva como responsable la app que ya tuviera esa revisión, salvo cambio autorizado y verificado.
 
 ### GPT local: una revisión conjunta
 
@@ -76,7 +76,7 @@ La ejecución debe ser **local y en la carpeta permanente del coach**, nunca clo
 
 Prompt (sustituye «CARPETA_VERIFICADA» por la ruta real):
 
-> Trabaja localmente en CARPETA_VERIFICADA, la carpeta permanente de mi coach. Lee AGENTS.md, ME.md y los mapas. Ejecuta el Learning System según AIOS/systems/learning-system.md y después el Sistema Proyectos y Áreas según AIOS/systems/proyectos-y-areas.md sobre ese mismo log. Completa ambas fases de generación de propuestas antes de pedir validación. Usa AIOS/entornos-locales.md para recuperar conversaciones y declarar su cobertura. No apliques propuestas sin mi respuesta. Si no hay novedades ni propuestas pendientes, no me envíes una notificación rutinaria; avisa si necesitas mi decisión o falla el acceso necesario.
+> Trabaja localmente en CARPETA_VERIFICADA, la carpeta permanente de mi coach. Lee AGENTS.md, ME.md y los mapas. Ejecuta el Learning System según AIOS/systems/learning-system.md y después el Sistema Proyectos y Áreas según AIOS/systems/proyectos-y-areas.md sobre ese mismo log, con el mantenimiento del pOKM si está activo. Completa ambas fases de generación de propuestas antes de pedir validación. Usa AIOS/entornos-locales.md para recuperar conversaciones y declarar su cobertura. No apliques propuestas sin mi respuesta. Si no hay novedades ni propuestas pendientes, no me envíes una notificación rutinaria; avisa si necesitas mi decisión o falla el acceso necesario.
 
 Horario por defecto: 23:30 en la zona horaria del usuario, a confirmar. El equipo y la app deben estar abiertos para trabajar con los archivos locales. Comprueba el horario efectivo que devuelve el programador (incluida su zona horaria); no des por hecho que el reloj del equipo usa esa zona.
 

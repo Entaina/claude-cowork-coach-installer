@@ -1,0 +1,14 @@
+{
+  "source_commit": "0090145ba47cf5b4c9b21bc47a5d9819b0cf2c2f",
+  "originals": {
+    "AIOS/Templates/log-template.md": "aab66f48ec9f4c92a1f5927a491c1f0562af0960ff291aaecb6e49179795e43a",
+    "AIOS/amazon-quick.md": "e2471e3096f6d5e796b6e74f50a1c54cbd5d5689c44cb67e8353d63583952173",
+    "AIOS/claude-code.md": "96ba7e915b6acb077ee86576e1a882ae6aabbc5cd6ae439aff7c27a367f18355",
+    "AIOS/entornos-locales.md": "9ac40bbc27c16caff8e3ca0c401d179639d56faec6170b66d576f362e937d1f5",
+    "AIOS/integrations/claude_code.py": "05fc4236d0394d12ef1b4d3dfe7eb8982dcc1fbac216a2a0c1b5b5512a6767af",
+    "AIOS/mapa-contenido.md": "f1ab01284ae92ff1902a4652de25ae2cf5de931a9e038d42135f4e573e2816b0",
+    "AIOS/mapa-skills.md": "59bb32d1c064c862f32748635e89476be813edfb35aa15d4a9921a1a6f69e362",
+    "AIOS/systems/learning-system.md": "273e2df8e47c64d2b2abbe1b1d238932f9e23dde9c3b421cf2b1e7ea84629037",
+    "AIOS/systems/proyectos-y-areas.md": "d7e0c143be3127a0bfbcef36e6e772fb5ae14b34635d19ae9f1880785bfb556e"
+  }
+}

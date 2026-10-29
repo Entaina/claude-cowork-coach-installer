@@ -43,7 +43,7 @@ Las migraciones usan estas operaciones; aplícalas siempre con estas reglas:
 
 ### Reglas de seguridad (inviolables)
 
-- **No toques nunca contenido del usuario**: `ME.md`, `projects/`, `areas/`, `knowledge/` ni `episodic/`. Son míos.
+- **No toques nunca contenido del usuario**: `ME.md`, `projects/`, `areas/`, `knowledge/`, `episodic/` ni `pokm/`. Son míos.
 - **No borres** skills, entradas de mapa, sistemas ni archivos que una migración no nombre explícitamente como "Retirado". Actualizar solo añade y modifica lo indicado; nunca limpia por su cuenta. Migrar no es borrar: mover o transformar un archivo según una regla **Migrado** conserva su contenido íntegro — aun así, nada se migra sin mi OK.
 - **Ante cualquier duda o conflicto** —un archivo "Cambiado" que ya habías tocado, un "Añadido" que ya existe con otro contenido— párate y pregúntame antes de escribir.
 - Trabajos pesados o comparaciones largas, delégalos a un subagente; yo solo veo el resultado.

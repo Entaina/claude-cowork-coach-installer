@@ -4,7 +4,7 @@ Catálogo de lo que el coach sabe hacer, agrupado por sistema. **Consúltalo ant
 
 ## Learning System — cómo aprende el coach
 
-Ver `systems/learning-system.md`. Revisión nocturna en las apps configuradas o conjunta a demanda en Claude Code; el usuario valida las propuestas. En Code, `/coach-review` es el acceso nativo a Learning y Proyectos, no un workflow duplicado; consulta `claude-code.md`.
+Ver `systems/learning-system.md`. Revisión nocturna en las apps configuradas; en Claude Code, a demanda con `/coach-review` o con la tarea programada local de la app de escritorio. El usuario valida las propuestas. En Code, `/coach-review` es el acceso nativo a Learning, Proyectos y el mantenimiento del pOKM, no un workflow duplicado; consulta `claude-code.md`.
 
 - **episodic-learner** — compone el log del día leyendo las conversaciones accesibles de Cowork, Claude Code, GPT local o Amazon Quick (ver `entornos-locales.md`) y mantiene los Pendientes de ME.md. El único que escribe directo. Triggers: `genera el log de hoy`, `cierra el día`, `reconstruye el log`.
 - **semantic-learner** — propone cambios a knowledge/ y a Quién soy/Goals de ME.md, con destino, cambio y fuente. No toca projects/. No aplica nada. Triggers: `propuestas semánticas`, `qué has aprendido de mí`.
@@ -31,6 +31,12 @@ Ver `systems/proyectos-y-areas.md`. A demanda, más una detección diaria progra
 - **project-manager** — crea, actualiza, revisa y cierra proyectos y áreas, siempre con confirmación. En la revisión agrupa por área, contrasta con los Goals y señala estancados y áreas descuidadas. Triggers: `nuevo proyecto`, `nueva área`, `cómo van mis proyectos`, `actualiza el proyecto`, `cierra el proyecto`, `en qué estoy`.
 - **project-learner** — detecta en el log del día proyectos nuevos, áreas que asoman y movimiento de los existentes; solo propone, y lo aprobado se aplica vía project-manager. Triggers: `propuestas de proyectos`, `qué proyectos has detectado`.
 - **project-janitor** — audita projects/ y areas/ contra plantillas, mapa y logs: forma, registro y ciclo de vida (working estancados, pending eternos, done a medias, áreas descuidadas). Reporta primero; los cambios de estado pasan por project-manager. Triggers: `audita los proyectos`, `audita las áreas`, `están los proyectos en orden`, `drift de proyectos`.
+
+## pOKM — el mapa de tus documentos
+
+Ver `systems/pokm.md`. Opcional: lo activa el usuario. Una vez activo, la revisión diaria lo pone al día sola, como tercera fase tras Learning y Proyectos y Áreas. En Amazon Quick es beta.
+
+- **pokm** — hace con el usuario el mapa de sus carpetas de trabajo (qué hay y dónde, en tres niveles: índice, mapa o fuera), lo consulta al buscar documentos y lo mantiene en la revisión diaria sin pedir firma, solo dentro de lo elegido. No copia contenido ni toca sus carpetas. Usa `AIOS/integrations/pokm.py`. Triggers: `haz el mapa de mis documentos`, `activa el pokm`, `/pokm`, `actualiza el mapa`, `añade esta carpeta al mapa`, `desactiva el mapa`.
 
 ## Pulidor — feedback sin sustituirte
 

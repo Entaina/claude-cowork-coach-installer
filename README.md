@@ -38,7 +38,8 @@ Si la entrevista se interrumpe, pide «retoma mi instalación leyendo INSTALL.md
 ## El día a día
 
 - Trabaja con tu coach con normalidad: prepara reuniones, piensa decisiones, pídele que pula tu trabajo ("pule esto", "¿qué se me escapa?").
-- En Claude Code quedan disponibles las skills nativas y `/coach-review` para la revisión conjunta; el historial registrado se limita a esta carpeta desde que se activa la integración. La programación en Claude Code depende de que la sesión siga abierta y no sustituye a un servicio nocturno permanente.
+- En Claude Code quedan disponibles las skills nativas y `/coach-review` para la revisión conjunta; el historial registrado se limita a esta carpeta desde que se activa la integración. Para programar la revisión, usa una tarea programada local de la app de escritorio de Claude (pestaña Code): corre en tu ordenador, en la carpeta del coach, con la app abierta y el equipo despierto.
+- Si quieres que el coach encuentre tus documentos sin darle rutas, pídele «haz el mapa de mis documentos». Es el pOKM: decides qué carpetas entran, con qué detalle y qué queda fuera; tus archivos no se mueven y el mapa se pone al día solo en la revisión diaria. Es opcional, y en Amazon Quick está en prueba.
 - La revisión diaria aprende de ti y detecta proyectos y avances. Cowork conserva sus dos tareas; GPT local y Amazon Quick ejecutan ambas fases en una sola tarea para que terminen en orden. En Quick, esa tarea es una rutina que necesita el ordenador encendido y la app abierta a su hora: prográmala dentro de tu jornada. Configúrala solo en una app por carpeta y mantén el ordenador y la app abiertos.
 - Revisa las propuestas y contesta sí o no. Los cambios duraderos requieren tu permiso; el registro diario y los Pendientes se actualizan directamente. El log indica si solo se pudo consultar parte del historial. No disponer del historial no significa que no hayas trabajado.
 
@@ -60,7 +61,7 @@ Actualiza mi coach con los últimos cambios del repositorio, sin tocar nada mío
    hay y qué aportan, y espera mi OK antes de aplicar nada.
 3. Aplica solo los cambios que me falten, incluidas las migraciones de formato
    que declare el CHANGELOG, siempre con mi OK. No toques ME.md, projects/,
-   areas/, knowledge/ ni episodic/, y no pierdas nada que yo haya creado. Al
+   areas/, knowledge/, episodic/ ni pokm/, y no pierdas nada que yo haya creado. Al
    terminar, actualiza AIOS/VERSION.md y enséñame el resumen.
 ```
 
@@ -76,5 +77,6 @@ Actualiza mi coach con los últimos cambios del repositorio, sin tocar nada mío
 - `projects/` — tus proyectos: cosas con final, con estado (pending, working, done).
 - `areas/` — tus áreas de responsabilidad: lo que no se acaba y hay que mantener bien.
 - `knowledge/` — tu mundo: clientes, personas, equipo. Nace vacía y crece con tu firma.
+- `pokm/` — el mapa de tus documentos, si lo activas. No existe hasta entonces; dice dónde está cada cosa, sin copiarla.
 - `episodic/logs/` — un log por día, escrito por el coach.
 - `AIOS/` — mapas, plantillas, skills (un directorio por skill) y sistemas del coach. Crece vía skill-builder, también con tu firma.

@@ -34,6 +34,8 @@ Fija la fecha y la ruta del log antes de invocar project-learner; «hoy» en la 
 
 Al generar propuestas, reutiliza las pendientes equivalentes por destino, cambio y fuente y respeta las incorporadas o descartadas. No las regeneres por releer la misma evidencia ni por aparecer una señal nueva ajena; una nueva propuesta sobre el mismo asunto requiere evidencia nueva relevante o petición explícita, y explica qué cambió sin borrar el estado anterior.
 
+**Tercera fase, el pOKM**: al terminar esta pasada en la revisión diaria (tarea de Cowork, `/coach-review` o tarea programada de Claude Code, revisión conjunta de GPT local y Amazon Quick), si el pOKM está activo, ejecuta su mantenimiento según el apartado C de la skill `pokm` (`AIOS/systems/pokm.md`) sobre el mismo log. No genera propuestas. Si no está activo, no hagas nada ni lo menciones.
+
 **El hand-off**: todas las vías escriben solo con firma del usuario. La sesión diaria queda a la espera, como la del Learning System: el usuario responde al abrirla, el coach aplica lo aprobado vía project-manager (plantilla incluida si es creación), descarta el resto y actualiza los estados en el log. Las propuestas pendientes de días anteriores se re-presentan. El Learning System no toca `projects/` ni `areas/`; el janitor detecta pero nunca cambia estados. Los archivos son la fuente de verdad, no el log.
 
 ## Cuándo NO usarlo

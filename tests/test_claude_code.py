@@ -71,7 +71,7 @@ class NativeCodeIntegration(unittest.TestCase):
         before = snapshots(self.coach)
         preview = adapter.install(self.coach)
         self.assertEqual(preview['status'], 'preview')
-        self.assertEqual(preview['wrappers'], 12)
+        self.assertEqual(preview['wrappers'], 13)
         self.assertEqual(before, snapshots(self.coach))
         adapter.install(self.coach, apply=True)
         first = snapshots(self.coach)
@@ -101,7 +101,8 @@ class NativeCodeIntegration(unittest.TestCase):
         (directory / '.gitignore').write_text('settings.local.json\n')
         adapter.install(self.coach, apply=True)
         updated = json.loads((directory / 'settings.json').read_text())
-        self.assertEqual(updated['permissions'], settings['permissions'])
+        self.assertEqual(updated['permissions']['allow'][0], 'Read')
+        self.assertEqual(updated['permissions']['allow'][1:], adapter.permission_rules(adapter.hook_spec(self.coach), self.coach))
         self.assertEqual(updated['env'], settings['env'])
         self.assertEqual(updated['hooks']['Stop'], settings['hooks']['Stop'])
         self.assertEqual(updated['hooks']['SessionStart'][0], settings['hooks']['SessionStart'][0])
@@ -302,6 +303,89 @@ class NativeCodeIntegration(unittest.TestCase):
         self.assertEqual(manifest['hook'], adapter.hook_spec(self.coach))
         self.assertNotIn('hook_command', manifest)
         self.assertEqual(adapter.install(self.coach, apply=True)['changed'], [])
+
+    def activate_pokm(self, active=True):
+        drive = self.base / 'Drive con espacios'
+        (drive / 'Comercial').mkdir(parents=True, exist_ok=True)
+        (drive / 'RRHH').mkdir(exist_ok=True)
+        scope = {'activo': active, 'bases': [str(drive)],
+                 'reglas': {str(drive / 'Comercial'): {'nivel': 'indice', 'motivo': ''},
+                            str(drive / 'RRHH'): {'nivel': 'fuera', 'motivo': 'nóminas'}}}
+        path = self.coach / 'pokm/.estado/alcance.json'
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(scope))
+        return drive
+
+    def test_coach_scripts_are_allowed_and_pokm_scope_is_managed(self):
+        settings_path = self.coach / '.claude/settings.json'
+        settings_path.parent.mkdir()
+        settings_path.write_text(json.dumps({'permissions': {'allow': ['Bash(npm test *)'],
+                                                             'deny': ['Read(./.env)'],
+                                                             'additionalDirectories': ['/tmp/mio']}}))
+        adapter.install(self.coach, apply=True)
+        rules = adapter.permission_rules(adapter.hook_spec(self.coach), self.coach)
+        self.assertTrue(any('pokm.py' in rule for rule in rules))
+        self.assertTrue(any('claude_code.py history' in rule for rule in rules))
+        self.assertIn(f'Bash(python3 "{self.coach.resolve() / "AIOS/integrations/pokm.py"}" *)', rules)
+        self.assertTrue(all(rule.startswith(('Bash(', 'PowerShell(')) for rule in rules))
+        permissions = json.loads(settings_path.read_text())['permissions']
+        self.assertEqual(permissions['allow'], ['Bash(npm test *)', *rules])
+        self.assertEqual(permissions['deny'], ['Read(./.env)'])
+        self.assertEqual(permissions['additionalDirectories'], ['/tmp/mio'])
+        drive = self.activate_pokm()
+        changed = adapter.install(self.coach, apply=True)['changed']
+        self.assertEqual(set(changed), {'.claude/settings.json', '.claude/coach-local/managed.json'})
+        permissions = json.loads(settings_path.read_text())['permissions']
+        self.assertEqual(permissions['additionalDirectories'], ['/tmp/mio', str(drive)])
+        self.assertEqual(permissions['deny'], ['Read(./.env)', f'Read(/{drive / "RRHH"}/**)'])
+        self.assertEqual(adapter.install(self.coach, apply=True)['changed'], [])
+        self.activate_pokm(active=False)
+        adapter.install(self.coach, apply=True)
+        permissions = json.loads(settings_path.read_text())['permissions']
+        self.assertEqual(permissions['additionalDirectories'], ['/tmp/mio'])
+        self.assertEqual(permissions['deny'], ['Read(./.env)'])
+        self.assertEqual(permissions['allow'], ['Bash(npm test *)', *rules])
+
+    def test_removed_managed_permission_requires_decision(self):
+        adapter.install(self.coach, apply=True)
+        settings_path = self.coach / '.claude/settings.json'
+        settings = json.loads(settings_path.read_text())
+        settings['permissions']['allow'].pop(0)
+        settings_path.write_text(adapter.encoded(settings))
+        before = snapshots(self.coach)
+        with self.assertRaisesRegex(adapter.Refusal, 'retiró entradas gestionadas'):
+            adapter.install(self.coach, apply=True)
+        self.assertEqual(before, snapshots(self.coach))
+
+    def test_new_interpreter_replaces_only_managed_rules(self):
+        adapter.install(self.coach, apply=True)
+        old_rules = adapter.permission_rules(adapter.hook_spec(self.coach), self.coach)
+        other = self.base / 'otro python' / 'python3'
+        other.parent.mkdir()
+        other.write_text('#!/bin/sh\n')
+        with patch.object(adapter.sys, 'executable', str(other)):
+            adapter.install(self.coach, apply=True)
+            new_rules = adapter.permission_rules(adapter.hook_spec(self.coach), self.coach)
+        allow = json.loads((self.coach / '.claude/settings.json').read_text())['permissions']['allow']
+        self.assertEqual(sorted(allow), sorted(new_rules))
+        self.assertFalse((set(old_rules) - set(new_rules)) & set(allow))
+        self.assertIn(f'Bash("{other}" AIOS/integrations/pokm.py *)', allow)
+        self.assertTrue(set(old_rules) - set(new_rules))
+
+    def test_malformed_pokm_scope_fails_before_writes(self):
+        path = self.coach / 'pokm/.estado/alcance.json'
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps({'activo': True, 'bases': ['relativa'], 'reglas': {}}))
+        before = snapshots(self.coach)
+        with self.assertRaisesRegex(adapter.Refusal, 'pOKM'):
+            adapter.install(self.coach, apply=True)
+        self.assertEqual(before, snapshots(self.coach))
+
+    def test_review_wrapper_runs_the_pokm_phase(self):
+        wrapper = adapter.canonical_wrappers(self.coach)['.claude/skills/coach-review/SKILL.md']
+        self.assertIn('pOKM', wrapper)
+        self.assertIn('No crees ninguna programación', wrapper)
+        self.assertIn('.claude/skills/pokm/SKILL.md', adapter.canonical_wrappers(self.coach))
 
     def test_unidentified_interpreter_refuses_before_writing(self):
         before = snapshots(self.coach)
