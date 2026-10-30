@@ -8,6 +8,18 @@ Las secciones de cada versión usan el vocabulario de las migraciones — **Aña
 
 Regla de oro de la actualización: **nunca toca contenido tuyo** — `ME.md`, `projects/`, `areas/`, `knowledge/`, `episodic/` ni `pokm/` — y **nunca borra** skills ni entradas que tú hayas creado. Solo añade y modifica lo que aquí se lista. Una operación **Migrado** puede mover o reformatear también skills tuyas, pero conservando su contenido íntegro y siempre con tu OK: migrar no es borrar.
 
+## [2.4.1] - 2026-10-30
+
+El repositorio se llama ahora `Entaina/agente-personal`: el nombre anterior llevaba «claude» y «cowork», y el asistente funciona en más apps que esas. GitHub redirige la dirección antigua, así que nada se rompe. Cómo actualizar, en `migrations/2.4.1.md`.
+
+### Cambiado
+
+- `CLAUDE.md` y `AGENTS.md` — la dirección para retomar una instalación a medias apunta a `https://github.com/Entaina/agente-personal`.
+
+### Repo (no se aplica a tu carpeta)
+
+- README y UPDATE — los prompts de instalación y actualización usan la dirección nueva.
+
 ## [2.4.0] - 2026-10-29
 
 El pOKM: un mapa opcional de los documentos de trabajo del usuario para que el coach los encuentre sin pedir rutas y sin abrir lo que no debe, que se pone al día solo en la revisión diaria. Y la revisión de Claude Code se programa con las tareas locales de la app de escritorio. Cómo actualizar, en `migrations/2.4.0.md`.

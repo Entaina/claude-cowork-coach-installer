@@ -13,7 +13,7 @@ El coach ya está instalado en esta carpeta: mapas, skills, sistemas, plantillas
 
 ## 2. Lee el CHANGELOG del repositorio
 
-- Lee `CHANGELOG.md` del repositorio `https://github.com/Entaina/claude-cowork-coach-installer` (el del repo, no una copia local si la hubiera).
+- Lee `CHANGELOG.md` del repositorio `https://github.com/Entaina/agente-personal` (el del repo, no una copia local si la hubiera).
 - Quédate con las versiones **posteriores** a la instalada, en orden ascendente. Son las pendientes.
 - Si no hay ninguna pendiente, dilo — "Ya estás en la última versión (X)" — y termina aquí.
 

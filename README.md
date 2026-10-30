@@ -16,7 +16,7 @@ Compatible con Claude Cowork, Claude Code, ChatGPT Work / Codex en la app de esc
 Instala mi asistente personal en esta carpeta local permanente. Si estamos en Claude Code, configura su integración nativa con alcance local de proyecto, conservando cualquier configuración existente:
 
 1. Copia toda la estructura del repositorio
-   https://github.com/Entaina/claude-cowork-coach-installer en esta carpeta.
+   https://github.com/Entaina/agente-personal en esta carpeta.
    No clones el repositorio (nada de git clone): descarga y copia los
    archivos, nada más. Todos los archivos y carpetas, tal cual, sin
    reescribirlos, reordenarlos ni "mejorarlos" — excepto README.md,
@@ -54,7 +54,7 @@ Cuando el repositorio incorpore mejoras (nuevas skills, sistemas afinados), pon 
 Actualiza mi coach con los últimos cambios del repositorio, sin tocar nada mío:
 
 1. Lee UPDATE.md del repositorio
-   https://github.com/Entaina/claude-cowork-coach-installer (sin copiarlo) y
+   https://github.com/Entaina/agente-personal (sin copiarlo) y
    ejecútalo al pie de la letra.
 2. Mira la versión instalada (AIOS/VERSION.md, o 1.0.0 si no existe) frente al
    CHANGELOG.md del repositorio, enséñame en lenguaje llano qué versiones nuevas

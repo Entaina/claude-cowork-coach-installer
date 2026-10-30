@@ -124,6 +124,15 @@ class PackageIntegrity(unittest.TestCase):
             with self.subTest(file=relative):
                 self.assertEqual(hashlib.sha256((directory / relative).read_bytes()).hexdigest(), digest)
 
+    def test_rename_migration_originals_are_pristine(self):
+        baseline = json.loads((ROOT / "tests/baseline-2.4.0.json").read_text())
+        directory = ROOT / "migrations/2.4.1/originals"
+        actual = {path.relative_to(directory).as_posix() for path in directory.rglob("*") if path.is_file()}
+        self.assertEqual(actual, set(baseline["originals"]))
+        for relative, digest in baseline["originals"].items():
+            with self.subTest(file=relative):
+                self.assertEqual(hashlib.sha256((directory / relative).read_bytes()).hexdigest(), digest)
+
     def test_previous_migrations_remain_unchanged(self):
         for relative, digest in BASELINE["historical_migrations"].items():
             with self.subTest(file=relative):
